@@ -1,0 +1,12 @@
+{
+  "name": "First Friday Marketing Consulting",
+  "short_name": "First Friday",
+  "description": "Executive advisory and counsel — senior marketing judgment inside leadership teams and boards.",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#4a5230",
+  "background_color": "#ede6d6",
+  "display": "standalone"
+}

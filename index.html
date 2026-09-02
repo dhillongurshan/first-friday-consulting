@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>First Friday Marketing Consulting — Executive Advisory and Counsel</title>
 <meta name="description" content="First Friday Marketing Consulting places executive level marketing counsel inside leadership teams and boards — not a full-time hire, not a generalist agency retainer." />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="theme-color" content="#4a5230" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
@@ -38,7 +43,12 @@
     font-size: 18px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    /* clip (not hidden) — stops stray horizontal overflow without turning
+       <body> into a scroll container, which would break the sticky header. */
+    overflow-x: clip;
   }
+
+  img { max-width: 100%; }
 
   h1, h2, h3 {
     font-family: var(--serif);
@@ -146,6 +156,7 @@
     flex: none;
     display: block;
     width: auto;
+    max-width: 100%;
     height: 120px;
     object-fit: contain;
   }
@@ -192,14 +203,18 @@
   .nav-toggle[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
 
   /* ---------- Section frame ---------- */
-  section { padding: 5.5rem 0; border-bottom: 1px solid var(--line-soft); }
+  /* One vertical rhythm for every section: --section-y top/bottom padding,
+     --head-gap between a section's heading block and its body. */
+  :root { --section-y: 5.5rem; --head-gap: 3rem; }
+
+  section { padding: var(--section-y) 0; border-bottom: 1px solid var(--line-soft); }
 
   .section-head {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: end;
-    margin-bottom: 3.5rem;
+    margin-bottom: var(--head-gap);
   }
   .section-head h2 { font-size: 2.5rem; }
   .section-head .right {
@@ -211,7 +226,6 @@
   }
 
   /* ---------- Hero ---------- */
-  .hero { padding-top: 4.5rem; }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -283,14 +297,17 @@
   }
 
   /* ---------- Hero card ---------- */
+  /* --card-pad: interior padding shared by every bordered card. */
+  :root { --card-pad: 2rem; }
+
   .card {
     border: 1px solid var(--line);
     background: var(--paper);
-    padding: 1.9rem;
+    padding: var(--card-pad);
   }
   .led-by-card {
     text-align: left;
-    padding: 2.5rem;
+    padding: var(--card-pad);
   }
   .led-by-photo {
     width: 100%;
@@ -419,7 +436,7 @@
   .motion {
     border: 1px solid var(--line);
     background: var(--paper);
-    padding: 1.6rem;
+    padding: var(--card-pad);
     display: flex;
     flex-direction: column;
   }
@@ -445,11 +462,12 @@
   }
 
   /* ---------- Resolution ---------- */
-  #resolution .eyebrow { margin-bottom: 2.5rem; }
+  /* Bare eyebrow stands in for a .section-head here — match its bottom gap. */
+  #resolution .eyebrow { margin-bottom: var(--head-gap); }
   .resolution-card {
     border: 1px solid var(--olive);
     background: var(--cream-deep);
-    padding: 4rem;
+    padding: calc(var(--card-pad) + 1rem);
   }
   .resolution-card blockquote {
     font-family: var(--serif);
@@ -473,7 +491,6 @@
   }
 
   /* ---------- Advisor ---------- */
-  #advisor .section-head { margin-bottom: 2rem; }
   .advisor-name {
     font-family: var(--serif);
     font-weight: 700;
@@ -519,7 +536,7 @@
   }
 
   /* ---------- Footer ---------- */
-  footer { padding: 4.5rem 0 2.5rem; border-bottom: 0; }
+  footer { padding: var(--section-y) 0 3rem; border-bottom: 0; }
   .footer-cols {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -533,7 +550,7 @@
     color: var(--olive);
     margin-bottom: 0.6rem;
   }
-  .footer-cols p { margin: 0; font-size: 1.05rem; }
+  .footer-cols p { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
   .footer-cols a { text-decoration: underline; text-underline-offset: 3px; }
   .footer-divider {
     border: 0;
@@ -554,24 +571,37 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
+    /* Rescale the whole spacing system in one place — every section, card and
+       heading gap below is driven by these three custom properties. */
+    :root {
+      --section-y: 3.75rem;
+      --head-gap: 2.25rem;
+      --card-pad: 1.75rem;
+    }
+
     body { font-size: 17px; }
-    .wrap { padding: 0 24px; }
+    .wrap { padding: 0 22px; }
+
+    /* --- Header --------------------------------------------------------- */
     .header-inner {
-      padding: 0.55rem 20px;
+      padding: 0.5rem 18px;
       flex-wrap: wrap;
       row-gap: 0;
-      column-gap: 0.75rem;
+      column-gap: 0.6rem;
     }
-    /* Logo + name + toggle share one compact, vertically-centered row */
+    /* Logo + name + toggle share one compact, vertically-centred row */
     .header-bar {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       width: 100%;
     }
-    .brand { flex: 1 1 auto; min-width: 0; gap: 0.7rem; }
-    .brand-name { font-size: 1.05rem; }
-    .brand-tag { font-size: 0.54rem; }
+    .brand { flex: 1 1 auto; min-width: 0; gap: 0.65rem; }
+    .brand-name { font-size: 1rem; line-height: 1.2; }
+    .brand-tag { font-size: 0.52rem; letter-spacing: 0.12em; }
+    .mark { height: 56px; }
+    .mark--sm { height: 60px; }
+
     /* Accordion nav — expands in normal flow, pushing page content down */
     nav.primary {
       order: 3;
@@ -585,9 +615,9 @@
       overflow: hidden;
       transition: max-height 0.28s ease;
     }
-    nav.primary.open { max-height: 280px; }
+    nav.primary.open { max-height: 300px; }
     nav.primary a {
-      padding: 0.85rem 0;
+      padding: 0.95rem 0;
       font-size: 0.78rem;
       color: var(--ink);
       border-top: 1px solid var(--line-soft);
@@ -598,16 +628,18 @@
     .nav-toggle {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       flex: none;
       align-self: center;
+      min-height: 42px;
       background: none;
       border: 1px solid var(--line);
       font-family: var(--mono);
       font-size: 0.66rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.85rem;
       cursor: pointer;
       color: var(--ink);
     }
@@ -620,44 +652,74 @@
       margin-top: 0.7rem;
     }
 
-    .mark { height: 60px; }
-    .mark--sm { height: 64px; }
+    /* --- Buttons / links: comfortable tap targets --------------------- */
+    .btn { padding: 0.95rem 1.4rem; }
+    .hero-ctas { gap: 0.5rem; margin-bottom: 1.75rem; }
+    .hero-ctas .link-underline {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+    nav.primary a, .footer-cols a, .hero-ctas .link-underline { touch-action: manipulation; }
 
-    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .hero h1 { font-size: 2.4rem; }
+    /* --- Hero --------------------------------------------------------- */
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero h1 { font-size: 2.15rem; margin-bottom: 1.3rem; }
+    .hero p.lead { font-size: 1.08rem; margin-bottom: 1.6rem; }
     /* Reorder stacked hero: intro, then the Led-by card, then the CTA stack */
     .hero-left { display: contents; }
     .hero-intro { order: 1; }
     .hero-grid .led-by-card { order: 2; }
     .hero-cta-block { order: 3; }
     .hero-intro .hero-inshort { margin-bottom: 0; }
+    .hero-proof li { letter-spacing: 0.08em; }
 
-    .section-head { grid-template-columns: 1fr; gap: 1.4rem; align-items: start; }
-    .section-head h2 { font-size: 2rem; }
-    .section-head .right { text-align: left; justify-self: start; }
+    .led-by-photo { margin-bottom: 1.5rem; }
 
+    /* --- Section heads --------------------------------------------------- */
+    .section-head { grid-template-columns: 1fr; gap: 1.1rem; align-items: start; }
+    .section-head h2 { font-size: 1.95rem; }
+    .section-head .right { text-align: left; justify-self: start; font-size: 1rem; }
+
+    /* --- Agenda list --------------------------------------------------- */
     .agenda-item {
       grid-template-columns: 1fr;
-      gap: 0.8rem;
-      padding: 1.8rem 0;
+      gap: 0.7rem;
+      padding: 1.9rem 0;
     }
+    .agenda-item h3 { font-size: 1.3rem; }
     .agenda-item .tag { text-align: left; padding-top: 0; }
 
-    .motions { grid-template-columns: 1fr; }
+    /* --- Order of business ------------------------------------------- */
+    .motions { grid-template-columns: 1fr; gap: 1.25rem; }
 
-    .resolution-card { padding: 2.2rem; }
-    .resolution-card blockquote { font-size: 1.6rem; }
+    /* --- Resolution --------------------------------------------------- */
+    .resolution-card { padding: 2rem; }
+    .resolution-card blockquote { font-size: 1.55rem; margin-bottom: 2rem; }
+    .resolution-sig { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
 
-    .led-by-card { padding: 2rem; }
-    .led-by-photo { margin-bottom: 1.6rem; }
-
+    /* --- Executive --------------------------------------------------- */
+    .advisor-name { font-size: 1.55rem; }
+    .advisor-role { margin-bottom: 1.4rem; }
+    .advisor-bio p.advisor-lede { font-size: 1.2rem; margin-bottom: 1.4rem; }
     .advisor-stats { flex-direction: column; align-items: stretch; }
-    .advisor-stats span { text-align: center; }
+    .advisor-stats span { text-align: center; padding: 0.7rem 0.8rem; }
 
-    .footer-cols { grid-template-columns: 1fr; gap: 1.8rem; }
-    .footer-bottom { flex-direction: column; gap: 0.5rem; }
+    /* --- Footer ------------------------------------------------------ */
+    .footer-cols { grid-template-columns: 1fr; gap: 1.6rem; }
+    .footer-cols a { display: inline-block; padding: 0.2rem 0; }
+    .footer-divider { margin: 2.25rem 0 1.2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; line-height: 1.7; }
+  }
 
-    section { padding: 4rem 0; }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    .header-inner { padding: 0.5rem 14px; }
+    .brand-name { font-size: 0.94rem; }
+    .brand-tag { font-size: 0.5rem; letter-spacing: 0.1em; }
+    .mark { height: 50px; }
+    .hero h1 { font-size: 1.95rem; }
+    .resolution-card blockquote { font-size: 1.4rem; }
   }
 </style>
 </head>
@@ -721,7 +783,7 @@
               <span class="proof-label">Track Record</span>
               <ul>
                 <li>Chief Marketing Officer for a $300M Alberta Energy Company.</li>
-                <li>15 years across corporate, government, and energy sectors.</li>
+                <li>Managed the marketing function across Western Canada, Yukon, and Alaska — 10 branches, 24 sites.</li>
                 <li>$17M in incremental revenue generated.</li>
               </ul>
             </div>
