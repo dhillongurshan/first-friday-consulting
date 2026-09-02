@@ -545,6 +545,29 @@
     padding: 0.5rem 0.8rem;
   }
 
+  /* ---------- FAQ ---------- */
+  .faq-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--head-gap);
+  }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-item {
+    padding: 1.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin: 0 0 0.7rem;
+  }
+  .faq-a {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 68ch;
+  }
+
   /* ---------- Footer ---------- */
   footer { padding: var(--section-y) 0 3rem; border-bottom: 0; }
   .footer-head { margin-bottom: var(--head-gap); }
@@ -723,6 +746,11 @@
     .advisor-stats { flex-direction: column; align-items: stretch; }
     .advisor-stats span { text-align: center; padding: 0.7rem 0.8rem; }
 
+    /* --- FAQ ------------------------------------------------------- */
+    .faq-title { font-size: 1.95rem; }
+    .faq-item { padding: 1.6rem 0; }
+    .faq-q { font-size: 1.2rem; }
+
     /* --- Footer ------------------------------------------------------ */
     .footer-cols { grid-template-columns: 1fr; gap: 1.6rem; }
     .footer-cols a { display: inline-block; padding: 0.2rem 0; }
@@ -768,6 +796,39 @@
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing strategy & audits" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Board & executive advisory sessions" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Growth & revenue consulting" } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a fractional CMO?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A fractional CMO is an experienced Chief Marketing Officer who works with your company part-time or on a defined engagement, providing executive-level marketing leadership without the cost or commitment of a full-time hire." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is First Friday Marketing different from a marketing agency?",
+      "acceptedAnswer": { "@type": "Answer", "text": "First Friday Marketing places senior marketing judgment directly inside your leadership team or board — setting strategy and holding accountability for outcomes — rather than executing tactical work as an outside vendor." }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries does First Friday Marketing work with?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gurshan Dhillon's background spans corporate, government, and energy sector marketing leadership, including serving as Chief Marketing Officer of a $300M Alberta energy company." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does an engagement with First Friday Marketing look like?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Engagements typically include a structured intake, a strategic audit, ongoing advisory sessions, and clear recommendations carried through to execution. Reach out to scope what fits your team." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is First Friday Marketing based?",
+      "acceptedAnswer": { "@type": "Answer", "text": "First Friday Marketing is based in Alberta, Canada, and works with leadership teams and boards in person or by board call." }
+    }
   ]
 }
 </script>
@@ -978,6 +1039,37 @@
           <span>$17M Incremental Revenue</span>
           <span>6x Volume Growth</span>
           <span>14.2% Margin Lift</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 — FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <span class="eyebrow">— For Reference</span>
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">What is a fractional CMO?</h3>
+          <p class="faq-a">A fractional CMO is an experienced Chief Marketing Officer who works with your company part-time or on a defined engagement, providing executive-level marketing leadership without the cost or commitment of a full-time hire.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">How is First Friday Marketing different from a marketing agency?</h3>
+          <p class="faq-a">First Friday Marketing places senior marketing judgment directly inside your leadership team or board — setting strategy and holding accountability for outcomes — rather than executing tactical work as an outside vendor.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">What industries does First Friday Marketing work with?</h3>
+          <p class="faq-a">Gurshan Dhillon's background spans corporate, government, and energy sector marketing leadership, including serving as Chief Marketing Officer of a $300M Alberta energy company.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">What does an engagement with First Friday Marketing look like?</h3>
+          <p class="faq-a">Engagements typically include a structured intake, a strategic audit, ongoing advisory sessions, and clear recommendations carried through to execution. Reach out to scope what fits your team.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Where is First Friday Marketing based?</h3>
+          <p class="faq-a">First Friday Marketing is based in Alberta, Canada, and works with leadership teams and boards in person or by board call.</p>
         </div>
       </div>
     </div>
