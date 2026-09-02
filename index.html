@@ -133,6 +133,8 @@
     max-width: 1180px;
     margin: 0 auto;
   }
+  /* On desktop the bar is transparent — its children lay out directly in .header-inner */
+  .header-bar { display: contents; }
   .brand {
     display: flex;
     align-items: center;
@@ -536,7 +538,22 @@
   @media (max-width: 900px) {
     body { font-size: 17px; }
     .wrap { padding: 0 24px; }
-    .header-inner { padding: 0.9rem 24px; flex-wrap: wrap; }
+    .header-inner {
+      padding: 0.55rem 20px;
+      flex-wrap: wrap;
+      row-gap: 0;
+      column-gap: 0.75rem;
+    }
+    /* Logo + name + toggle share one compact, vertically-centered row */
+    .header-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+    }
+    .brand { flex: 1 1 auto; min-width: 0; gap: 0.7rem; }
+    .brand-name { font-size: 1.05rem; }
+    .brand-tag { font-size: 0.54rem; }
     nav.primary {
       order: 3;
       width: 100%;
@@ -547,23 +564,24 @@
       overflow: hidden;
       transition: max-height 0.25s ease;
     }
-    nav.primary.open { max-height: 240px; padding-top: 0.6rem; }
+    nav.primary.open { max-height: 240px; padding: 0.9rem 0 0.3rem; }
     .nav-toggle {
       display: inline-flex;
-      margin-left: auto;
+      flex: none;
+      align-self: center;
       background: none;
       border: 1px solid var(--line);
       font-family: var(--mono);
       font-size: 0.66rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 0.55rem 0.8rem;
+      padding: 0.5rem 0.75rem;
       cursor: pointer;
       color: var(--ink);
     }
     .header-cta { display: none; }
 
-    .mark { height: 82px; }
+    .mark { height: 60px; }
     .mark--sm { height: 64px; }
 
     .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -599,14 +617,16 @@
 
 <header>
   <div class="header-inner">
-    <a class="brand" href="#top">
-      <img class="mark" src="logo.png" alt="First Friday Marketing Consulting" />
-      <span>
-        <span class="brand-name">First Friday Marketing</span>
-        <span class="brand-tag">Executive Advisory and Counsel</span>
-      </span>
-    </a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <div class="header-bar">
+      <a class="brand" href="#top">
+        <img class="mark" src="logo.png" alt="First Friday Marketing Consulting" />
+        <span>
+          <span class="brand-name">First Friday Marketing</span>
+          <span class="brand-tag">Executive Advisory and Counsel</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    </div>
     <nav class="primary" id="primary-nav">
       <a href="#agenda">Agenda</a>
       <a href="#order-of-business">Order of Business</a>
