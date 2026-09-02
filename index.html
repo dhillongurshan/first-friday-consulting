@@ -275,11 +275,36 @@
     color: var(--gold-deep);
   }
 
-  /* ---------- Sittings card ---------- */
+  /* ---------- Hero card ---------- */
   .card {
     border: 1px solid var(--line);
     background: var(--paper);
     padding: 1.9rem;
+  }
+  .led-by-card {
+    text-align: left;
+    padding: 2.5rem;
+  }
+  .led-by-photo {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .led-by-heading {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin: 0 0 0.9rem;
+  }
+  .led-by-bio {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 1rem;
   }
   .card-title-row {
     display: flex;
@@ -441,21 +466,6 @@
   }
 
   /* ---------- Advisor ---------- */
-  .advisor-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .advisor-photo {
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--line);
-    display: block;
-  }
   .advisor-name {
     font-family: var(--serif);
     font-weight: 700;
@@ -603,8 +613,8 @@
     .resolution-card { padding: 2.2rem; }
     .resolution-card blockquote { font-size: 1.6rem; }
 
-    .advisor-grid { grid-template-columns: 1fr; gap: 2.2rem; }
-    .advisor-photo { max-width: 240px; }
+    .led-by-card { padding: 2rem; }
+    .led-by-photo { margin-bottom: 1.6rem; }
 
     .footer-cols { grid-template-columns: 1fr; gap: 1.8rem; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; }
@@ -671,40 +681,10 @@
           </div>
         </div>
 
-        <aside class="card">
-          <div class="card-title-row">
-            <h3>Standing Sittings</h3>
-            <span>— First Friday</span>
-          </div>
-
-          <div class="agenda-row agenda-row--next">
-            <span class="month">Sep 2026</span>
-            <span class="date">Friday the 4th</span>
-            <span class="badge badge--next">Next</span>
-          </div>
-          <div class="agenda-row">
-            <span class="month">Sep 2026</span>
-            <span class="date">Friday the 11th</span>
-            <span class="badge">Reserved</span>
-          </div>
-          <div class="agenda-row">
-            <span class="month">Sep 2026</span>
-            <span class="date">Friday the 18th</span>
-            <span class="badge">Reserved</span>
-          </div>
-          <div class="agenda-row">
-            <span class="month">Sep 2026</span>
-            <span class="date">Friday the 25th</span>
-            <span class="badge">Reserved</span>
-          </div>
-          <div class="agenda-row">
-            <span class="month">Oct 2026</span>
-            <span class="date">Friday the 2nd</span>
-            <span class="badge">Reserved</span>
-          </div>
-
-          <hr class="dotted-divider" />
-          <p class="card-note">Sittings convene on Fridays, in person or by board call.</p>
+        <aside class="card led-by-card">
+          <img class="led-by-photo" src="headshot.jpg" alt="Gurshan Dhillon" />
+          <h3 class="led-by-heading">Led by Gurshan Dhillon</h3>
+          <p class="led-by-bio">Fifteen years building go-to-market engines across government, energy, and corporate leadership — from provincial spokesperson to Chief Marketing Officer. He's operated at the table he now advises.</p>
         </aside>
       </div>
     </div>
@@ -718,7 +698,7 @@
           <span class="eyebrow">— Item II — Old &amp; New Business</span>
           <h2>The agenda</h2>
         </div>
-        <p class="right">Four standing engagements a board can bring to the table, individually or in combination.</p>
+        <p class="right">Four standing engagements a leadership team can bring to the table, individually or in combination.</p>
       </div>
 
       <div class="agenda-list">
@@ -826,23 +806,20 @@
         <p class="right">One principal, accountable for every sitting — no handoffs, no junior bench.</p>
       </div>
 
-      <div class="advisor-grid">
-        <img class="advisor-photo" src="headshot.jpg" alt="Gurshan Dhillon" />
-        <div class="advisor-bio">
-          <p class="advisor-name">Gurshan Dhillon</p>
-          <p class="advisor-role">Chief Marketing Officer</p>
+      <div class="advisor-bio">
+        <p class="advisor-name">Gurshan Dhillon</p>
+        <p class="advisor-role">Chief Marketing Officer</p>
 
-          <p class="advisor-lede">Gurshan Dhillon builds marketing functions that owners and CFOs can underwrite — engines measured in payback period and margin.</p>
-          <p>As Chief Marketing Officer of a $300M Alberta energy company, he held full P&amp;L accountability and rebuilt the commercial model around lifetime value — proving existing accounts return 3.4x the margin of new ones ($9,190 vs. $2,718) and redirecting spend accordingly. Result: gross margin up 14.2% to $21.4M on flat volume, and a go-to-market cost restructure that turned a $229K-loss acquisition channel into a $401K contributor, lifting return on new-business spend from $0.84 to $1.50 per dollar.</p>
-          <p>He built the pipeline machinery behind those numbers: a 115,000-contact B2B database converted into a predictable channel generating 20+ qualified leads a week at $58 each, plus a proprietary prospect-scoring tool that opened an entire equipment-intensive segment invisible to traditional field sales. The result: $17M in incremental revenue and monthly sales volume up 6x, from 500K to 3M litres.</p>
-          <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls — the training ground for advising boards under real pressure.</p>
-          <p>Bachelor of Marketing, University of Alberta.</p>
+        <p class="advisor-lede">Gurshan Dhillon builds marketing functions that owners and CFOs can underwrite — engines measured in payback period and margin.</p>
+        <p>As Chief Marketing Officer of a $300M Alberta energy company, he held full P&amp;L accountability and rebuilt the commercial model around lifetime value — proving existing accounts return 3.4x the margin of new ones ($9,190 vs. $2,718) and redirecting spend accordingly. Result: gross margin up 14.2% to $21.4M on flat volume, and a go-to-market cost restructure that turned a $229K-loss acquisition channel into a $401K contributor, lifting return on new-business spend from $0.84 to $1.50 per dollar.</p>
+        <p>He built the pipeline machinery behind those numbers: a 115,000-contact B2B database converted into a predictable channel generating 20+ qualified leads a week at $58 each, plus a proprietary prospect-scoring tool that opened an entire equipment-intensive segment invisible to traditional field sales. The result: $17M in incremental revenue and monthly sales volume up 6x, from 500K to 3M litres.</p>
+        <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls — the training ground for advising boards under real pressure.</p>
+        <p>Bachelor of Marketing, University of Alberta.</p>
 
-          <div class="advisor-stats">
-            <span>$17M Incremental Revenue</span>
-            <span>6x Volume Growth</span>
-            <span>14.2% Margin Lift</span>
-          </div>
+        <div class="advisor-stats">
+          <span>$17M Incremental Revenue</span>
+          <span>6x Volume Growth</span>
+          <span>14.2% Margin Lift</span>
         </div>
       </div>
     </div>
