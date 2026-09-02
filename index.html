@@ -183,6 +183,13 @@
   nav.primary a:hover { color: var(--olive); }
 
   .nav-toggle { display: none; }
+  .nav-chevron {
+    width: 11px;
+    height: 8px;
+    flex: none;
+    transition: transform 0.2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
 
   /* ---------- Section frame ---------- */
   section { padding: 5.5rem 0; border-bottom: 1px solid var(--line-soft); }
@@ -565,19 +572,33 @@
     .brand { flex: 1 1 auto; min-width: 0; gap: 0.7rem; }
     .brand-name { font-size: 1.05rem; }
     .brand-tag { font-size: 0.54rem; }
+    /* Accordion nav — expands in normal flow, pushing page content down */
     nav.primary {
       order: 3;
       width: 100%;
       margin-left: 0;
-      gap: 1.2rem;
-      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.25s ease;
+      transition: max-height 0.28s ease;
     }
-    nav.primary.open { max-height: 240px; padding: 0.9rem 0 0.3rem; }
+    nav.primary.open { max-height: 280px; }
+    nav.primary a {
+      padding: 0.85rem 0;
+      font-size: 0.78rem;
+      color: var(--ink);
+      border-top: 1px solid var(--line-soft);
+    }
+    nav.primary a:first-child { margin-top: 0.6rem; }
+    nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
+
     .nav-toggle {
       display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       flex: none;
       align-self: center;
       background: none;
@@ -590,7 +611,14 @@
       cursor: pointer;
       color: var(--ink);
     }
-    .header-cta { display: none; }
+
+    .header-cta {
+      display: inline-flex;
+      order: 2;
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.7rem;
+    }
 
     .mark { height: 60px; }
     .mark--sm { height: 64px; }
@@ -636,13 +664,18 @@
           <span class="brand-tag">Executive Advisory and Counsel</span>
         </span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span>Menu</span>
+        <svg class="nav-chevron" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M1 1.5 6 6.5 11 1.5" />
+        </svg>
+      </button>
     </div>
     <nav class="primary" id="primary-nav">
       <a href="#agenda">Agenda</a>
       <a href="#order-of-business">Order of Business</a>
       <a href="#resolution">Resolution</a>
-      <a href="#advisor">Advisor</a>
+      <a href="#advisor">The Executive</a>
     </nav>
     <a class="btn btn-gold header-cta" href="#contact">Request a Sitting</a>
   </div>
@@ -859,16 +892,18 @@
     var toggle = document.querySelector(".nav-toggle");
     var nav = document.getElementById("primary-nav");
 
+    function closeNav() {
+      if (!nav) return false;
+      var wasOpen = nav.classList.contains("open");
+      nav.classList.remove("open");
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
+      return wasOpen;
+    }
+
     if (toggle && nav) {
       toggle.addEventListener("click", function () {
         var open = nav.classList.toggle("open");
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-      nav.addEventListener("click", function (e) {
-        if (e.target.tagName === "A") {
-          nav.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-        }
       });
     }
 
@@ -881,10 +916,23 @@
         var target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
-        var offset = (header ? header.offsetHeight : 0) + 12;
-        var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-        history.replaceState(null, "", id);
+
+        // Collapse the mobile accordion first so the header settles to its
+        // final height before we measure the scroll offset.
+        var navWasOpen = link.closest("nav.primary") ? closeNav() : false;
+
+        var doScroll = function () {
+          var offset = (header ? header.offsetHeight : 0) + 12;
+          var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+          history.replaceState(null, "", id);
+        };
+
+        if (navWasOpen) {
+          window.setTimeout(doScroll, 300);
+        } else {
+          doScroll();
+        }
       });
     });
   })();
