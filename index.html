@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>First Friday Marketing Consulting — Executive Advisory and Counsel</title>
+<meta name="description" content="First Friday Marketing Consulting places executive level marketing counsel inside leadership teams and boards — not a full-time hire, not a generalist agency retainer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #ede6d6;
+    --cream-deep: #e4dbc7;
+    --paper: #f4efe2;
+    --ink: #232219;
+    --ink-soft: #55503f;
+    --olive: #4a5230;
+    --olive-deep: #3a4126;
+    --gold: #c9a233;
+    --gold-deep: #b08e28;
+    --line: #b9b09a;
+    --line-soft: #cfc6ae;
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --body: "Spectral", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 700;
+    line-height: 1.12;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0 0 1rem; }
+
+  a { color: inherit; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin: 0 0 1.25rem;
+    display: block;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .italic-gold { font-style: italic; color: var(--gold-deep); }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.4rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold-deep);
+  }
+  .btn-gold:hover { background: var(--gold-deep); }
+  .btn-olive {
+    background: var(--olive);
+    color: var(--paper);
+    border-color: var(--olive-deep);
+  }
+  .btn-olive:hover { background: var(--olive-deep); }
+
+  .link-underline {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: var(--ink);
+  }
+  .link-underline:hover { color: var(--olive); }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .mark {
+    flex: none;
+    display: block;
+    width: auto;
+    height: 120px;
+    object-fit: contain;
+  }
+  .mark--sm { height: 84px; }
+  .brand-name {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+  .brand-tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  nav.primary {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.9rem;
+  }
+  nav.primary a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+  nav.primary a:hover { color: var(--olive); }
+
+  .nav-toggle { display: none; }
+
+  /* ---------- Section frame ---------- */
+  section { padding: 5.5rem 0; border-bottom: 1px solid var(--line-soft); }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+  .section-head h2 { font-size: 2.5rem; }
+  .section-head .right {
+    text-align: right;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 34ch;
+    justify-self: end;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 4.5rem; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .hero h1 {
+    font-size: 3.35rem;
+    margin-bottom: 1.6rem;
+  }
+  .hero p.lead {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-bottom: 2rem;
+  }
+  .hero-inshort {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: -0.4rem 0 2rem;
+  }
+  .hero-inshort .in-short-tag {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-right: 0.7rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-proof { margin: 0; }
+  .hero-proof .proof-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 0.7rem;
+  }
+  .hero-proof ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hero-proof li {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    padding: 0.18rem 0 0.18rem 1rem;
+    position: relative;
+  }
+  .hero-proof li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--gold-deep);
+  }
+
+  /* ---------- Sittings card ---------- */
+  .card {
+    border: 1px solid var(--line);
+    background: var(--paper);
+    padding: 1.9rem;
+  }
+  .card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-title-row h3 {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .card-title-row span {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+  }
+
+  .agenda-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px dotted var(--line-soft);
+  }
+  .agenda-row:last-of-type { border-bottom: 0; }
+  .agenda-row .month {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    width: 8ch;
+  }
+  .agenda-row .date {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .badge--next {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .agenda-row--next {
+    border: 1px solid var(--olive);
+    padding: 1rem 0.9rem;
+    margin: 0.4rem 0;
+    background: var(--cream-deep);
+  }
+
+  .dotted-divider {
+    border: 0;
+    border-top: 1px dotted var(--line);
+    margin: 1.4rem 0 1rem;
+  }
+  .card-note {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Agenda list (Section 2) ---------- */
+  .agenda-list { border-top: 1px solid var(--line); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr 16ch;
+    gap: 2.5rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .agenda-item .numeral {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold-deep);
+    line-height: 1;
+  }
+  .agenda-item h3 { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 60ch; }
+  .agenda-item .tag { text-align: right; padding-top: 0.5rem; }
+
+  /* ---------- Order of business grid ---------- */
+  .motions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .motion {
+    border: 1px solid var(--line);
+    background: var(--paper);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .motion .label {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1rem;
+  }
+  .motion h3 { font-size: 1.2rem; margin-bottom: 0.7rem; }
+  .motion p { font-size: 0.95rem; color: var(--ink-soft); flex: 1; }
+  .motion .bullet {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  /* ---------- Resolution ---------- */
+  #resolution .eyebrow { margin-bottom: 2.5rem; }
+  .resolution-card {
+    border: 1px solid var(--olive);
+    background: var(--cream-deep);
+    padding: 4rem;
+  }
+  .resolution-card blockquote {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.15rem;
+    line-height: 1.28;
+    margin: 0 0 2.5rem;
+    max-width: 24ch;
+  }
+  .resolution-sig {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.6rem;
+  }
+  .resolution-sig p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Advisor ---------- */
+  .advisor-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .advisor-photo {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .advisor-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.9rem;
+    margin-bottom: 0.35rem;
+  }
+  .advisor-role {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 1.8rem;
+  }
+  .advisor-bio p {
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .advisor-bio p.advisor-lede {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 1.6rem;
+  }
+  .advisor-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+  }
+  .advisor-stats span {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 0.5rem 0.8rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 4.5rem 0 2.5rem; border-bottom: 0; }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .footer-cols .label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 0.6rem;
+  }
+  .footer-cols p { margin: 0; font-size: 1.05rem; }
+  .footer-cols a { text-decoration: underline; text-underline-offset: 3px; }
+  .footer-divider {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 3rem 0 1.4rem;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .cal-icon { width: 13px; height: 13px; flex: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    body { font-size: 17px; }
+    .wrap { padding: 0 24px; }
+    .header-inner { padding: 0.9rem 24px; flex-wrap: wrap; }
+    nav.primary {
+      order: 3;
+      width: 100%;
+      margin-left: 0;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    nav.primary.open { max-height: 240px; padding-top: 0.6rem; }
+    .nav-toggle {
+      display: inline-flex;
+      margin-left: auto;
+      background: none;
+      border: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .header-cta { display: none; }
+
+    .mark { height: 82px; }
+    .mark--sm { height: 64px; }
+
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero h1 { font-size: 2.4rem; }
+
+    .section-head { grid-template-columns: 1fr; gap: 1.4rem; align-items: start; }
+    .section-head h2 { font-size: 2rem; }
+    .section-head .right { text-align: left; justify-self: start; }
+
+    .agenda-item {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      padding: 1.8rem 0;
+    }
+    .agenda-item .tag { text-align: left; padding-top: 0; }
+
+    .motions { grid-template-columns: 1fr; }
+
+    .resolution-card { padding: 2.2rem; }
+    .resolution-card blockquote { font-size: 1.6rem; }
+
+    .advisor-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .advisor-photo { max-width: 240px; }
+
+    .footer-cols { grid-template-columns: 1fr; gap: 1.8rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; }
+
+    section { padding: 4rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <img class="mark" src="logo.png" alt="First Friday Marketing Consulting" />
+      <span>
+        <span class="brand-name">First Friday Marketing</span>
+        <span class="brand-tag">Executive Advisory and Counsel</span>
+      </span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="primary" id="primary-nav">
+      <a href="#agenda">Agenda</a>
+      <a href="#order-of-business">Order of Business</a>
+      <a href="#resolution">Resolution</a>
+      <a href="#advisor">Advisor</a>
+    </nav>
+    <a class="btn btn-gold header-cta" href="#contact">Request a Sitting</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Section 1 — Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">— Item I — Call to Order</span>
+          <h1>Marketing counsel with a seat at <span class="italic-gold">your</span> boardroom table.</h1>
+          <p class="lead">First Friday Marketing Consulting places executive level marketing counsel inside leadership teams and boards — not a full-time hire, not a generalist agency retainer.</p>
+          <p class="hero-inshort"><span class="in-short-tag">In Short</span>Senior marketing leadership, on retainer, on your board's calendar.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-olive" href="#contact">
+              <svg class="cal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="1" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+              </svg>
+              Request a sitting
+            </a>
+            <a class="link-underline" href="#agenda">Review the agenda ↓</a>
+            <a class="link-underline" href="#advisor">Meet the advisor ↓</a>
+          </div>
+          <div class="hero-proof">
+            <span class="proof-label">Track Record</span>
+            <ul>
+              <li>Chief Marketing Officer for a $300M Alberta Energy Company.</li>
+              <li>15 years across corporate, government, and energy sectors.</li>
+              <li>$17M in incremental revenue generated.</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="card-title-row">
+            <h3>Standing Sittings</h3>
+            <span>— First Friday</span>
+          </div>
+
+          <div class="agenda-row agenda-row--next">
+            <span class="month">Sep 2026</span>
+            <span class="date">Friday the 4th</span>
+            <span class="badge badge--next">Next</span>
+          </div>
+          <div class="agenda-row">
+            <span class="month">Sep 2026</span>
+            <span class="date">Friday the 11th</span>
+            <span class="badge">Reserved</span>
+          </div>
+          <div class="agenda-row">
+            <span class="month">Sep 2026</span>
+            <span class="date">Friday the 18th</span>
+            <span class="badge">Reserved</span>
+          </div>
+          <div class="agenda-row">
+            <span class="month">Sep 2026</span>
+            <span class="date">Friday the 25th</span>
+            <span class="badge">Reserved</span>
+          </div>
+          <div class="agenda-row">
+            <span class="month">Oct 2026</span>
+            <span class="date">Friday the 2nd</span>
+            <span class="badge">Reserved</span>
+          </div>
+
+          <hr class="dotted-divider" />
+          <p class="card-note">Sittings convene on Fridays, in person or by board call.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 — Agenda -->
+  <section id="agenda">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">— Item II — Old &amp; New Business</span>
+          <h2>The agenda</h2>
+        </div>
+        <p class="right">Four standing engagements a board can bring to the table, individually or in combination.</p>
+      </div>
+
+      <div class="agenda-list">
+        <div class="agenda-item">
+          <span class="numeral">I</span>
+          <div>
+            <h3>Fractional CMO placement</h3>
+            <p>A senior marketing executive embedded in your leadership team on a fixed cadence — owning the function, chairing the reviews, and accountable to the board without the cost or hiring risk of a full-time officer.</p>
+          </div>
+          <span class="tag">Standing Seat · Part-Time</span>
+        </div>
+
+        <div class="agenda-item">
+          <span class="numeral">II</span>
+          <div>
+            <h3>Marketing strategy &amp; audits</h3>
+            <p>An independent, board-grade review of positioning, spend, and go-to-market — what's working, what's wasted, and the three moves that would change the trajectory this year.</p>
+          </div>
+          <span class="tag">Diagnostic · One-Time or Annual</span>
+        </div>
+
+        <div class="agenda-item">
+          <span class="numeral">III</span>
+          <div>
+            <h3>Board &amp; executive advisory sessions</h3>
+            <p>A standing advisory retainer for founders, CEOs, and boards — a second set of eyes on marketing decisions before they reach the full board, briefed in language a board can act on.</p>
+          </div>
+          <span class="tag">Retainer · Monthly Sitting</span>
+        </div>
+
+        <div class="agenda-item">
+          <span class="numeral">IV</span>
+          <div>
+            <h3>Growth &amp; revenue consulting</h3>
+            <p>Pipeline, demand generation, and revenue operations brought under one review — aligning marketing's targets with what the board is actually being held to.</p>
+          </div>
+          <span class="tag">Operational · Quarterly Review</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 — Order of Business -->
+  <section id="order-of-business">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">— Item III — Order of Business</span>
+          <h2>How a sitting runs</h2>
+        </div>
+        <p class="right">Every engagement moves through the same four motions before anything reaches your budget.</p>
+      </div>
+
+      <div class="motions">
+        <div class="motion">
+          <span class="label">Motion 01</span>
+          <h3>Called to order</h3>
+          <p>Discovery: the business, the market, and the marketing function as they actually stand today — not the deck version.</p>
+          <span class="bullet">• Discovery</span>
+        </div>
+        <div class="motion">
+          <span class="label">Motion 02</span>
+          <h3>Old business reviewed</h3>
+          <p>Audit &amp; diagnosis of current spend, channels, and team — what's earning its keep and what's quietly not.</p>
+          <span class="bullet">• Diagnosis</span>
+        </div>
+        <div class="motion">
+          <span class="label">Motion 03</span>
+          <h3>New business proposed</h3>
+          <p>A prescription: the specific strategy, hires, or reallocation the board needs to approve to move the number.</p>
+          <span class="bullet">• Prescription</span>
+        </div>
+        <div class="motion">
+          <span class="label">Motion 04</span>
+          <h3>Motion carried</h3>
+          <p>Execution under standing governance — reported at the next sitting like any other line item on the board's calendar.</p>
+          <span class="bullet">• Execution</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 — Resolution -->
+  <section id="resolution">
+    <div class="wrap">
+      <span class="eyebrow">— Item IV — Resolution</span>
+      <div class="resolution-card">
+        <blockquote>Resolved: that marketing judgment belongs in the room where the decisions are actually made — not summarized for it after the fact.</blockquote>
+        <div class="resolution-sig">
+          <img class="mark mark--sm" src="logo.png" alt="First Friday Marketing Consulting" />
+          <p>First Friday Marketing Consulting — founding principle, adopted at the first sitting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5 — Advisor -->
+  <section id="advisor">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">— Item V — The Advisor of Record</span>
+          <h2>The executive</h2>
+        </div>
+        <p class="right">One principal, accountable for every sitting — no handoffs, no junior bench.</p>
+      </div>
+
+      <div class="advisor-grid">
+        <img class="advisor-photo" src="headshot.jpg" alt="Gurshan Dhillon" />
+        <div class="advisor-bio">
+          <p class="advisor-name">Gurshan Dhillon</p>
+          <p class="advisor-role">Chief Marketing Officer</p>
+
+          <p class="advisor-lede">Gurshan Dhillon builds marketing functions that owners and CFOs can underwrite — engines measured in payback period and margin.</p>
+          <p>As Chief Marketing Officer of a $300M Alberta energy company, he held full P&amp;L accountability and rebuilt the commercial model around lifetime value — proving existing accounts return 3.4x the margin of new ones ($9,190 vs. $2,718) and redirecting spend accordingly. Result: gross margin up 14.2% to $21.4M on flat volume, and a go-to-market cost restructure that turned a $229K-loss acquisition channel into a $401K contributor, lifting return on new-business spend from $0.84 to $1.50 per dollar.</p>
+          <p>He built the pipeline machinery behind those numbers: a 115,000-contact B2B database converted into a predictable channel generating 20+ qualified leads a week at $58 each, plus a proprietary prospect-scoring tool that opened an entire equipment-intensive segment invisible to traditional field sales. The result: $17M in incremental revenue and monthly sales volume up 6x, from 500K to 3M litres.</p>
+          <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls — the training ground for advising boards under real pressure.</p>
+          <p>Bachelor of Marketing, University of Alberta.</p>
+
+          <div class="advisor-stats">
+            <span>$17M Incremental Revenue</span>
+            <span>6x Volume Growth</span>
+            <span>14.2% Margin Lift</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <p class="label">Next Sitting</p>
+        <p>Friday, September 4th, 2026</p>
+      </div>
+      <div>
+        <p class="label">Correspondence</p>
+        <p><a href="mailto:counsel@firstfridayconsulting.com">counsel@firstfridayconsulting.com</a></p>
+      </div>
+      <div>
+        <p class="label">Recorded By</p>
+        <p>First Friday Marketing Consulting.</p>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <span>© 2026 First Friday Marketing Consulting. Executive Advisory and Counsel.</span>
+      <span>Minutes closed.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // Mobile nav toggle
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.getElementById("primary-nav");
+
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      nav.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    // Smooth scroll with sticky-header offset (progressive enhancement over CSS scroll-behavior)
+    var header = document.querySelector("header");
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var id = link.getAttribute("href");
+        if (id === "#" || id.length < 2) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        var offset = (header ? header.offsetHeight : 0) + 12;
+        var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", id);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
