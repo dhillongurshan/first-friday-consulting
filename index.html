@@ -721,18 +721,18 @@
     nav.primary a:first-child { margin-top: 0.6rem; }
     nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
 
-    /* Bare icon button - square tap target, no text label. The 42px box
-       stays put (already a comfortable, standard-sized target); only the
-       glyph inside grows, so it reads as bolder without the button itself
-       needing to balloon. */
+    /* Bare icon button - square tap target, no text label. Box matches the
+       logo's own box size at this tier (96px) so both read as equal squares;
+       the glyph inside (.nav-hamburger) is unchanged, just more centered
+       whitespace around it now. */
     .nav-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex: none;
       align-self: center;
-      width: 42px;
-      height: 42px;
+      width: 96px;
+      height: 96px;
       padding: 0;
       background: none;
       border: 1px solid var(--line);
@@ -825,6 +825,13 @@
     /* Same internal-margin compensation as the tier above, scaled to this
        height (1128/4500 of the logo file's own canvas = 40.11px here). */
     .mark { height: 160px; margin-left: -40.11px; }
+    /* Matches the logo's 160px box at this tier. Two 160px squares plus the
+       1080-tier's 1.25rem (20px) gap would total 340px - wider than a
+       360px phone's content area (328px after padding) - so the gap is
+       cut to 4px here specifically, which keeps a real (if tight) 4px of
+       clearance at 360px and comfortably more on anything wider. */
+    .header-bar { gap: 4px; }
+    .nav-toggle { width: 160px; height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
