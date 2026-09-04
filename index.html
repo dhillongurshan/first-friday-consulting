@@ -740,6 +740,11 @@
       width: 96px;
       height: 96px;
       padding: 0;
+      /* Total distance from the right edge = this margin + .header-inner's
+         22px padding = 33px, ~1.5x the previous 22px-only distance. Added
+         here rather than raising the container padding, so it only moves
+         the button, not the logo. */
+      margin-right: 11px;
       background: none;
       border: none;
       cursor: pointer;
@@ -831,13 +836,23 @@
     /* Same internal-margin compensation as the tier above, scaled to this
        height (1128/4500 of the logo file's own canvas = 40.11px here). */
     .mark { height: 160px; margin-left: -40.11px; }
-    /* Matches the logo's 160px box at this tier. Two 160px squares plus the
-       1080-tier's 1.25rem (20px) gap would total 340px - wider than a
-       360px phone's content area (328px after padding) - so the gap is
-       cut to 4px here specifically, which keeps a real (if tight) 4px of
-       clearance at 360px and comfortably more on anything wider. */
-    .header-bar { gap: 4px; }
-    .nav-toggle { width: 160px; height: 160px; }
+    /* Two 160px squares plus any real gap and the new right-side margin
+       below already fill a 360px phone's entire 328px content area (see
+       margin-right comment) - the gap is cut to 0 here to make room, since
+       there is no space left to give both a visible gap and the requested
+       margin increase at that width. */
+    .header-bar { gap: 0; }
+    .nav-toggle {
+      width: 160px;
+      height: 160px;
+      /* Total distance from the right edge = this + .header-inner's 16px
+         padding = 24px, ~1.5x the previous 16px-only distance. At 360px
+         (the narrowest width this tier serves) that exactly fills the
+         available width - 0px to spare, not "room to spare". From 375px
+         up there's real cushion (15px+); see commit summary for the
+         360px-specific tradeoff this required. */
+      margin-right: 8px;
+    }
     /* Matches .nav-toggle's 160px box at this tier, same reasoning as the
        96px override above. */
     .brand { width: 160px; height: 160px; }
