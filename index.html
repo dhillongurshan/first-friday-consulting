@@ -36,6 +36,10 @@
     --ink-soft: #4b4c52;
     --gold: #a8894a;
     --gold-deep: #806b35;
+    /* gold-deep only clears WCAG AA (4.5:1) on the light --cream ground; the
+       footer sits on --ink, where a lighter brass is needed for the same
+       legibility (7.5:1 on --ink). */
+    --gold-light: #c4a25e;
     --line: rgba(20, 21, 26, 0.12);
     --line-soft: rgba(20, 21, 26, 0.08);
     --serif: "Playfair Display", Georgia, "Times New Roman", serif;
@@ -584,7 +588,17 @@
   .faq-a + .faq-a { margin-top: 0.9rem; }
 
   /* ---------- Footer ---------- */
-  footer { padding: var(--section-y) 0 3rem; border-bottom: 0; }
+  /* Dark block on an otherwise light page - every color below is picked
+     against --ink, not inherited from the light-mode defaults above. */
+  footer {
+    padding: var(--section-y) 0 3rem;
+    border-bottom: 0;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  /* .eyebrow's default gold-deep only clears 4.5:1 on the light background;
+     on black it drops to 3.5:1, so the footer gets the lighter brass shade. */
+  .footer-head .eyebrow { color: var(--gold-light); }
   .footer-head { margin-bottom: var(--head-gap); }
   .footer-heading {
     font-family: var(--serif);
@@ -602,15 +616,16 @@
     font-size: 0.66rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--paper);
     margin-bottom: 0.6rem;
   }
   .footer-cols p { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
   .footer-cols p + p { margin-top: 0.35rem; }
-  .footer-cols a { text-decoration: underline; text-underline-offset: 3px; }
+  .footer-cols a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+  .footer-cols a:hover { color: var(--gold-light); }
   .footer-divider {
     border: 0;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(250, 250, 248, 0.2);
     margin: 3rem 0 1.4rem;
   }
   .footer-bottom {
@@ -620,7 +635,7 @@
     font-size: 0.66rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: #c7c8cc;
   }
 
   .cal-icon { width: 13px; height: 13px; flex: none; }
