@@ -666,18 +666,19 @@
       row-gap: 0;
       column-gap: 0.6rem;
     }
-    /* Logo on the left, hamburger pinned right - the classic split. With no
-       brand text between them, .brand no longer needs to grow-to-fill (that
-       was sized for wrapping text); space-between on the row does the job
-       of pushing the toggle to the far edge instead. */
+    /* Logo and hamburger centered together as one pair - with no brand text
+       left to anchor a left/right split, space-between just stranded them
+       at opposite edges with a dead gap between. .brand no longer needs
+       flex-grow (that was sized for wrapping text) or its own gap (it now
+       wraps a single visible child), so both are dropped. */
     .header-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.65rem;
+      justify-content: center;
+      gap: 1.25rem;
       width: 100%;
     }
-    .brand { flex: none; gap: 0.65rem; }
+    .brand { flex: none; }
     /* Name and tagline both dropped on mobile - logo + hamburger only. The
        wrapping span is hidden too (not just its two children) so it doesn't
        sit there as an empty flex item still claiming .brand's gap. */
@@ -711,7 +712,10 @@
     nav.primary a:first-child { margin-top: 0.6rem; }
     nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
 
-    /* Bare icon button - square tap target, no text label. */
+    /* Bare icon button - square tap target, no text label. The 42px box
+       stays put (already a comfortable, standard-sized target); only the
+       glyph inside grows, so it reads as bolder without the button itself
+       needing to balloon. */
     .nav-toggle {
       display: inline-flex;
       align-items: center;
@@ -726,6 +730,9 @@
       cursor: pointer;
       color: var(--ink);
     }
+    /* 1.5x the base 18x13 icon, so it reads as a deliberate match to the
+       logo's mobile size rather than an afterthought sitting beside it. */
+    .nav-hamburger { width: 27px; height: 19.5px; }
 
     /* Last item in the nav panel, not a separate always-visible bar - only
        appears when the accordion is open, styled as a full-width CTA row.
@@ -805,11 +812,6 @@
   @media (max-width: 400px) {
     .wrap { padding: 0 16px; }
     .header-inner { padding: 0.5rem 10px; }
-    /* Tightened to claw back a little room for the doubled logo below -
-       .mark is fixed-width (flex:none), so every px saved here goes
-       straight to keeping .brand from getting squeezed further. */
-    .header-bar { gap: 0.45rem; }
-    .brand { gap: 0.45rem; }
     .mark { height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
