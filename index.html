@@ -223,15 +223,19 @@
     color: var(--ink-soft);
   }
   nav.primary a:hover { color: var(--gold-deep); }
+  /* The CTA now lives inside nav.primary (mobile: last item in the panel;
+     desktop: unchanged position at the end of the link row). Its own
+     .btn-gold colors would otherwise lose to nav.primary a's on specificity,
+     so they're restored explicitly here at every width. */
+  nav.primary .header-cta { color: var(--paper); }
+  nav.primary .header-cta:hover { color: var(--ink); }
 
   .nav-toggle { display: none; }
-  .nav-chevron {
-    width: 11px;
-    height: 8px;
+  .nav-hamburger {
+    width: 18px;
+    height: 13px;
     flex: none;
-    transition: transform 0.2s ease;
   }
-  .nav-toggle[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
 
   /* ---------- Section frame ---------- */
   /* One vertical rhythm for every section: --section-y top/bottom padding,
@@ -672,10 +676,13 @@
     .brand { flex: 1 1 auto; min-width: 0; gap: 0.65rem; }
     .brand-name { font-size: 1rem; line-height: 1.2; }
     .brand-tag { font-size: 0.52rem; letter-spacing: 0.12em; }
-    .mark { height: 66px; }
+    /* The hamburger icon is far narrower than the old "MENU" text button,
+       which frees up real width in this row - most of it goes to the logo. */
+    .mark { height: 96px; }
     .mark--sm { height: 60px; }
 
-    /* Accordion nav - expands in normal flow, pushing page content down */
+    /* Accordion nav - expands in normal flow, pushing page content down.
+       The CTA is now its last item, so its own height is part of this budget. */
     nav.primary {
       order: 3;
       width: 100%;
@@ -688,7 +695,7 @@
       overflow: hidden;
       transition: max-height 0.28s ease;
     }
-    nav.primary.open { max-height: 300px; }
+    nav.primary.open { max-height: 400px; }
     nav.primary a {
       padding: 0.95rem 0;
       font-size: 0.78rem;
@@ -698,31 +705,35 @@
     nav.primary a:first-child { margin-top: 0.6rem; }
     nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
 
+    /* Bare icon button - square tap target, no text label. */
     .nav-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
       flex: none;
       align-self: center;
-      min-height: 42px;
+      width: 42px;
+      height: 42px;
+      padding: 0;
       background: none;
       border: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.5rem 0.85rem;
       cursor: pointer;
       color: var(--ink);
     }
 
-    .header-cta {
-      display: inline-flex;
-      order: 2;
-      width: 100%;
+    /* Last item in the nav panel, not a separate always-visible bar - only
+       appears when the accordion is open, styled as a full-width CTA row.
+       #primary-nav-scoped so it reliably beats nav.primary a:last-child's
+       border-bottom (that selector ties with a plain .header-cta one on
+       specificity, since :last-child counts as a class). */
+    #primary-nav .header-cta {
+      display: flex;
       justify-content: center;
-      margin-top: 0.7rem;
+      width: 100%;
+      padding: 0.95rem 1.4rem;
+      margin: 0.85rem 0 1rem;
+      border-top: none;
+      border-bottom: none;
     }
 
     /* --- Buttons / links: comfortable tap targets --------------------- */
@@ -790,7 +801,7 @@
     .header-inner { padding: 0.5rem 14px; }
     .brand-name { font-size: 0.94rem; }
     .brand-tag { font-size: 0.5rem; letter-spacing: 0.1em; }
-    .mark { height: 60px; }
+    .mark { height: 80px; }
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
@@ -899,10 +910,11 @@
           <span class="brand-tag">Executive Advisory and Counsel</span>
         </span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
-        <span>Menu</span>
-        <svg class="nav-chevron" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-          <path d="M1 1.5 6 6.5 11 1.5" />
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+        <svg class="nav-hamburger" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="0" y1="1" x2="20" y2="1" />
+          <line x1="0" y1="7" x2="20" y2="7" />
+          <line x1="0" y1="13" x2="20" y2="13" />
         </svg>
       </button>
     </div>
@@ -911,8 +923,8 @@
       <a href="#order-of-business">Order of Business</a>
       <a href="#advisor">The Executive</a>
       <a href="#faq">FAQ</a>
+      <a class="btn btn-gold header-cta" href="#contact">Bring It to Committee</a>
     </nav>
-    <a class="btn btn-gold header-cta" href="#contact">Bring It to Committee</a>
   </div>
 </header>
 
