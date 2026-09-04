@@ -679,7 +679,13 @@
       gap: 1.25rem;
       width: 100%;
     }
-    .brand { flex: none; }
+    /* Explicit size matching .nav-toggle's box (96px) - without this, .brand
+       auto-sizes to its content, and .mark's margin-left compensation (added
+       to recenter the logo file's off-center ink) shrinks that computed
+       width below 96px, making the logo's box read smaller than the
+       hamburger's clean, unaffected one. The image still shifts within this
+       fixed box exactly as before; only .brand's own footprint changes. */
+    .brand { flex: none; width: 96px; height: 96px; }
     /* Name and tagline both dropped on mobile - logo + hamburger only. The
        wrapping span is hidden too (not just its two children) so it doesn't
        sit there as an empty flex item still claiming .brand's gap. */
@@ -832,6 +838,9 @@
        clearance at 360px and comfortably more on anything wider. */
     .header-bar { gap: 4px; }
     .nav-toggle { width: 160px; height: 160px; }
+    /* Matches .nav-toggle's 160px box at this tier, same reasoning as the
+       96px override above. */
+    .brand { width: 160px; height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
