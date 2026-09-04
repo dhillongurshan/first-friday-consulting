@@ -686,7 +686,15 @@
     .brand-text, .brand-name, .brand-tag { display: none; }
     /* The hamburger icon is far narrower than the old "MENU" text button,
        which frees up real width in this row - most of it goes to the logo. */
-    .mark { height: 96px; }
+    /* logo.png's visible mark isn't centered in its own square canvas - it
+       sits 1128px from the file's left edge but only 788px from the right
+       (measured directly on the file), so at this render height the image
+       carries 24.06px of blank space before the ink even starts, which the
+       hamburger's plain bordered box has no equivalent of. Shifted left by
+       that full amount so the ink - not the image's invisible bounding box -
+       lines up with the padding edge. Re-measure and adjust if logo.png is
+       re-exported with different internal padding. */
+    .mark { height: 96px; margin-left: -24.06px; }
     .mark--sm { height: 60px; }
 
     /* Accordion nav - expands in normal flow, pushing page content down.
@@ -814,7 +822,9 @@
     .wrap { padding: 0 16px; }
     /* Matches .wrap's 16px here too, for the same reason as the tier above. */
     .header-inner { padding: 0.5rem 16px; }
-    .mark { height: 160px; }
+    /* Same internal-margin compensation as the tier above, scaled to this
+       height (1128/4500 of the logo file's own canvas = 40.11px here). */
+    .mark { height: 160px; margin-left: -40.11px; }
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
