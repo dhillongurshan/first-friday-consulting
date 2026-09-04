@@ -727,10 +727,10 @@
     nav.primary a:first-child { margin-top: 0.6rem; }
     nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
 
-    /* Bare icon button - square tap target, no text label. Box matches the
-       logo's own box size at this tier (96px) so both read as equal squares;
-       the glyph inside (.nav-hamburger) is unchanged, just more centered
-       whitespace around it now. */
+    /* Bare icon button - square tap target, no text label, no visible border.
+       Box matches the logo's own box size at this tier (96px) so both claim
+       equal space; the glyph inside (.nav-hamburger) is unchanged, just
+       centered whitespace around it now. */
     .nav-toggle {
       display: inline-flex;
       align-items: center;
@@ -741,7 +741,7 @@
       height: 96px;
       padding: 0;
       background: none;
-      border: 1px solid var(--line);
+      border: none;
       cursor: pointer;
       color: var(--ink);
     }
