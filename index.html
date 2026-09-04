@@ -728,23 +728,19 @@
     nav.primary a:last-child { border-bottom: 1px solid var(--line-soft); }
 
     /* Bare icon button - square tap target, no text label, no visible border.
-       Box matches the logo's own box size at this tier (96px) so both claim
-       equal space; the glyph inside (.nav-hamburger) is unchanged, just
-       centered whitespace around it now. */
+       Half the previous 96px box (still comfortably above the ~44px usable
+       tap-target minimum). No margin-right - space-between plus
+       .header-inner's own padding is what aligns it to the right margin,
+       the same edge spacing every other header element uses. */
     .nav-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex: none;
       align-self: center;
-      width: 96px;
-      height: 96px;
+      width: 48px;
+      height: 48px;
       padding: 0;
-      /* Total distance from the right edge = this margin + .header-inner's
-         22px padding = 33px, ~1.5x the previous 22px-only distance. Added
-         here rather than raising the container padding, so it only moves
-         the button, not the logo. */
-      margin-right: 11px;
       background: none;
       border: none;
       cursor: pointer;
@@ -836,23 +832,14 @@
     /* Same internal-margin compensation as the tier above, scaled to this
        height (1128/4500 of the logo file's own canvas = 40.11px here). */
     .mark { height: 160px; margin-left: -40.11px; }
-    /* Two 160px squares plus any real gap and the new right-side margin
-       below already fill a 360px phone's entire 328px content area (see
-       margin-right comment) - the gap is cut to 0 here to make room, since
-       there is no space left to give both a visible gap and the requested
-       margin increase at that width. */
-    .header-bar { gap: 0; }
-    .nav-toggle {
-      width: 160px;
-      height: 160px;
-      /* Total distance from the right edge = this + .header-inner's 16px
-         padding = 24px, ~1.5x the previous 16px-only distance. At 360px
-         (the narrowest width this tier serves) that exactly fills the
-         available width - 0px to spare, not "room to spare". From 375px
-         up there's real cushion (15px+); see commit summary for the
-         360px-specific tradeoff this required. */
-      margin-right: 8px;
-    }
+    /* Half the 160px box (still >44px tap-target minimum). The previous
+       gap:0 and margin-right overrides existed only because a 160px button
+       barely fit this tier at all - an 80px button has plenty of room, so
+       both are removed: the header-bar's normal 1.25rem gap applies again,
+       and space-between + .header-inner's own padding (no per-element
+       margin) puts it flush at the same right-edge inset as everything
+       else. */
+    .nav-toggle { width: 80px; height: 80px; }
     /* Matches .nav-toggle's 160px box at this tier, same reasoning as the
        96px override above. */
     .brand { width: 160px; height: 160px; }
