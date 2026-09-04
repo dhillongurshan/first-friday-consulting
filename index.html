@@ -798,10 +798,15 @@
 
   @media (max-width: 400px) {
     .wrap { padding: 0 16px; }
-    .header-inner { padding: 0.5rem 14px; }
+    .header-inner { padding: 0.5rem 10px; }
+    /* Tightened to claw back a little room for the doubled logo below -
+       .mark is fixed-width (flex:none), so every px saved here goes
+       straight to keeping .brand from getting squeezed further. */
+    .header-bar { gap: 0.45rem; }
+    .brand { gap: 0.45rem; }
     .brand-name { font-size: 0.94rem; }
     .brand-tag { font-size: 0.5rem; letter-spacing: 0.1em; }
-    .mark { height: 80px; }
+    .mark { height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
