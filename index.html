@@ -19,23 +19,25 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="manifest" href="site.webmanifest" />
-<meta name="theme-color" content="#4a5230" />
+<meta name="theme-color" content="#14151a" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --cream: #ede6d6;
-    --cream-deep: #e4dbc7;
-    --paper: #f4efe2;
-    --ink: #232219;
-    --ink-soft: #55503f;
-    --olive: #4a5230;
-    --olive-deep: #3a4126;
-    --gold: #c9a233;
-    --gold-deep: #b08e28;
-    --line: #b9b09a;
-    --line-soft: #cfc6ae;
+    /* Off-white ground, near-black structural color, and a single muted-brass
+       accent used ONLY for thin rules, Item/Motion numbering, and hover states
+       - never as a fill. --gold-deep is the text-safe shade (4.9:1 on --cream,
+       clears WCAG AA for small type); --gold is the lighter reference value. */
+    --cream: #fafaf8;
+    --cream-deep: #f0f0ec;
+    --paper: #fafaf8;
+    --ink: #14151a;
+    --ink-soft: #4b4c52;
+    --gold: #a8894a;
+    --gold-deep: #806b35;
+    --line: rgba(20, 21, 26, 0.12);
+    --line-soft: rgba(20, 21, 26, 0.08);
     --serif: "Playfair Display", Georgia, "Times New Roman", serif;
     --body: "Spectral", Georgia, "Times New Roman", serif;
     --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -51,7 +53,7 @@
     color: var(--ink);
     font-family: var(--body);
     font-size: 18px;
-    line-height: 1.65;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     /* clip (not hidden) - stops stray horizontal overflow without turning
        <body> into a scroll container, which would break the sticky header. */
@@ -65,7 +67,7 @@
     font-weight: 700;
     line-height: 1.12;
     margin: 0;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   p { margin: 0 0 1rem; }
@@ -75,9 +77,9 @@
   .eyebrow {
     font-family: var(--mono);
     font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--gold-deep);
     margin: 0 0 1.25rem;
     display: block;
   }
@@ -85,7 +87,7 @@
   .tag {
     font-family: var(--mono);
     font-size: 0.66rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
   }
@@ -99,32 +101,35 @@
   .italic-gold { font-style: italic; color: var(--gold-deep); }
 
   /* ---------- Buttons ---------- */
+  /* Both CTA variants render identically now: solid charcoal, off-white text.
+     Hover inverts to off-white with a thin gold outline - the one place a
+     hover state carries the accent color, per the "gold for hover states"
+     rule; the fill itself is never gold. */
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
     font-family: var(--mono);
     font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.85rem 1.4rem;
     border: 1px solid transparent;
+    border-radius: 0;
     text-decoration: none;
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   }
-  .btn-gold {
-    background: var(--gold);
+  .btn-gold, .btn-olive {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .btn-gold:hover, .btn-olive:hover {
+    background: var(--paper);
     color: var(--ink);
     border-color: var(--gold-deep);
   }
-  .btn-gold:hover { background: var(--gold-deep); }
-  .btn-olive {
-    background: var(--olive);
-    color: var(--paper);
-    border-color: var(--olive-deep);
-  }
-  .btn-olive:hover { background: var(--olive-deep); }
 
   .link-underline {
     font-family: var(--mono);
@@ -135,7 +140,7 @@
     text-underline-offset: 4px;
     color: var(--ink);
   }
-  .link-underline:hover { color: var(--olive); }
+  .link-underline:hover { color: var(--gold-deep); }
 
   /* ---------- Header ---------- */
   header {
@@ -207,13 +212,13 @@
   nav.primary a {
     font-family: var(--mono);
     font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
     color: var(--ink-soft);
   }
-  nav.primary a:hover { color: var(--olive); }
+  nav.primary a:hover { color: var(--gold-deep); }
 
   .nav-toggle { display: none; }
   .nav-chevron {
@@ -227,7 +232,7 @@
   /* ---------- Section frame ---------- */
   /* One vertical rhythm for every section: --section-y top/bottom padding,
      --head-gap between a section's heading block and its body. */
-  :root { --section-y: 5.5rem; --head-gap: 3rem; }
+  :root { --section-y: 6.5rem; --head-gap: 3rem; }
 
   section { padding: var(--section-y) 0; border-bottom: 1px solid var(--line-soft); }
 
@@ -272,9 +277,9 @@
     display: block;
     font-family: var(--mono);
     font-size: 0.64rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--ink);
     margin-bottom: 0.6rem;
   }
   .hero-inshort-list {
@@ -309,9 +314,9 @@
     display: block;
     font-family: var(--mono);
     font-size: 0.62rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--ink);
     margin-bottom: 0.7rem;
   }
   .hero-proof ul {
@@ -340,9 +345,13 @@
   /* --card-pad: interior padding shared by every bordered card. */
   :root { --card-pad: 2rem; }
 
+  /* Plain background, thin gold rule instead of a full border/fill/shadow -
+     the accent marks the card without ever becoming a block of color. */
   .card {
-    border: 1px solid var(--line);
-    background: var(--paper);
+    border: none;
+    border-left: 1px solid var(--gold-deep);
+    background: none;
+    border-radius: 0;
     padding: var(--card-pad);
   }
   .led-by-card {
@@ -381,14 +390,14 @@
   .card-title-row h3 {
     font-family: var(--mono);
     font-size: 0.76rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: 500;
   }
   .card-title-row span {
     font-family: var(--mono);
     font-size: 0.66rem;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     color: var(--ink-soft);
   }
 
@@ -404,7 +413,7 @@
   .agenda-row .month {
     font-family: var(--mono);
     font-size: 0.66rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-soft);
     width: 8ch;
@@ -417,7 +426,7 @@
   .badge {
     font-family: var(--mono);
     font-size: 0.6rem;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.3rem 0.6rem;
     border: 1px solid var(--line);
@@ -429,7 +438,7 @@
     border-color: var(--ink);
   }
   .agenda-row--next {
-    border: 1px solid var(--olive);
+    border: 1px solid var(--gold-deep);
     padding: 1rem 0.9rem;
     margin: 0.4rem 0;
     background: var(--cream-deep);
@@ -452,8 +461,9 @@
     display: grid;
     grid-template-columns: 3.5rem 1fr 16ch;
     gap: 2.5rem;
-    padding: 2.2rem 0;
+    padding: 2.2rem 0 2.2rem 1.25rem;
     border-bottom: 1px solid var(--line);
+    border-left: 1px solid var(--gold-deep);
     align-items: start;
   }
   .agenda-item .numeral {
@@ -464,7 +474,7 @@
     line-height: 1;
   }
   .agenda-item h3 { font-size: 1.5rem; margin-bottom: 0.6rem; }
-  .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 60ch; }
+  .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
   .agenda-item .tag { text-align: right; padding-top: 0.5rem; }
 
   /* ---------- Order of business grid ---------- */
@@ -474,8 +484,10 @@
     gap: 1.5rem;
   }
   .motion {
-    border: 1px solid var(--line);
-    background: var(--paper);
+    border: none;
+    border-top: 1px solid var(--gold-deep);
+    background: none;
+    border-radius: 0;
     padding: var(--card-pad);
     display: flex;
     flex-direction: column;
@@ -483,7 +495,7 @@
   .motion .label {
     font-family: var(--mono);
     font-size: 0.64rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold-deep);
     margin-bottom: 1rem;
@@ -493,9 +505,9 @@
   .motion .bullet {
     font-family: var(--mono);
     font-size: 0.62rem;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--ink-soft);
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid var(--line-soft);
@@ -511,14 +523,14 @@
   .advisor-role {
     font-family: var(--mono);
     font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--ink);
     margin-bottom: 1.8rem;
   }
   .advisor-bio p {
     color: var(--ink-soft);
-    max-width: 62ch;
+    max-width: 58ch;
   }
   .advisor-bio p.advisor-lede {
     font-family: var(--serif);
@@ -539,7 +551,7 @@
   .advisor-stats span {
     font-family: var(--mono);
     font-size: 0.66rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
     border: 1px solid var(--line);
@@ -553,8 +565,9 @@
   }
   .faq-list { border-top: 1px solid var(--line); }
   .faq-item {
-    padding: 1.9rem 0;
+    padding: 1.9rem 0 1.9rem 1.25rem;
     border-bottom: 1px solid var(--line);
+    border-left: 1px solid var(--gold-deep);
   }
   .faq-q {
     font-family: var(--serif);
@@ -566,7 +579,7 @@
   .faq-a {
     margin: 0;
     color: var(--ink-soft);
-    max-width: 68ch;
+    max-width: 60ch;
   }
   .faq-a + .faq-a { margin-top: 0.9rem; }
 
@@ -587,9 +600,9 @@
   .footer-cols .label {
     font-family: var(--mono);
     font-size: 0.66rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--olive);
+    color: var(--ink);
     margin-bottom: 0.6rem;
   }
   .footer-cols p { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
@@ -682,7 +695,7 @@
       border: 1px solid var(--line);
       font-family: var(--mono);
       font-size: 0.66rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0.5rem 0.85rem;
       cursor: pointer;
@@ -730,7 +743,7 @@
     .agenda-item {
       grid-template-columns: 1fr;
       gap: 0.7rem;
-      padding: 1.9rem 0;
+      padding: 1.9rem 0 1.9rem 1rem;
     }
     .agenda-item h3 { font-size: 1.3rem; }
     .agenda-item .tag { text-align: left; padding-top: 0; }
@@ -747,7 +760,7 @@
 
     /* --- FAQ ------------------------------------------------------- */
     .faq-title { font-size: 1.95rem; }
-    .faq-item { padding: 1.6rem 0; }
+    .faq-item { padding: 1.6rem 0 1.6rem 1rem; }
     .faq-q { font-size: 1.2rem; }
 
     /* --- Footer ------------------------------------------------------ */
