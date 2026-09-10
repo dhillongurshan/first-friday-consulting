@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -128,6 +128,23 @@
     white-space: nowrap;
     border: 0;
   }
+  /* Keyboard skip link: off-screen until focused, then pinned top-left above
+     the sticky header. Same mono/ink treatment as the CTA buttons. */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .skip-link:focus { left: 16px; top: 16px; }
 
   /* ---------- Buttons ---------- */
   /* Both CTA variants render identically now: solid charcoal, off-white text.
@@ -1047,19 +1064,20 @@
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
+<!-- TODO: add "sameAs": ["<LinkedIn profile URL>"] to the ProfessionalService and Person blocks once the URL is confirmed. No LinkedIn URL exists on the page yet. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://www.marketingbycommittee.com/#organization",
   "name": "Marketing by Committee",
+  "alternateName": "Marketing by Committee Executive Advisory and Counsel",
   "url": "https://www.marketingbycommittee.com/",
   "logo": "https://www.marketingbycommittee.com/logo-512.png",
   "image": "https://www.marketingbycommittee.com/og-image.jpg",
-  "description": "Fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, serving Alberta's industrial sector. Two standing engagements. Fractional services: a part-time marketing executive on your leadership team, a full audit of where your spend goes, and a standing quarterly review. Agency services: film and media production, web development, paid media, social media coordination, employer branding and recruitment marketing, government relations and public affairs, Indigenous relations, and branded merchandise design and sourcing, run by vetted specialists under one accountable lead.",
-  "email": "info@marketingbycommittee.com",
+  "description": "Fractional CMO for Alberta's industrial sector, based in Edmonton. One executive, embedded part-time, running the entire marketing function.",
   "telephone": "+1-780-952-9242",
-  "priceRange": "$3,000-$10,000+/month",
+  "email": "info@marketingbycommittee.com",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Edmonton",
@@ -1067,45 +1085,51 @@
     "addressCountry": "CA"
   },
   "areaServed": [
-    { "@type": "City", "name": "Edmonton, AB" },
-    { "@type": "City", "name": "Sherwood Park, AB" },
-    { "@type": "City", "name": "St. Albert, AB" },
-    { "@type": "City", "name": "Spruce Grove, AB" },
-    { "@type": "City", "name": "Stony Plain, AB" },
-    { "@type": "City", "name": "Beaumont, AB" },
-    { "@type": "City", "name": "Leduc, AB" },
-    { "@type": "City", "name": "Nisku, AB" }
+    { "@type": "Place", "name": "Edmonton" },
+    { "@type": "Place", "name": "Sherwood Park" },
+    { "@type": "Place", "name": "St. Albert" },
+    { "@type": "Place", "name": "Spruce Grove" },
+    { "@type": "Place", "name": "Stony Plain" },
+    { "@type": "Place", "name": "Beaumont" },
+    { "@type": "Place", "name": "Nisku" },
+    { "@type": "Place", "name": "Leduc" },
+    { "@type": "Place", "name": "Alberta" }
   ],
+  "priceRange": "$3,000 to $10,000+ per month",
+  "founder": { "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon" },
   "knowsAbout": [
     "Fractional CMO",
-    "Executive marketing advisory",
-    "Industrial B2B marketing",
+    "Marketing strategy",
+    "P&L accountability",
     "Energy sector marketing",
-    "Transportation and fleet marketing",
-    "Construction marketing",
-    "Forestry, mining and agriculture marketing",
-    "Retail marketing",
-    "Professional services marketing"
+    "Industrial marketing",
+    "Government relations",
+    "Indigenous relations",
+    "Employer branding"
   ],
-  "founder": { "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon" },
-  "makesOffer": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Fractional Services",
-        "description": "A part-time marketing executive with a seat on your leadership team, owning the marketing function the way a CFO owns the numbers. Includes a full audit of where your spend goes and a standing quarterly review of what's next. Six month minimum. Limited seats."
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "The agenda",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Fractional CMO Services",
+          "description": "You get an executive who owns the marketing function the way a CFO owns the numbers."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Agency Services",
+          "description": "The execution layer most fractional engagements skip. All run by vetted specialists, under one accountable lead."
+        }
       }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Agency Services",
-        "description": "Project-based execution: film and media production, web development, paid media such as Google Ads, social media coordination, employer branding and recruitment marketing, government relations and public affairs, Indigenous relations, and branded merchandise design and sourcing. All run by vetted specialists, under one accountable lead."
-      }
-    }
-  ]
+    ]
+  },
+  "dateModified": "2026-09-10"
 }
 </script>
 <script type="application/ld+json">
@@ -1115,38 +1139,46 @@
   "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon",
   "name": "Gurshan Dhillon",
   "jobTitle": "Fractional CMO",
-  "description": "Founder of Marketing by Committee, a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, serving Alberta's industrial sector. Fifteen years building multi-province go-to-market engines across government, energy, and construction. Former Chief Marketing Officer of a major Alberta energy company, where he owned corporate strategy and P&L across a multi-branch operation spanning Western Canada and the Yukon. Before that, Senior Communications Advisor to the Government of Alberta, serving as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls.",
+  "worksFor": { "@id": "https://www.marketingbycommittee.com/#organization" },
+  "description": "Founder of Marketing by Committee, a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta. As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost. Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.",
   "image": "https://www.marketingbycommittee.com/headshot.jpg",
   "url": "https://www.marketingbycommittee.com/#advisor",
   "email": "info@marketingbycommittee.com",
   "telephone": "+1-780-952-9242",
-  "worksFor": { "@id": "https://www.marketingbycommittee.com/#organization" },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Edmonton",
     "addressRegion": "AB",
     "addressCountry": "CA"
   },
-  "hasOccupation": {
-    "@type": "Occupation",
-    "name": "Fractional Chief Marketing Officer",
-    "occupationLocation": { "@type": "City", "name": "Edmonton, AB" }
-  },
   "knowsAbout": [
-    "Fractional CMO leadership",
-    "Industrial B2B marketing",
+    "Fractional CMO",
+    "Marketing strategy",
+    "P&L accountability",
     "Energy sector marketing",
-    "Construction sector marketing",
-    "Government communications and public affairs",
-    "Corporate strategy and P&L management",
-    "Go-to-market strategy"
+    "Industrial marketing",
+    "Government relations",
+    "Indigenous relations",
+    "Employer branding"
   ]
 }
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.marketingbycommittee.com/#website",
+  "name": "Marketing by Committee",
+  "url": "https://www.marketingbycommittee.com/",
+  "inLanguage": "en-CA",
+  "publisher": { "@id": "https://www.marketingbycommittee.com/#organization" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://www.marketingbycommittee.com/#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -1170,8 +1202,8 @@
     },
     {
       "@type": "Question",
-      "name": "How is this different from a marketing agency?",
-      "acceptedAnswer": { "@type": "Answer", "text": "A marketing agency is accountable for activity, and a fractional CMO is accountable to the P&L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives. Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for." }
+      "name": "What is the difference between a fractional CMO and a marketing agency?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The difference between a fractional CMO and a marketing agency is accountability: an agency is accountable for activity, and a fractional CMO is accountable to the P&L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives. Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for." }
     },
     {
       "@type": "Question",
@@ -1219,6 +1251,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <header>
   <div class="header-inner">
@@ -1248,7 +1281,7 @@
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
   <!-- Section 1a - Hero banner -->
   <section class="hero-banner">
@@ -1434,8 +1467,8 @@
           <p class="faq-a">Both. I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed.</p>
         </div>
         <div class="faq-item">
-          <h3 class="faq-q">How is this different from a marketing agency?</h3>
-          <p class="faq-a">A marketing agency is accountable for activity, and a fractional CMO is accountable to the P&amp;L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives.</p>
+          <h3 class="faq-q">What is the difference between a fractional CMO and a marketing agency?</h3>
+          <p class="faq-a">The difference between a fractional CMO and a marketing agency is accountability: an agency is accountable for activity, and a fractional CMO is accountable to the P&amp;L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives.</p>
           <p class="faq-a">Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for.</p>
         </div>
         <div class="faq-item">
@@ -1522,6 +1555,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (e) {
         var id = link.getAttribute("href");
+        if (link.classList.contains("skip-link")) return; // let the browser move focus to #top
         if (id === "#" || id.length < 2) return;
         var target = document.querySelector(id);
         if (!target) return;
