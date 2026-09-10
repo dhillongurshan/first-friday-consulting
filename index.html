@@ -19,6 +19,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="manifest" href="site.webmanifest" />
+<link rel="preload" as="image" href="boardroom.jpg" />
 <meta name="theme-color" content="#14151a" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -261,7 +262,80 @@
     justify-self: end;
   }
 
+  /* ---------- Hero banner ---------- */
+  /* Full-bleed photographic banner under the header. Height comes from
+     padding-block plus content, never from the viewport. The media layer
+     sits behind the copy (z-index -2) with a gradient scrim on top of it
+     (z-index -1) so the copy stays legible on the left while the room
+     stays visible on the right. */
+  .hero-banner {
+    position: relative;
+    isolation: isolate;
+    background: #0e0f12;
+    color: var(--cream);
+    overflow: hidden;
+    padding-block: clamp(88px, 11vw, 168px);
+    border-bottom: 0;
+  }
+  .hero-banner-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url("boardroom.jpg");
+    background-size: cover;
+    background-position: 50% 45%;
+  }
+  .hero-banner-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(90deg, rgba(14,15,18,.9) 0%, rgba(14,15,18,.72) 40%, rgba(14,15,18,.25) 70%, rgba(14,15,18,.15) 100%),
+      linear-gradient(180deg, rgba(14,15,18,.3) 0%, rgba(14,15,18,0) 35%, rgba(14,15,18,.5) 100%);
+  }
+  .hero-banner-copy { max-width: 620px; }
+  .hero-banner .eyebrow { color: var(--gold-light); }
+  .hero-banner h1 {
+    font-size: 3.35rem;
+    margin-bottom: 1.6rem;
+    color: var(--cream);
+  }
+  .hero-banner .lead {
+    font-size: 1.12rem;
+    color: rgba(250,250,248,.82);
+    max-width: 46ch;
+    margin-bottom: 2rem;
+  }
+  .hero-banner .btn-gold {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .hero-banner .link-underline {
+    color: var(--cream);
+    border-bottom-color: var(--gold);
+    text-decoration-color: var(--gold);
+  }
+  .hero-banner .link-underline:hover { color: var(--gold-light); }
+  @media (max-width: 1080px) {
+    .hero-banner h1 { font-size: 2.15rem; margin-bottom: 1.3rem; }
+    .hero-banner .lead { font-size: 1.08rem; margin-bottom: 1.6rem; }
+  }
+  @media (max-width: 720px) {
+    .hero-banner { padding-block: 72px; }
+    .hero-banner-media { background-position: 50% 50%; }
+    .hero-banner-media::after {
+      background-image: linear-gradient(180deg, rgba(14,15,18,.55) 0%, rgba(14,15,18,.8) 55%, rgba(14,15,18,.92) 100%);
+    }
+  }
+  @media (max-width: 400px) {
+    .hero-banner h1 { font-size: 1.95rem; }
+  }
+
   /* ---------- Hero ---------- */
+  /* Sits directly under the banner, so only half the standard top padding. */
+  .hero { padding-top: calc(var(--section-y) / 2); }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -1047,15 +1121,28 @@
 
 <main id="top">
 
+  <!-- Section 1a - Hero banner -->
+  <section class="hero-banner">
+    <div class="hero-banner-media" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-banner-copy">
+        <span class="eyebrow">- Item I - Call to Order</span>
+        <h1>Marketing counsel with a seat at <span class="italic-gold">your</span> boardroom table.</h1>
+        <p class="lead">One executive. Embedded in your company. Running the entire marketing function. Internal and external. With a focus on the top and bottom line.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="#contact">Start a Conversation</a>
+          <a class="link-underline" href="#agenda">Review the agenda ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Section 1 - Hero -->
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-left">
           <div class="hero-intro">
-            <span class="eyebrow">- Item I - Call to Order</span>
-            <h1>Marketing counsel with a seat at <span class="italic-gold">your</span> boardroom table.</h1>
-            <p class="lead">One executive. Embedded in your company. Running the entire marketing function. Internal and external. With a focus on the top and bottom line.</p>
             <p class="lead">Why, you ask?</p>
             <p class="lead">Many organizations don't lack marketing activity. They lack the right leadership. Expecting the world from entry-level hires, or cycling through agencies. Campaigns run. Spend increases. Results do not. It's why experience becomes necessary, not optional.</p>
             <div class="hero-inshort">
@@ -1078,7 +1165,6 @@
                 </svg>
                 Start a Conversation
               </a>
-              <a class="link-underline" href="#agenda">Review the agenda ↓</a>
               <a class="link-underline" href="#advisor">Meet the advisor ↓</a>
             </div>
             <div class="hero-proof">
