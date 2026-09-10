@@ -392,7 +392,9 @@
     max-width: 46ch;
     margin: -0.4rem 0 2rem;
   }
-  .hero-inshort .in-short-tag {
+  /* Shared mono sub-heading: the "Whereas" tag in the intro and the
+     "In Short" tag above the list. */
+  .item-tag {
     display: block;
     font-family: var(--mono);
     font-size: 0.64rem;
@@ -1182,10 +1184,10 @@
       <div class="hero-grid">
         <div class="hero-left">
           <div class="hero-intro">
-            <p class="lead">Why, you ask?</p>
+            <span class="item-tag">Whereas</span>
             <p class="lead">Many organizations don't lack marketing activity. They lack the right leadership. Expecting the world from entry-level hires, or cycling through agencies. Campaigns run. Spend increases. Results do not. It's why experience becomes necessary, not optional.</p>
             <div class="hero-inshort">
-              <span class="in-short-tag">In Short</span>
+              <span class="item-tag">In Short</span>
               <ul class="hero-inshort-list">
                 <li>A marketing executive who has actually run the P&amp;L.</li>
                 <li>One accountable principal. No rotating account team.</li>
