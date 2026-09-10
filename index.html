@@ -271,7 +271,7 @@
   .hero-banner {
     position: relative;
     isolation: isolate;
-    background: #1a1b20;
+    background: #101115;
     color: var(--cream);
     overflow: hidden;
     /* Extra top padding leaves the head chair visible above the headline. */
@@ -290,18 +290,31 @@
     background-position: 47.4% 22%;
     transform: translateX(2.6%) scale(1.06);
     transform-origin: 50% 50%;
-    filter: brightness(1.28) contrast(1.02);
+    filter: brightness(0.92) contrast(1.08);
   }
   .hero-banner-media::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    /* Left scrim protects the headline where it crosses the bright window
-       at the far end of the room; it fades out before the right side. */
     background-image:
-      linear-gradient(90deg, rgba(14,15,18,.7) 0%, rgba(14,15,18,.1) 60%, rgba(14,15,18,0) 75%),
-      linear-gradient(180deg, rgba(14,15,18,.18) 0%, rgba(14,15,18,.10) 35%, rgba(14,15,18,.62) 100%);
+      /* Spotlight: clear over the chair, darkening outward. The window behind
+         the chair stays bright so the chair reads as a silhouette. */
+      radial-gradient(ellipse 34% 52% at 50% 26%,
+        rgba(14,15,18,0) 0%,
+        rgba(14,15,18,0.12) 45%,
+        rgba(14,15,18,0.55) 75%,
+        rgba(14,15,18,0.82) 100%),
+      /* Text protection on the left, where the copy sits */
+      linear-gradient(90deg,
+        rgba(14,15,18,0.55) 0%,
+        rgba(14,15,18,0.30) 35%,
+        rgba(14,15,18,0) 60%),
+      /* Ground the bottom so the banner hands off cleanly to the cream section below */
+      linear-gradient(180deg,
+        rgba(14,15,18,0) 0%,
+        rgba(14,15,18,0) 55%,
+        rgba(14,15,18,0.70) 100%);
   }
   .hero-banner-copy { max-width: 780px; }
   .hero-banner .eyebrow { color: var(--gold-light); }
@@ -337,9 +350,18 @@
   }
   @media (max-width: 720px) {
     .hero-banner { padding-block: 150px 64px; }
+    /* Same column and transform as desktop so the chair stays on the
+       centreline; only the vertical position changes to keep it in frame. */
     .hero-banner-media {
-      background-position: 47.4% 18%;
+      background-position: 47.4% 15%;
       transform: translateX(2.6%) scale(1.06);
+    }
+    /* Spotlight moved up and tightened to sit on the chair; the horizontal
+       text scrim is dropped at this width. */
+    .hero-banner-media::after {
+      background-image:
+        radial-gradient(ellipse 60% 38% at 50% 16%, rgba(14,15,18,0) 0%, rgba(14,15,18,0.15) 45%, rgba(14,15,18,0.62) 75%, rgba(14,15,18,0.85) 100%),
+        linear-gradient(180deg, rgba(14,15,18,0.10) 0%, rgba(14,15,18,0.55) 50%, rgba(14,15,18,0.88) 100%);
     }
     .hero-banner h1 {
       font-size: clamp(32px, 8vw, 44px);
