@@ -271,41 +271,59 @@
   .hero-banner {
     position: relative;
     isolation: isolate;
-    background: #0e0f12;
+    background: #1a1b20;
     color: var(--cream);
     overflow: hidden;
-    padding-block: clamp(88px, 11vw, 168px);
+    /* Extra top padding leaves the head chair visible above the headline. */
+    padding-block: clamp(200px, 26vw, 340px) clamp(88px, 10vw, 150px);
     border-bottom: 0;
   }
+  /* The head chair sits at ~47.4% across the source image. background-position
+     pins that column, the translate nudges it to the true page centre, and the
+     slight scale covers the sliver the shift would expose on the left edge. */
   .hero-banner-media {
     position: absolute;
     inset: 0;
     z-index: -2;
     background-image: url("boardroom.jpg");
     background-size: cover;
-    background-position: 50% 45%;
+    background-position: 47.4% 22%;
+    transform: translateX(2.6%) scale(1.06);
+    transform-origin: 50% 50%;
+    filter: brightness(1.28) contrast(1.02);
   }
   .hero-banner-media::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-image:
-      linear-gradient(90deg, rgba(14,15,18,.9) 0%, rgba(14,15,18,.72) 40%, rgba(14,15,18,.25) 70%, rgba(14,15,18,.15) 100%),
-      linear-gradient(180deg, rgba(14,15,18,.3) 0%, rgba(14,15,18,0) 35%, rgba(14,15,18,.5) 100%);
+    background-image: linear-gradient(180deg, rgba(14,15,18,.18) 0%, rgba(14,15,18,.10) 35%, rgba(14,15,18,.62) 100%);
   }
-  .hero-banner-copy { max-width: 620px; }
+  .hero-banner-copy {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
   .hero-banner .eyebrow { color: var(--gold-light); }
   .hero-banner h1 {
     font-size: 3.35rem;
     margin-bottom: 1.6rem;
     color: var(--cream);
+    text-shadow: 0 2px 24px rgba(14,15,18,.55);
   }
   .hero-banner .lead {
     font-size: 1.12rem;
     color: rgba(250,250,248,.82);
     max-width: 46ch;
+    margin-inline: auto;
     margin-bottom: 2rem;
+    text-shadow: 0 2px 24px rgba(14,15,18,.55);
+  }
+  /* .hero-ctas is a column flex stack, so horizontal centring needs
+     align-items as well as justify-content. */
+  .hero-banner .hero-ctas {
+    justify-content: center;
+    align-items: center;
   }
   .hero-banner .btn-gold {
     background: var(--gold);
@@ -323,10 +341,10 @@
     .hero-banner .lead { font-size: 1.08rem; margin-bottom: 1.6rem; }
   }
   @media (max-width: 720px) {
-    .hero-banner { padding-block: 72px; }
-    .hero-banner-media { background-position: 50% 50%; }
-    .hero-banner-media::after {
-      background-image: linear-gradient(180deg, rgba(14,15,18,.55) 0%, rgba(14,15,18,.8) 55%, rgba(14,15,18,.92) 100%);
+    .hero-banner { padding-block: 150px 64px; }
+    .hero-banner-media {
+      background-position: 47.4% 18%;
+      transform: translateX(2.6%) scale(1.06);
     }
   }
   @media (max-width: 400px) {
@@ -1127,7 +1145,7 @@
     <div class="wrap">
       <div class="hero-banner-copy">
         <span class="eyebrow">- Item I - Call to Order</span>
-        <h1>Marketing counsel with a seat at <span class="italic-gold">your</span> boardroom table.</h1>
+        <h1>Marketing leadership with a seat at <span class="italic-gold">your</span> boardroom table.</h1>
         <p class="lead">One executive. Embedded in your company. Running the entire marketing function. Internal and external. With a focus on the top and bottom line.</p>
         <div class="hero-ctas">
           <a class="btn btn-gold" href="#contact">Start a Conversation</a>
