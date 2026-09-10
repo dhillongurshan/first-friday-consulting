@@ -116,10 +116,11 @@
     align-items: center;
     gap: 0.55rem;
     font-family: var(--mono);
-    font-size: 0.72rem;
+    font-size: 13px;
+    line-height: 1;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 0.85rem 1.4rem;
+    padding: 14px 24px;
     border: 1px solid transparent;
     border-radius: 0;
     text-decoration: none;
@@ -230,7 +231,15 @@
      desktop: unchanged position at the end of the link row). Its own
      .btn-gold colors would otherwise lose to nav.primary a's on specificity,
      so they're restored explicitly here at every width. */
-  nav.primary .header-cta { color: var(--paper); }
+  /* Size restated here because nav.primary a outranks .btn on specificity;
+     values are the shared .btn size, not an override. */
+  nav.primary .header-cta {
+    color: var(--paper);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 14px 24px;
+  }
   nav.primary .header-cta:hover { color: var(--ink); }
 
   .nav-toggle { display: none; }
@@ -888,14 +897,14 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      padding: 0.95rem 1.4rem;
+      padding: 14px 24px;
       margin: 0.85rem 0 1rem;
       border-top: none;
       border-bottom: none;
     }
 
     /* --- Buttons / links: comfortable tap targets --------------------- */
-    .btn { padding: 0.95rem 1.4rem; }
+    .btn { padding: 14px 24px; }
     .hero-ctas { gap: 0.5rem; margin-bottom: 1.75rem; }
     .hero-ctas .link-underline {
       display: inline-flex;
