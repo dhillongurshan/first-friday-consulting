@@ -1,7 +1,7 @@
 {
-  "name": "First Friday Marketing Consulting",
-  "short_name": "First Friday",
-  "description": "Executive advisory and counsel — senior marketing judgment inside leadership teams and boards.",
+  "name": "Marketing by Committee",
+  "short_name": "MbC",
+  "description": "Fractional CMO and executive marketing advisory for Alberta's industrial sector.",
   "icons": [
     { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }

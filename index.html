@@ -3,21 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Marketing by Committee | Fractional CMO &amp; Marketing Advisory in Edmonton, AB</title>
-<meta name="description" content="Fractional CMO and executive marketing advisory for Edmonton-area industrial companies. One expert running the committee that already decides your marketing, backed by a vetted specialist network." />
+<title>Fractional CMO Edmonton | Marketing by Committee</title>
+<meta name="description" content="Fractional CMO for Alberta's industrial sector, based in Edmonton. One executive, embedded part-time, running the entire marketing function." />
 <link rel="canonical" href="https://www.marketingbycommittee.com/" />
-<meta property="og:title" content="Marketing by Committee | Fractional CMO &amp; Marketing Advisory in Edmonton, AB" />
-<meta property="og:description" content="Fractional CMO and executive marketing advisory for Edmonton-area industrial companies. One expert running the committee that already decides your marketing, backed by a vetted specialist network." />
+<link rel="alternate" hreflang="en-ca" href="https://www.marketingbycommittee.com/" />
+<meta name="geo.region" content="CA-AB" />
+<meta name="geo.placename" content="Edmonton" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.marketingbycommittee.com" />
-<meta property="og:image" content="https://www.marketingbycommittee.com/logo.png" />
+<meta property="og:site_name" content="Marketing by Committee" />
+<meta property="og:locale" content="en_CA" />
+<meta property="og:title" content="Fractional CMO Edmonton | Marketing by Committee" />
+<meta property="og:description" content="Fractional CMO for Alberta's industrial sector, based in Edmonton. One executive, embedded part-time, running the entire marketing function." />
+<meta property="og:url" content="https://www.marketingbycommittee.com/" />
+<meta property="og:image" content="https://www.marketingbycommittee.com/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Empty boardroom with a single chair at the head of the table. Marketing by Committee, fractional CMO, Edmonton." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Marketing by Committee | Fractional CMO &amp; Marketing Advisory in Edmonton, AB" />
-<meta name="twitter:description" content="Fractional CMO and executive marketing advisory for Edmonton-area industrial companies. One expert running the committee that already decides your marketing, backed by a vetted specialist network." />
-<meta name="twitter:image" content="https://www.marketingbycommittee.com/logo.png" />
+<meta name="twitter:title" content="Fractional CMO Edmonton | Marketing by Committee" />
+<meta name="twitter:description" content="Fractional CMO for Alberta's industrial sector, based in Edmonton. One executive, embedded part-time, running the entire marketing function." />
+<meta name="twitter:image" content="https://www.marketingbycommittee.com/og-image.jpg" />
+<meta name="twitter:image:alt" content="Empty boardroom with a single chair at the head of the table. Marketing by Committee, fractional CMO, Edmonton." />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="512x512" href="logo-512.png" />
 <link rel="manifest" href="site.webmanifest" />
 <link rel="preload" as="image" href="boardroom.jpg" />
 <meta name="theme-color" content="#14151a" />
@@ -105,6 +114,20 @@
 
   .italic-gold { font-style: italic; color: var(--gold-deep); }
   .nowrap { white-space: nowrap; }
+  /* Off-screen text for machines and screen readers: carries the plain-language
+     meaning of the minutes-style headings without changing what is drawn. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
 
   /* ---------- Buttons ---------- */
   /* Both CTA variants render identically now: solid charcoal, off-white text.
@@ -290,19 +313,29 @@
     padding-block: clamp(200px, 26vw, 340px) clamp(88px, 10vw, 150px);
     border-bottom: 0;
   }
-  /* The head chair sits at ~47.4% across the source image. background-position
+  /* The head chair sits at ~47.4% across the source image. object-position
      pins that column, the translate nudges it to the true page centre, and the
-     slight scale covers the sliver the shift would expose on the left edge. */
+     slight scale covers the sliver the shift would expose on the left edge.
+     The photo is a real <img> (crawlable, LCP candidate) sized exactly like the
+     former CSS background: object-fit cover + object-position match the old
+     background-size cover + background-position. */
   .hero-banner-media {
     position: absolute;
     inset: 0;
     z-index: -2;
-    background-image: url("boardroom.jpg");
-    background-size: cover;
-    background-position: 47.4% 22%;
     transform: translateX(2.6%) scale(1.06);
     transform-origin: 50% 50%;
     filter: brightness(0.92) contrast(1.08);
+  }
+  .hero-banner-media img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: 47.4% 22%;
   }
   .hero-banner-media::after {
     content: "";
@@ -373,10 +406,8 @@
     .hero-banner { padding-block: 150px 64px; }
     /* Same column and transform as desktop so the chair stays on the
        centreline; only the vertical position changes to keep it in frame. */
-    .hero-banner-media {
-      background-position: 47.4% 15%;
-      transform: translateX(2.6%) scale(1.06);
-    }
+    .hero-banner-media { transform: translateX(2.6%) scale(1.06); }
+    .hero-banner-media img { object-position: 47.4% 15%; }
     /* Spotlight moved up and tightened to sit on the chair; the horizontal
        text scrim is dropped at this width. */
     .hero-banner-media::after {
@@ -1001,13 +1032,13 @@
   "@type": "ProfessionalService",
   "@id": "https://www.marketingbycommittee.com/#organization",
   "name": "Marketing by Committee",
-  "url": "https://www.marketingbycommittee.com",
-  "logo": "https://www.marketingbycommittee.com/logo.png",
-  "image": "https://www.marketingbycommittee.com/logo.png",
-  "description": "Fractional CMO and executive marketing advisory for Alberta's industrial sector. Fractional CMO placement, marketing strategy and audits, board and executive advisory sessions, and growth and revenue consulting for leadership teams and boards.",
+  "url": "https://www.marketingbycommittee.com/",
+  "logo": "https://www.marketingbycommittee.com/logo-512.png",
+  "image": "https://www.marketingbycommittee.com/og-image.jpg",
+  "description": "Fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, serving Alberta's industrial sector. Two standing engagements. Fractional services: a part-time marketing executive on your leadership team, a full audit of where your spend goes, and a standing quarterly review. Agency services: film and media production, web development, paid media, social media coordination, employer branding and recruitment marketing, government relations and public affairs, Indigenous relations, and branded merchandise design and sourcing, run by vetted specialists under one accountable lead.",
   "email": "info@marketingbycommittee.com",
   "telephone": "+1-780-952-9242",
-  "priceRange": "$5,000-$10,000/month",
+  "priceRange": "$3,000-$10,000+/month",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Edmonton",
@@ -1030,15 +1061,29 @@
     "Industrial B2B marketing",
     "Energy sector marketing",
     "Transportation and fleet marketing",
-    "Civil construction marketing",
-    "Forestry, mining and agriculture marketing"
+    "Construction marketing",
+    "Forestry, mining and agriculture marketing",
+    "Retail marketing",
+    "Professional services marketing"
   ],
   "founder": { "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon" },
   "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fractional CMO placement" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing strategy & audits" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Board & executive advisory sessions" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Growth & revenue consulting" } }
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Fractional Services",
+        "description": "A part-time marketing executive with a seat on your leadership team, owning the marketing function the way a CFO owns the numbers. Includes a full audit of where your spend goes and a standing quarterly review of what's next. Six month minimum. Limited seats."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Agency Services",
+        "description": "Project-based execution: film and media production, web development, paid media such as Google Ads, social media coordination, employer branding and recruitment marketing, government relations and public affairs, Indigenous relations, and branded merchandise design and sourcing. All run by vetted specialists, under one accountable lead."
+      }
+    }
   ]
 }
 </script>
@@ -1049,7 +1094,7 @@
   "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon",
   "name": "Gurshan Dhillon",
   "jobTitle": "Fractional CMO",
-  "description": "Founder of Marketing by Committee, a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, serving industrial companies across the Greater Edmonton Area. Former Chief Marketing Officer of a $300M Alberta energy company, where he held full P&L accountability and rebuilt the commercial model around lifetime value. Before that, Senior Communications Advisor to the Government of Alberta, serving as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls. Bachelor of Marketing, University of Alberta.",
+  "description": "Founder of Marketing by Committee, a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, serving Alberta's industrial sector. Fifteen years building multi-province go-to-market engines across government, energy, and construction. Former Chief Marketing Officer of a major Alberta energy company, where he owned corporate strategy and P&L across a multi-branch operation spanning Western Canada and the Yukon. Before that, Senior Communications Advisor to the Government of Alberta, serving as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls.",
   "image": "https://www.marketingbycommittee.com/headshot.jpg",
   "url": "https://www.marketingbycommittee.com/#advisor",
   "email": "info@marketingbycommittee.com",
@@ -1061,15 +1106,6 @@
     "addressRegion": "AB",
     "addressCountry": "CA"
   },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "University of Alberta"
-  },
-  "hasCredential": {
-    "@type": "EducationalOccupationalCredential",
-    "credentialCategory": "degree",
-    "name": "Bachelor of Marketing"
-  },
   "hasOccupation": {
     "@type": "Occupation",
     "name": "Fractional Chief Marketing Officer",
@@ -1079,10 +1115,10 @@
     "Fractional CMO leadership",
     "Industrial B2B marketing",
     "Energy sector marketing",
-    "Government communications",
-    "Board and executive advisory",
-    "Go-to-market strategy",
-    "Customer lifetime value and margin analysis"
+    "Construction sector marketing",
+    "Government communications and public affairs",
+    "Corporate strategy and P&L management",
+    "Go-to-market strategy"
   ]
 }
 </script>
@@ -1094,7 +1130,7 @@
     {
       "@type": "Question",
       "name": "Why \"Marketing by Committee\"?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Because many companies already have one, whether anyone calls it that or not. Entry-level coordinators or managers navigating an owner's or president's vision. Or administrative staff supporting a half-baked marketing strategy from the side of their desk. Marketing by Committee brings the horsepower to that committee. One expert, accountable to the group, running the function day-to-day. When a project needs more hands, our committee extends to a small network of vetted specialists, still run by one accountable principal." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The name comes from the fact that most companies already run marketing by committee, whether anyone calls it that or not. Entry-level coordinators or managers navigating an owner's or president's vision. Or administrative staff supporting a half-baked marketing strategy from the side of their desk. Marketing by Committee brings the horsepower to that committee. One expert, accountable to the group, running the function day-to-day. When a project needs more hands, our committee extends to a small network of vetted specialists, still run by one accountable principal." }
     },
     {
       "@type": "Question",
@@ -1104,37 +1140,47 @@
     {
       "@type": "Question",
       "name": "What does it cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Fractional CMO placement runs anywhere from $3,000 to $10,000+ per month depending on the size of the company. That is roughly the same cost as hiring a marketing coordinator or manager in Alberta. A full-time CMO in Canada costs $260,000 to $355,000 a year once you load salary, benefits, payroll taxes and recruiting fees." }
+      "acceptedAnswer": { "@type": "Answer", "text": "A fractional CMO from Marketing by Committee costs $3,000 to $10,000+ per month, depending on the size of the company. That is roughly the same cost as hiring a marketing coordinator or manager in Alberta. A full-time CMO in Canada costs $260,000 to $355,000 a year once you load salary, benefits, payroll taxes and recruiting fees." }
     },
     {
       "@type": "Question",
       "name": "Do you do the work, or only advise?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Both, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Both. I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed." }
     },
     {
       "@type": "Question",
       "name": "How is this different from a marketing agency?",
-      "acceptedAnswer": { "@type": "Answer", "text": "An agency is accountable for activity. I am accountable to the P&L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives. Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for." }
+      "acceptedAnswer": { "@type": "Answer", "text": "A marketing agency is accountable for activity, and a fractional CMO is accountable to the P&L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives. Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for." }
     },
     {
       "@type": "Question",
       "name": "What industries do you work with?",
-      "acceptedAnswer": { "@type": "Answer", "text": "I work with companies of all sizes, including small businesses, based in Edmonton, Alberta. My focus is energy, transportation, construction, forestry, mining, agriculture, fleet, retail, and professional services." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Marketing by Committee works with companies of all sizes, including small businesses, based in Edmonton, Alberta. My focus is energy, transportation, construction, forestry, mining, agriculture, fleet, retail, and professional services." }
     },
     {
       "@type": "Question",
       "name": "How many clients do you take?",
-      "acceptedAnswer": { "@type": "Answer", "text": "I run every engagement personally, and when a project needs a specialist the network gets called in under my direction, not a rotating account team. You always deal with the same person. When my capacity is full, new engagements start on a waitlist." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Client capacity is limited because I run every engagement personally, and when a project needs a specialist the network gets called in under my direction, not a rotating account team. You always deal with the same person. When my capacity is full, new engagements start on a waitlist." }
     },
     {
       "@type": "Question",
       "name": "How long do engagements run?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Six months minimum is advised. Marketing that changes a revenue number does not do it in eight weeks, and any advisor who tells you otherwise is selling you a deck." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Engagements run six months at minimum. Marketing that changes a revenue number does not do it in eight weeks, and any advisor who tells you otherwise is selling you a deck." }
     },
     {
       "@type": "Question",
       "name": "Where are you based?",
       "acceptedAnswer": { "@type": "Answer", "text": "Marketing by Committee is based in Edmonton, Alberta and advises companies across the Greater Edmonton Area, including Sherwood Park, St. Albert, Spruce Grove, Stony Plain, Beaumont, Nisku and Leduc." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a fractional CMO do?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A fractional CMO runs a company's marketing function part-time, at the executive level. At Marketing by Committee that means a seat on your leadership team, a full audit of where your spend goes, a standing quarterly review of what's next, and direct execution, with vetted specialists brought in when a scope needs more hands." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a fractional CMO cost in Edmonton?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In Edmonton, a fractional CMO from Marketing by Committee costs $3,000 to $10,000+ per month, depending on the size of the company. That is roughly the cost of a marketing coordinator or manager in Alberta, against $260,000 to $355,000 a year for a full-time CMO in Canada once salary, benefits, payroll taxes and recruiting fees are loaded." }
     }
   ]
 }
@@ -1157,7 +1203,7 @@
   <div class="header-inner">
     <div class="header-bar">
       <a class="brand" href="#top">
-        <img class="mark" src="logo.png" alt="Marketing by Committee logo, fractional CMO and executive marketing advisory in Edmonton, Alberta" />
+        <img class="mark" src="logo-192.png" srcset="logo-192.png 1x, logo-512.png 2x" width="192" height="192" alt="Marketing by Committee logo, fractional CMO and executive marketing advisory in Edmonton, Alberta" />
         <span class="brand-text">
           <span class="brand-name">Marketing by Committee</span>
           <span class="brand-tag">Executive Advisory and Counsel</span>
@@ -1185,7 +1231,9 @@
 
   <!-- Section 1a - Hero banner -->
   <section class="hero-banner">
-    <div class="hero-banner-media" aria-hidden="true"></div>
+    <div class="hero-banner-media">
+      <img src="boardroom.jpg" alt="Empty boardroom with a single chair at the head of the table, Marketing by Committee, fractional CMO Edmonton" width="1366" height="768" fetchpriority="high" decoding="async" />
+    </div>
     <div class="wrap">
       <div class="hero-banner-copy">
         <span class="eyebrow">- Item I - Call to Order</span>
@@ -1204,6 +1252,7 @@
       <div class="hero-grid">
         <div class="hero-left">
           <div class="hero-intro">
+            <p class="lead">Marketing by Committee is a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta, working with energy, construction, transportation, and industrial companies across the province.</p>
             <span class="item-tag">Whereas</span>
             <p class="lead">Many organizations don't lack marketing activity. They lack the right leadership. Expecting the world from entry-level hires, or cycling through agencies. Campaigns run. Spend increases. Results do not. It's why experience becomes necessary, not optional.</p>
             <div class="hero-inshort">
@@ -1241,8 +1290,8 @@
         </div>
 
         <aside class="card led-by-card">
-          <img class="led-by-photo" src="headshot.jpg" alt="Gurshan Dhillon, Fractional CMO, Edmonton, Alberta, founder of Marketing by Committee" />
-          <h3 class="led-by-heading">Led by Gurshan Dhillon</h3>
+          <img class="led-by-photo" src="headshot.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="400" height="400" loading="lazy" decoding="async" />
+          <h2 class="led-by-heading">Led by Gurshan Dhillon</h2>
           <p class="led-by-bio">Fifteen years building multi-province go-to-market engines across government, energy, and construction - from provincial spokesperson to Chief Marketing Officer. He's operated at the table he now advises.</p>
         </aside>
       </div>
@@ -1255,7 +1304,7 @@
       <div class="section-head">
         <div>
           <span class="eyebrow">- Item II - Old &amp; New Business</span>
-          <h2>The agenda</h2>
+          <h2>The agenda<span class="visually-hidden">: services, fractional CMO and agency services</span></h2>
         </div>
         <p class="right">Two standing engagements a leadership team can bring to the table, individually or in combination.</p>
       </div>
@@ -1288,7 +1337,7 @@
       <div class="section-head">
         <div>
           <span class="eyebrow">- Item III - Order of Business</span>
-          <h2>How a sitting runs</h2>
+          <h2>How a sitting runs<span class="visually-hidden">: our process</span></h2>
         </div>
         <p class="right">Every engagement moves through the same four motions before anything reaches your budget.</p>
       </div>
@@ -1328,7 +1377,7 @@
       <div class="section-head">
         <div>
           <span class="eyebrow">- Item V - The Advisor of Record</span>
-          <h2>The executive</h2>
+          <h2>The executive<span class="visually-hidden">: about Gurshan Dhillon, fractional CMO</span></h2>
         </div>
         <p class="right">One principal, accountable for every sitting - no handoffs, no junior bench.</p>
       </div>
@@ -1348,12 +1397,12 @@
   <section id="faq">
     <div class="wrap">
       <span class="eyebrow">- For Reference</span>
-      <h2 class="faq-title">Points of Order</h2>
+      <h2 class="faq-title">Points of Order<span class="visually-hidden">: frequently asked questions</span></h2>
 
       <div class="faq-list">
         <div class="faq-item">
           <h3 class="faq-q">Why "Marketing by Committee"?</h3>
-          <p class="faq-a">Because many companies already have one, whether anyone calls it that or not. Entry-level coordinators or managers navigating an owner's or president's vision. Or administrative staff supporting a half-baked marketing strategy from the side of their desk.</p>
+          <p class="faq-a">The name comes from the fact that most companies already run marketing by committee, whether anyone calls it that or not. Entry-level coordinators or managers navigating an owner's or president's vision. Or administrative staff supporting a half-baked marketing strategy from the side of their desk.</p>
           <p class="faq-a">Marketing by Committee brings the horsepower to that committee. One expert, accountable to the group, running the function day-to-day. When a project needs more hands, our committee extends to a small network of vetted specialists, still run by one accountable principal.</p>
         </div>
         <div class="faq-item">
@@ -1362,33 +1411,41 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-q">What does it cost?</h3>
-          <p class="faq-a">Fractional CMO placement runs anywhere from $3,000 to $10,000+ per month depending on the size of the company. That is roughly the same cost as hiring a marketing coordinator or manager in Alberta.</p>
+          <p class="faq-a">A fractional CMO from Marketing by Committee costs $3,000 to $10,000+ per month, depending on the size of the company. That is roughly the same cost as hiring a marketing coordinator or manager in Alberta.</p>
           <p class="faq-a">A full-time CMO in Canada costs $260,000 to $355,000 a year once you load salary, benefits, payroll taxes and recruiting fees.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">Do you do the work, or only advise?</h3>
-          <p class="faq-a">Both, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed.</p>
+          <p class="faq-a">Both. I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">How is this different from a marketing agency?</h3>
-          <p class="faq-a">An agency is accountable for activity. I am accountable to the P&amp;L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives.</p>
+          <p class="faq-a">A marketing agency is accountable for activity, and a fractional CMO is accountable to the P&amp;L. Agencies are hired to fill the top of the funnel. I am hired to decide whether that funnel should exist, what a customer is worth, and where the margin actually lives.</p>
           <p class="faq-a">Most agency and in-house overhead exists because marketing used to require a standing department: a videographer, a web developer, a social media coordinator, a PR contact, a budget analyst. AI tools, including the ones behind this website, have collapsed most of that work into what one operator can run directly. When a scope genuinely needs more hands, I draw from a small network of vetted specialists instead of carrying their salaries year round, and I stay the one person accountable for what they produce. Often my first recommendation is about the agency you already have, and how much of its overhead you're still paying for.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">What industries do you work with?</h3>
-          <p class="faq-a">I work with companies of all sizes, including small businesses, based in Edmonton, Alberta. My focus is energy, transportation, construction, forestry, mining, agriculture, fleet, retail, and professional services.</p>
+          <p class="faq-a">Marketing by Committee works with companies of all sizes, including small businesses, based in Edmonton, Alberta. My focus is energy, transportation, construction, forestry, mining, agriculture, fleet, retail, and professional services.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">How many clients do you take?</h3>
-          <p class="faq-a">I run every engagement personally, and when a project needs a specialist the network gets called in under my direction, not a rotating account team. You always deal with the same person. When my capacity is full, new engagements start on a waitlist.</p>
+          <p class="faq-a">Client capacity is limited because I run every engagement personally, and when a project needs a specialist the network gets called in under my direction, not a rotating account team. You always deal with the same person. When my capacity is full, new engagements start on a waitlist.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">How long do engagements run?</h3>
-          <p class="faq-a">Six months minimum is advised. Marketing that changes a revenue number does not do it in eight weeks, and any advisor who tells you otherwise is selling you a deck.</p>
+          <p class="faq-a">Engagements run six months at minimum. Marketing that changes a revenue number does not do it in eight weeks, and any advisor who tells you otherwise is selling you a deck.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">Where are you based?</h3>
           <p class="faq-a">Marketing by Committee is based in Edmonton, Alberta and advises companies across the Greater Edmonton Area, including Sherwood Park, St. Albert, Spruce Grove, Stony Plain, Beaumont, Nisku and Leduc.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">What does a fractional CMO do?</h3>
+          <p class="faq-a">A fractional CMO runs a company's marketing function part-time, at the executive level. At Marketing by Committee that means a seat on your leadership team, a full audit of where your spend goes, a standing quarterly review of what's next, and direct execution, with vetted specialists brought in when a scope needs more hands.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">How much does a fractional CMO cost in Edmonton?</h3>
+          <p class="faq-a">In Edmonton, a fractional CMO from Marketing by Committee costs $3,000 to $10,000+ per month, depending on the size of the company. That is roughly the cost of a marketing coordinator or manager in Alberta, against $260,000 to $355,000 a year for a full-time CMO in Canada once salary, benefits, payroll taxes and recruiting fees are loaded.</p>
         </div>
       </div>
     </div>
@@ -1401,12 +1458,13 @@
   <div class="wrap">
     <div class="footer-head">
       <span class="eyebrow">- Item VI - The Next Sitting</span>
-      <h2 class="footer-heading">Bring it to committee</h2>
+      <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
       <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
     </div>
     <div class="footer-cols">
       <div>
         <p class="label">Correspondence</p>
+        <p>Marketing by Committee, Edmonton, Alberta</p>
         <p><a href="mailto:info@marketingbycommittee.com">info@marketingbycommittee.com</a></p>
         <p><a href="tel:+17809529242">780-952-9242</a></p>
       </div>
