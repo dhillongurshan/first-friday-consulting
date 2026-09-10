@@ -833,8 +833,9 @@
   }
   .footer-cols {
     display: grid;
-    grid-template-columns: minmax(0, 22rem) minmax(0, 22rem) minmax(0, 1fr);
-    gap: 3.5rem;
+    grid-template-columns: max-content 1fr;
+    align-items: start;
+    gap: 64px;
   }
   .footer-cols .label {
     font-family: var(--mono);
@@ -847,7 +848,7 @@
   .footer-cols p { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
   .footer-cols p + p { margin-top: 0.35rem; }
   /* Third column: the practice description, capped so it wraps to a few lines. */
-  .footer-mandate p { max-width: 34em; }
+  .footer-mandate p { max-width: 46em; }
   .footer-cols a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
   .footer-cols a:hover { color: var(--gold-light); }
   .footer-divider {
@@ -1516,10 +1517,6 @@
         <p>Marketing by Committee, Edmonton, Alberta</p>
         <p><a href="mailto:info@marketingbycommittee.com">info@marketingbycommittee.com</a></p>
         <p><a href="tel:+17809529242">780-952-9242</a></p>
-      </div>
-      <div>
-        <p class="label">Recorded By</p>
-        <p>Marketing by Committee</p>
       </div>
       <div class="footer-mandate">
         <p class="label">Mandate</p>
