@@ -1116,6 +1116,9 @@
   ]
 }
 </script>
+<script>
+  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECBK8V609D"></script>
 <script>
@@ -1437,7 +1440,6 @@
           var offset = (header ? header.offsetHeight : 0) + 12;
           var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
           window.scrollTo({ top: y, behavior: "smooth" });
-          history.replaceState(null, "", id);
         };
 
         if (navWasOpen) {
