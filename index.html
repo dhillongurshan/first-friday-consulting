@@ -132,7 +132,8 @@
     color: var(--paper);
     border-color: var(--ink);
   }
-  .btn-gold:hover, .btn-olive:hover {
+  .btn-gold:hover, .btn-olive:hover,
+  .btn-gold:focus-visible, .btn-olive:focus-visible {
     background: var(--paper);
     color: var(--ink);
     border-color: var(--gold-deep);
@@ -240,7 +241,8 @@
     line-height: 1;
     padding: 14px 24px;
   }
-  nav.primary .header-cta:hover { color: var(--ink); }
+  nav.primary .header-cta:hover,
+  nav.primary .header-cta:focus-visible { color: var(--ink); }
 
   .nav-toggle { display: none; }
   .nav-hamburger {
@@ -347,6 +349,15 @@
   .hero-banner .btn-gold {
     background: var(--gold);
     color: var(--ink);
+    border-color: var(--gold);
+  }
+  /* Same inversion the dark buttons use (ink to cream), mirrored for the gold
+     button: gold to ink with cream text. Specificity (0,3,0) outranks the
+     scoped colour rule above; transition is inherited from .btn. */
+  .hero-banner .btn-gold:hover,
+  .hero-banner .btn-gold:focus-visible {
+    background: var(--ink);
+    color: var(--cream);
     border-color: var(--gold);
   }
   .hero-banner .link-underline {
