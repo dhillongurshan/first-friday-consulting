@@ -591,10 +591,13 @@
     object-fit: cover;
     object-position: 48% 42%;
     justify-self: end;
+    /* Top edge on the cap height of the 1.9rem Playfair name beside it, not its
+       line box: half-leading (0.108em) plus ascender-to-cap (0.374em) at 30.4px. */
+    margin-top: 15px;
   }
   @media (max-width: 720px) {
     .advisor-grid { grid-template-columns: 1fr; gap: 32px; }
-    .exec-photo { max-width: 260px; margin-inline: auto; justify-self: center; }
+    .exec-photo { max-width: 260px; margin: 0 auto; justify-self: center; }
   }
   .advisor-bio p {
     color: var(--ink-soft);
