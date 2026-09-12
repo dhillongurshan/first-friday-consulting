@@ -540,6 +540,9 @@
   .led-by-card {
     text-align: left;
     padding: var(--card-pad);
+    /* Desktop: no top padding, so the photo (and the card's left rule) start
+       on the same line as the "Whereas" label at the top of the left column. */
+    padding-top: 0;
   }
   /* Card-scale portrait crop. width/height attributes on the <img> only seed
      layout; max-width and aspect-ratio here decide the rendered box. */
@@ -548,9 +551,6 @@
     width: 100%;
     max-width: 300px;
     height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: 62% 24%;
     border: 1px solid var(--line);
     margin-bottom: 2rem;
   }
@@ -970,7 +970,7 @@
     /* Reorder stacked hero: intro, then the Led-by card, then the CTA stack */
     .hero-left { display: contents; }
     .hero-intro { order: 1; }
-    .hero-grid .led-by-card { order: 2; }
+    .hero-grid .led-by-card { order: 2; padding-top: var(--card-pad); }
     .hero-cta-block { order: 3; }
     .hero-intro .hero-inshort { margin-bottom: 0; }
 
@@ -1286,7 +1286,7 @@
         </div>
 
         <aside class="card led-by-card">
-          <img class="led-by-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="1600" height="1067" loading="lazy" decoding="async" />
+          <img class="led-by-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="932" height="1165" loading="lazy" decoding="async" />
           <h2 class="led-by-heading">Led by Gurshan Dhillon</h2>
           <p class="led-by-bio">Fifteen years across government, energy, and construction. From provincial spokesperson to Chief Marketing Officer. He's operated at the tables he now advises.</p>
         </aside>
