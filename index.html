@@ -467,7 +467,7 @@
   .hero { padding-top: calc(var(--section-y) / 2); }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: start;
   }
@@ -478,7 +478,7 @@
   .hero p.lead {
     font-size: 1.12rem;
     color: var(--ink-soft);
-    max-width: 46ch;
+    max-width: 40em;
     margin-bottom: 2rem;
   }
   /* Mono sub-heading for the "Whereas" tag in the Item I intro. */
@@ -506,45 +506,6 @@
 
   /* Plain background, thin gold rule instead of a full border/fill/shadow -
      the accent marks the card without ever becoming a block of color. */
-  .card {
-    border: none;
-    border-left: 1px solid var(--gold-deep);
-    background: none;
-    border-radius: 0;
-    padding: var(--card-pad);
-  }
-  .led-by-card {
-    text-align: left;
-    padding: var(--card-pad);
-    /* Desktop: no top padding, so the photo (and the card's left rule) start
-       on the same line as the "Whereas" label at the top of the left column. */
-    padding-top: 0;
-  }
-  /* Card-scale portrait crop. width/height attributes on the <img> only seed
-     layout; max-width and aspect-ratio here decide the rendered box. */
-  .led-by-photo {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border: 1px solid var(--line);
-    margin-bottom: 2rem;
-  }
-  @media (max-width: 720px) {
-    .led-by-photo { max-width: 240px; }
-  }
-  .led-by-heading {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.35rem;
-    line-height: 1.2;
-    margin: 0 0 0.9rem;
-  }
-  .led-by-bio {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 1rem;
-  }
   .card-title-row {
     display: flex;
     justify-content: space-between;
@@ -693,6 +654,30 @@
     text-transform: uppercase;
     color: var(--ink);
     margin-bottom: 1.8rem;
+  }
+  /* Photo beside the bio: fixed 320px column, text takes the rest, tops aligned.
+     The eyebrow and section heading sit above this grid at full width. */
+  .advisor-grid {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .exec-photo {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+  .advisor-standfirst {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 1.6rem;
+  }
+  @media (max-width: 720px) {
+    .advisor-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .exec-photo { max-width: 240px; }
   }
   .advisor-bio p {
     color: var(--ink-soft);
@@ -946,11 +931,9 @@
     /* Reorder stacked hero: intro, then the Led-by card, then the CTA stack */
     .hero-left { display: contents; }
     .hero-intro { order: 1; }
-    .hero-grid .led-by-card { order: 2; padding-top: var(--card-pad); }
     .hero-cta-block { order: 3; }
     .hero-intro p.lead:last-child { margin-bottom: 0; }
 
-    .led-by-photo { margin-bottom: 1.5rem; }
 
     /* --- Section heads --------------------------------------------------- */
     .section-head { grid-template-columns: 1fr; gap: 1.1rem; align-items: start; }
@@ -1253,11 +1236,6 @@
           </div>
         </div>
 
-        <aside class="card led-by-card">
-          <img class="led-by-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="932" height="1165" loading="lazy" decoding="async" />
-          <h2 class="led-by-heading">Led by Gurshan Dhillon</h2>
-          <p class="led-by-bio">Fifteen years across government, energy, and construction. From provincial spokesperson to Chief Marketing Officer. He's operated at the tables he now advises.</p>
-        </aside>
       </div>
     </div>
   </section>
@@ -1343,16 +1321,21 @@
           <span class="eyebrow">- Item V - The Advisor of Record</span>
           <h2>The executive<span class="visually-hidden">: about Gurshan Dhillon, fractional CMO</span></h2>
         </div>
-        <p class="right">One principal, accountable for every sitting - no handoffs, no junior bench.</p>
       </div>
 
-      <div class="advisor-bio">
-        <p class="advisor-name">Gurshan Dhillon</p>
-        <p class="advisor-role">Chief Marketing Officer</p>
+      <div class="advisor-grid">
+        <img class="exec-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="932" height="1165" loading="lazy" decoding="async" />
+        <div class="advisor-text">
+          <p class="advisor-standfirst">One principal, accountable for every sitting - no handoffs, no junior bench.</p>
+          <div class="advisor-bio">
+            <p class="advisor-name">Gurshan Dhillon</p>
+            <p class="advisor-role">Chief Marketing Officer</p>
 
-        <p>Many companies already run marketing by committee. The difference here is who's chairing it.</p>
-        <p>As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&amp;L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost.</p>
-        <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.</p>
+            <p>Many companies already run marketing by committee. The difference here is who's chairing it.</p>
+            <p>As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&amp;L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost.</p>
+            <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
