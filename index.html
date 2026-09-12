@@ -560,19 +560,13 @@
   }
 
   /* ---------- Advisor ---------- */
-  .advisor-name {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.9rem;
-    margin-bottom: 0.35rem;
-  }
   .advisor-role {
     font-family: var(--mono);
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink);
-    margin-bottom: 1.8rem;
+    margin: 10px 0 0;
   }
   /* Bio on the left taking the remaining width, photo on the right in a fixed
      380px column, tops aligned.
@@ -592,9 +586,9 @@
     object-fit: cover;
     object-position: 48% 42%;
     justify-self: end;
-    /* Top edge on the cap height of the 1.9rem Playfair name beside it, not its
-       line box: half-leading (0.108em) plus ascender-to-cap (0.374em) at 30.4px. */
-    margin-top: 15px;
+    /* Top edge on the cap height of the first bio paragraph beside it (18px
+       Spectral at 1.55 line-height: half-leading plus ascender-to-cap). */
+    margin-top: 8px;
   }
   @media (max-width: 720px) {
     .advisor-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -837,8 +831,6 @@
     .motions { grid-template-columns: 1fr; gap: 24px; }
 
     /* --- Executive --------------------------------------------------- */
-    .advisor-name { font-size: 1.55rem; }
-    .advisor-role { margin-bottom: 1.4rem; }
 
     /* --- FAQ ------------------------------------------------------- */
     .faq-item { padding: var(--card-pad) 0 var(--card-pad) 1rem; }
@@ -1190,7 +1182,8 @@
       <div class="section-head">
         <div>
           <span class="eyebrow">- Item V - The Advisor of Record</span>
-          <h2>The executive<span class="visually-hidden">: about Gurshan Dhillon, fractional CMO</span></h2>
+          <h2>Gurshan Dhillon<span class="visually-hidden">, fractional CMO</span></h2>
+          <p class="advisor-role">Chief Marketing Officer</p>
         </div>
         <p class="right">One principal, accountable for every sitting - no handoffs, no junior bench.</p>
       </div>
@@ -1198,8 +1191,6 @@
       <div class="advisor-grid">
         <div class="advisor-text">
           <div class="advisor-bio">
-            <p class="advisor-name">Gurshan Dhillon</p>
-            <p class="advisor-role">Chief Marketing Officer</p>
 
             <p>Many companies already run marketing by committee. The difference here is who's chairing it.</p>
             <p>As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&amp;L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost.</p>
