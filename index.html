@@ -636,14 +636,26 @@
      square canvas). The file's visible mark is inset in its canvas (127px top,
      89px right of 512), so negative margins put the visible mark on the
      eyebrow's top line and the content's right edge, as .mark does on the left. */
-  .footer-head {
+  /* The footer wrapper is one named-area grid. Desktop: the logo shares the
+     head row, top right; mobile (720px and under): source order applies, so
+     the logo sits below the Mandate column and above the divider. */
+  .footer-grid {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "head logo"
+      "cols cols"
+      "divider divider"
+      "bottom bottom";
+    column-gap: 32px;
     align-items: start;
-    gap: 32px;
-    margin-bottom: 0;
   }
+  .footer-head { grid-area: head; margin-bottom: 0; }
+  .footer-cols { grid-area: cols; }
+  .footer-divider { grid-area: divider; }
+  .footer-bottom { grid-area: bottom; }
   .footer-logo {
+    grid-area: logo;
     display: block;
     flex: none;
     width: auto;
@@ -656,13 +668,14 @@
     .footer-logo { height: 96px; margin: -23.8px -16.7px 0 0; }
   }
   @media (max-width: 720px) {
-    /* Logo drops below the lead, left-aligned, 24px above its visible top. */
-    .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
-    .footer-head .footer-sub { margin-bottom: 0; }
-    .footer-logo { justify-self: start; margin: 0.2px 0 0 -23.8px; }
+    /* Logo below the Mandate column, centred, with 32px clear above and below
+       its visible mark (the canvas has 25% blank on top and 17% on the bottom;
+       the divider already carries a 2.25rem top margin at this width). */
+    .footer-grid { grid-template-columns: 1fr; grid-template-areas: "head" "cols" "logo" "divider" "bottom"; column-gap: 0; }
+    .footer-logo { justify-self: center; margin: 8.2px auto -20.3px; }
   }
   @media (max-width: 400px) {
-    .footer-logo { height: 160px; margin: -15.7px 0 0 -40.11px; }
+    .footer-logo { height: 160px; margin: -7.7px auto -31.2px; }
   }
   .footer-heading {
     font-family: var(--serif);
@@ -1307,14 +1320,11 @@
 
 <!-- Footer -->
 <footer id="contact">
-  <div class="wrap">
+  <div class="wrap footer-grid">
     <div class="footer-head">
-      <div>
-        <span class="eyebrow">- Item VI - The Next Sitting</span>
-        <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
-        <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
-      </div>
-      <img class="footer-logo" src="logo-inverted-192.png" srcset="logo-inverted-192.png 1x, logo-inverted-512.png 2x" alt="Marketing by Committee" width="192" height="192" loading="lazy" decoding="async" />
+      <span class="eyebrow">- Item VI - The Next Sitting</span>
+      <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
+      <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
     </div>
     <div class="footer-cols">
       <div>
@@ -1328,6 +1338,7 @@
         <p>Marketing by Committee is a fractional marketing practice and boutique agency based in Edmonton, Alberta, working with energy, construction, and transportation companies, as well as small businesses across the Greater Edmonton Area.</p>
       </div>
     </div>
+    <img class="footer-logo" src="logo-inverted-192.png" srcset="logo-inverted-192.png 1x, logo-inverted-512.png 2x" alt="Marketing by Committee" width="192" height="192" loading="lazy" decoding="async" />
     <hr class="footer-divider" />
     <div class="footer-bottom">
       <span>© 2026 Marketing by Committee. Executive Advisory and Counsel.</span>
