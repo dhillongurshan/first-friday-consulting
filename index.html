@@ -55,6 +55,8 @@
     --serif: "Playfair Display", Georgia, "Times New Roman", serif;
     --body: "Spectral", Georgia, "Times New Roman", serif;
     --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    /* One rendered size for the header and footer logos at every width. */
+    --logo-size: 144px;
   }
 
   * { box-sizing: border-box; }
@@ -240,11 +242,10 @@
   .mark {
     flex: none;
     display: block;
-    width: auto;
-    max-width: 100%;
-    height: 144px;
-    object-fit: contain;
-    margin-left: -36.1px;
+    width: var(--logo-size);
+    height: auto;
+    /* The visible mark is inset 1128/4500 of the canvas on the left. */
+    margin-left: calc(var(--logo-size) * -0.2507);
   }
   .brand-name {
     display: block;
@@ -632,8 +633,8 @@
      on black it drops to 3.5:1, so the footer gets the lighter brass shade. */
   .footer-head .eyebrow { color: var(--gold-light); }
   /* Footer head: text on the left, inverted logo on the right at the header
-     logo's rendered size (same heights per tier as .mark, width auto on a
-     square canvas). The file's visible mark is inset in its canvas (127px top,
+     logo's rendered size (both sized by --logo-size, so they match at every
+     width). The file's visible mark is inset in its canvas (127px top,
      89px right of 512), so negative margins put the visible mark on the
      eyebrow's top line and the content's right edge, as .mark does on the left. */
   .footer-head {
@@ -644,25 +645,18 @@
     margin-bottom: 0;
   }
   .footer-logo {
-    display: block;
     flex: none;
-    width: auto;
-    max-width: 100%;
-    height: 144px;
-    object-fit: contain;
-    margin: -35.7px -25px 0 0;
-  }
-  @media (max-width: 1080px) {
-    .footer-logo { height: 96px; margin: -23.8px -16.7px 0 0; }
+    display: block;
+    width: var(--logo-size);
+    height: auto;
+    /* Visible mark inset 127/512 on top and 89/512 on the right of the canvas. */
+    margin: calc(var(--logo-size) * -0.248) calc(var(--logo-size) * -0.1738) 0 0;
   }
   @media (max-width: 720px) {
     /* Logo drops below the lead, left-aligned, 24px above its visible top. */
     .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
     .footer-head .footer-sub { margin-bottom: 0; }
-    .footer-logo { justify-self: start; margin: 0.2px 0 0 -23.8px; }
-  }
-  @media (max-width: 400px) {
-    .footer-logo { height: 160px; margin: -15.7px 0 0 -40.11px; }
+    .footer-logo { justify-self: start; margin: calc(24px - var(--logo-size) * 0.248) 0 0 calc(var(--logo-size) * -0.2507); }
   }
   .footer-heading {
     font-family: var(--serif);
@@ -736,6 +730,7 @@
       --section-y: 56px;
       --head-gap: 1.75rem;
       --card-pad: 1.75rem;
+      --logo-size: 96px;
     }
 
     body { font-size: 17px; }
@@ -782,7 +777,6 @@
        that full amount so the ink - not the image's invisible bounding box -
        lines up with the padding edge. Re-measure and adjust if logo.png is
        re-exported with different internal padding. */
-    .mark { height: 96px; margin-left: -24.06px; }
 
     /* Accordion nav - expands in normal flow, pushing page content down.
        The CTA is now its last item, so its own height is part of this budget. */
@@ -891,7 +885,7 @@
   @media (max-width: 400px) {
     /* Same internal-margin compensation as the tier above, scaled to this
        height (1128/4500 of the logo file's own canvas = 40.11px here). */
-    .mark { height: 160px; margin-left: -40.11px; }
+    :root { --logo-size: 160px; }
     /* Half the 160px box (still >44px tap-target minimum). The previous
        gap:0 and margin-right overrides existed only because a 160px button
        barely fit this tier at all - an 80px button has plenty of room, so
