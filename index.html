@@ -581,14 +581,21 @@
     text-align: left;
     padding: var(--card-pad);
   }
+  /* Card-scale portrait crop. width/height attributes on the <img> only seed
+     layout; max-width and aspect-ratio here decide the rendered box. */
   .led-by-photo {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border: 1px solid var(--line);
     display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 25%;
+    border: 1px solid var(--line);
     margin-bottom: 2rem;
+  }
+  @media (max-width: 720px) {
+    .led-by-photo { max-width: 280px; }
   }
   .led-by-heading {
     font-family: var(--serif);
