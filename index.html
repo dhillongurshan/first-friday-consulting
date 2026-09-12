@@ -451,10 +451,10 @@
 
   /* ---------- Hero ---------- */
   /* Item I holds a label and one paragraph, so it takes standard top padding
-     and half the bottom: a bridge into the Agenda, not a full section. */
+     and half the bottom: a bridge into the Services section, not a full section. */
   .hero { padding-block: var(--section-y) calc(var(--section-y) / 2); }
   /* The paragraph is the last thing in Item I; drop its trailing margin so the
-     section bottom padding alone sets the hand-off to the Agenda. */
+     section bottom padding alone sets the hand-off to the Services section. */
   .hero-intro p.lead:last-child { margin-bottom: 0; }
   .hero-grid {
     display: grid;
@@ -476,6 +476,7 @@
   /* Mono sub-heading for the "Whereas" tag in the Item I intro. */
   .item-tag {
     display: block;
+    line-height: 1.55;
     font-family: var(--mono);
     font-weight: 500;
     font-size: 0.64rem;
@@ -500,7 +501,7 @@
 
 
 
-  /* ---------- Agenda list (Section 2) ---------- */
+  /* ---------- Services list (Section 2, id="agenda" kept for links) ---------- */
   .agenda-list { border-top: 1px solid var(--line); }
   .agenda-item {
     display: grid;
@@ -605,10 +606,6 @@
   }
 
   /* ---------- FAQ ---------- */
-  .faq-title {
-    font-size: 2.5rem;
-    margin-bottom: var(--head-gap);
-  }
   .faq-list { border-top: 1px solid var(--line); }
   .faq-item {
     padding: var(--card-pad) 0 var(--card-pad) 1.25rem;
@@ -625,7 +622,6 @@
   .faq-a {
     margin: 0;
     color: var(--ink-soft);
-    max-width: 60ch;
   }
   .faq-a + .faq-a { margin-top: 0.9rem; }
 
@@ -828,7 +824,7 @@
     .section-head h2 { font-size: 1.95rem; }
     .section-head .right { text-align: left; justify-self: start; font-size: 1rem; }
 
-    /* --- Agenda list --------------------------------------------------- */
+    /* --- Services list -------------------------------------------------- */
     .agenda-item {
       grid-template-columns: 1fr;
       gap: 0.7rem;
@@ -845,7 +841,6 @@
     .advisor-role { margin-bottom: 1.4rem; }
 
     /* --- FAQ ------------------------------------------------------- */
-    .faq-title { font-size: 1.95rem; }
     .faq-item { padding: var(--card-pad) 0 var(--card-pad) 1rem; }
     .faq-q { font-size: 1.2rem; }
 
@@ -874,7 +869,6 @@
     .hero h1 { font-size: 1.95rem; }
   }
 </style>
-<!-- TODO: add "sameAs": ["<LinkedIn profile URL>"] to the ProfessionalService and Person blocks once the URL is confirmed. No LinkedIn URL exists on the page yet. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -907,6 +901,7 @@
   ],
   "priceRange": "$3,000 to $10,000+ per month",
   "founder": { "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon" },
+  "sameAs": ["https://www.linkedin.com/in/dhillongurshan/"],
   "knowsAbout": [
     "Fractional CMO",
     "Marketing strategy",
@@ -926,7 +921,7 @@
         "itemOffered": {
           "@type": "Service",
           "name": "Fractional CMO Services",
-          "description": "You get an executive who owns the marketing function the way a CFO owns the numbers."
+          "description": "A seat on your leadership team. You get an executive who owns the marketing function the way a CFO owns the numbers. A full audit of where your spend goes. A standing quarterly review of what's next. Six month minimum. Limited seats."
         }
       },
       {
@@ -934,12 +929,12 @@
         "itemOffered": {
           "@type": "Service",
           "name": "Agency Services",
-          "description": "The execution layer most fractional engagements skip. All run by vetted specialists, under one accountable lead."
+          "description": "The execution layer most fractional engagements skip. Film and media production. Web development. Paid media such as Google Ads. Social media coordination. Employer branding and recruitment marketing. Government relations and public affairs. Indigenous relations. Branded merchandise design and sourcing. All run by vetted specialists, under one accountable lead."
         }
       }
     ]
   },
-  "dateModified": "2026-09-10"
+  "dateModified": "2026-09-11"
 }
 </script>
 <script type="application/ld+json">
@@ -950,11 +945,12 @@
   "name": "Gurshan Dhillon",
   "jobTitle": "Fractional CMO",
   "worksFor": { "@id": "https://www.marketingbycommittee.com/#organization" },
-  "description": "Founder of Marketing by Committee, a fractional CMO and executive marketing advisory practice based in Edmonton, Alberta. As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost. Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.",
+  "description": "Founder of Marketing by Committee, a fractional marketing practice and boutique agency based in Edmonton, Alberta. As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and P&L across a multi-branch operation spanning Western Canada and the Yukon, rebuilding the commercial model around efficiency and cost. Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.",
   "image": "https://www.marketingbycommittee.com/headshot-2026.jpg",
   "url": "https://www.marketingbycommittee.com/#advisor",
   "email": "info@marketingbycommittee.com",
   "telephone": "+1-780-952-9242",
+  "sameAs": ["https://www.linkedin.com/in/dhillongurshan/"],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Edmonton",
@@ -1008,7 +1004,7 @@
     {
       "@type": "Question",
       "name": "Do you do the work, or only advise?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Both. I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Both: I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed." }
     },
     {
       "@type": "Question",
@@ -1071,7 +1067,7 @@
         </svg>
       </button>
     </div>
-    <nav class="primary" id="primary-nav">
+    <nav class="primary" id="primary-nav" aria-label="Primary">
       <a href="#agenda">Services</a>
       <a href="#order-of-business">Order of Business</a>
       <a href="#advisor">The Executive</a>
@@ -1106,7 +1102,7 @@
       <div class="hero-grid">
         <div class="hero-left">
           <div class="hero-intro">
-            <span class="item-tag">Whereas</span>
+            <h2 class="item-tag">Whereas</h2>
             <p class="lead">Many organizations don't lack marketing activity. They lack the right leadership. Expecting the world from entry-level hires, or cycling through agencies. Campaigns run. Spend increases. Results do not. It's why experience becomes necessary, not optional.</p>
           </div>
         </div>
@@ -1115,7 +1111,7 @@
     </div>
   </section>
 
-  <!-- Section 2 - Agenda -->
+  <!-- Section 2 - Services (id="agenda" kept so existing links resolve) -->
   <section id="agenda">
     <div class="wrap">
       <div class="section-head">
@@ -1218,8 +1214,12 @@
   <!-- Section 6 - FAQ -->
   <section id="faq">
     <div class="wrap">
-      <span class="eyebrow">- For Reference</span>
-      <h2 class="faq-title">Points of Order<span class="visually-hidden">: frequently asked questions</span></h2>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">- For Reference</span>
+          <h2>Points of Order<span class="visually-hidden">: frequently asked questions</span></h2>
+        </div>
+      </div>
 
       <div class="faq-list">
         <div class="faq-item">
@@ -1238,7 +1238,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-q">Do you do the work, or only advise?</h3>
-          <p class="faq-a">Both. I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed.</p>
+          <p class="faq-a">Both: I execute the marketing work and advise on it, and the difference matters. I have built the campaigns, written the copy, run the ad accounts and built the websites myself, so I know exactly what good work looks like before I hand anything off. AI tools let one operator now cover work that used to need a department, and I use those same tools daily. On a retainer, I execute directly, and when a project calls for a specialist, I bring one in from my network and stay accountable for the result. You deal with me. I deal with whoever's needed.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">What is the difference between a fractional CMO and a marketing agency?</h3>
