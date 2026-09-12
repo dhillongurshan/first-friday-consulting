@@ -570,22 +570,22 @@
     margin-bottom: 1.8rem;
   }
   /* Bio on the left taking the remaining width, photo on the right in a fixed
-     320px column, tops aligned.
+     380px column, tops aligned.
      The eyebrow and section heading sit above this grid at full width. */
   .advisor-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-columns: minmax(0, 1fr) 380px;
     gap: 56px;
     align-items: start;
   }
   .exec-photo {
     display: block;
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
     height: auto;
-    aspect-ratio: 4 / 4.2;
+    aspect-ratio: 1 / 1.05;
     object-fit: cover;
-    object-position: 64% 42%;
+    object-position: 50% 42%;
     justify-self: end;
   }
   .advisor-standfirst {
@@ -596,7 +596,7 @@
   }
   @media (max-width: 720px) {
     .advisor-grid { grid-template-columns: 1fr; gap: 32px; }
-    .exec-photo { max-width: 240px; margin-inline: auto; justify-self: center; }
+    .exec-photo { max-width: 260px; margin-inline: auto; justify-self: center; }
   }
   .advisor-bio p {
     color: var(--ink-soft);
@@ -1209,7 +1209,7 @@
             <p>Before that, as Senior Communications Advisor to the Government of Alberta, he served as spokesperson for a major regulatory body through workplace incidents, international missions, and legislative overhauls, advising senior executives and government stakeholders throughout.</p>
           </div>
         </div>
-        <img class="exec-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="932" height="1165" loading="lazy" decoding="async" />
+        <img class="exec-photo" src="headshot-2026.jpg" alt="Gurshan Dhillon, fractional CMO and founder of Marketing by Committee, Edmonton, Alberta" width="900" height="945" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
