@@ -464,7 +464,10 @@
 
   /* ---------- Hero ---------- */
   /* Sits directly under the banner, so only half the standard top padding. */
-  .hero { padding-top: calc(var(--section-y) / 2); }
+  .hero { padding-block: calc(var(--section-y) / 2); }
+  /* The paragraph is the last thing in Item I; drop its trailing margin so the
+     section bottom padding alone sets the hand-off to the Agenda. */
+  .hero-intro p.lead:last-child { margin-bottom: 0; }
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -931,8 +934,6 @@
     /* Reorder stacked hero: intro, then the Led-by card, then the CTA stack */
     .hero-left { display: contents; }
     .hero-intro { order: 1; }
-    .hero-cta-block { order: 3; }
-    .hero-intro p.lead:last-child { margin-bottom: 0; }
 
 
     /* --- Section heads --------------------------------------------------- */
@@ -1226,13 +1227,6 @@
           <div class="hero-intro">
             <span class="item-tag">Whereas</span>
             <p class="lead">Many organizations don't lack marketing activity. They lack the right leadership. Expecting the world from entry-level hires, or cycling through agencies. Campaigns run. Spend increases. Results do not. It's why experience becomes necessary, not optional.</p>
-          </div>
-          <div class="hero-cta-block">
-            <div class="hero-ctas">
-              <a class="btn btn-cta btn-olive" href="#contact">
-                Start a Conversation
-              </a>
-            </div>
           </div>
         </div>
 
