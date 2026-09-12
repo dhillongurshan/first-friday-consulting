@@ -239,14 +239,22 @@
     text-decoration: none;
     color: inherit;
   }
-  .mark {
-    flex: none;
-    display: block;
+  /* ONE sizing rule for both logos. Nothing else may set width, height,
+     max-width or padding on either image. The position-only rules that follow
+     compensate for the transparent inset around the mark in its canvas; they
+     move the mark, they never change its rendered size. */
+  header img.mark,
+  footer img.footer-logo {
     width: var(--logo-size);
     height: auto;
-    /* The visible mark is inset 1128/4500 of the canvas on the left. */
-    margin-left: calc(var(--logo-size) * -0.2507);
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    box-sizing: content-box;
   }
+  /* Position only: visible mark is inset 1128/4500 of the canvas on the left. */
+  header img.mark { flex: none; margin-left: calc(var(--logo-size) * -0.2507); }
   .brand-name {
     display: block;
     font-family: var(--serif);
@@ -644,19 +652,13 @@
     gap: 32px;
     margin-bottom: 0;
   }
-  .footer-logo {
-    flex: none;
-    display: block;
-    width: var(--logo-size);
-    height: auto;
-    /* Visible mark inset 127/512 on top and 89/512 on the right of the canvas. */
-    margin: calc(var(--logo-size) * -0.248) calc(var(--logo-size) * -0.1738) 0 0;
-  }
+  /* Position only: visible mark is inset 127/512 on top and 89/512 on the right. */
+  footer img.footer-logo { flex: none; margin: calc(var(--logo-size) * -0.248) calc(var(--logo-size) * -0.1738) 0 0; }
   @media (max-width: 720px) {
     /* Logo drops below the lead, left-aligned, 24px above its visible top. */
     .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
     .footer-head .footer-sub { margin-bottom: 0; }
-    .footer-logo { justify-self: start; margin: calc(24px - var(--logo-size) * 0.248) 0 0 calc(var(--logo-size) * -0.2507); }
+    footer img.footer-logo { justify-self: start; margin: calc(24px - var(--logo-size) * 0.248) 0 0 calc(var(--logo-size) * -0.2507); }
   }
   .footer-heading {
     font-family: var(--serif);
