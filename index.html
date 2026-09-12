@@ -167,31 +167,21 @@
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   }
-  .btn-gold, .btn-olive {
+  .btn-gold {
     background: var(--ink);
     color: var(--paper);
     border-color: var(--ink);
   }
-  .btn-gold:hover, .btn-olive:hover,
-  .btn-gold:focus-visible, .btn-olive:focus-visible {
+  .btn-gold:hover,
+  .btn-gold:focus-visible {
     background: var(--paper);
     color: var(--ink);
     border-color: var(--gold-deep);
   }
 
-  .link-underline {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    color: var(--ink);
-  }
-  .link-underline:hover { color: var(--gold-deep); }
 
-  /* One fixed size for every "Start a Conversation" button (header, banner,
-     Item I). Written as .btn.btn-cta so it outranks nav.primary a, which would
+  /* One fixed size for every "Start a Conversation" button (header and
+     banner). Written as .btn.btn-cta so it outranks nav.primary a, which would
      otherwise win the header button's font-size on specificity. Colours,
      hover states, and the transition come from the existing colour classes. */
   .btn.btn-cta {
@@ -211,8 +201,7 @@
     text-decoration: none;
   }
   @media (max-width: 720px) {
-    .hero-banner .btn.btn-cta,
-    .hero .btn.btn-cta {
+    .hero-banner .btn.btn-cta {
       width: 100%;
       max-width: 360px;
     }
@@ -257,7 +246,6 @@
     object-fit: contain;
     margin-left: -36.1px;
   }
-  .mark--sm { height: 84px; }
   .brand-name {
     display: block;
     font-family: var(--serif);
@@ -435,12 +423,6 @@
     color: var(--cream);
     border-color: var(--gold);
   }
-  .hero-banner .link-underline {
-    color: var(--cream);
-    border-bottom-color: var(--gold);
-    text-decoration-color: var(--gold);
-  }
-  .hero-banner .link-underline:hover { color: var(--gold-light); }
   @media (max-width: 1080px) {
     .hero-banner .lead { font-size: 1.08rem; margin-bottom: 1.6rem; }
   }
@@ -509,83 +491,8 @@
   /* --card-pad: interior padding shared by every bordered card. */
   :root { --card-pad: 2rem; }
 
-  /* Plain background, thin gold rule instead of a full border/fill/shadow -
-     the accent marks the card without ever becoming a block of color. */
-  .card-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .card-title-row h3 {
-    font-family: var(--mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .card-title-row span {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    color: var(--ink-soft);
-  }
 
-  .agenda-row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px dotted var(--line-soft);
-  }
-  .agenda-row:last-of-type { border-bottom: 0; }
-  .agenda-row .month {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    width: 8ch;
-  }
-  .agenda-row .date {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.05rem;
-  }
-  .badge {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.6rem;
-    border: 1px solid var(--line);
-    color: var(--ink-soft);
-  }
-  .badge--next {
-    background: var(--ink);
-    color: var(--paper);
-    border-color: var(--ink);
-  }
-  .agenda-row--next {
-    border: 1px solid var(--gold-deep);
-    padding: 1rem 0.9rem;
-    margin: 0.4rem 0;
-    background: var(--cream-deep);
-  }
 
-  .dotted-divider {
-    border: 0;
-    border-top: 1px dotted var(--line);
-    margin: 1.4rem 0 1rem;
-  }
-  .card-note {
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    margin: 0;
-  }
 
   /* ---------- Agenda list (Section 2) ---------- */
   .agenda-list { border-top: 1px solid var(--line); }
@@ -686,37 +593,12 @@
     margin: 0 0 var(--head-gap);
   }
   @media (max-width: 720px) {
-    .advisor-grid { grid-template-columns: 1fr; gap: 56px; }
+    .advisor-grid { grid-template-columns: 1fr; gap: 32px; }
     .exec-photo { max-width: 240px; margin-inline: auto; justify-self: center; }
   }
   .advisor-bio p {
     color: var(--ink-soft);
     max-width: 58ch;
-  }
-  .advisor-bio p.advisor-lede {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.35rem;
-    line-height: 1.4;
-    color: var(--ink);
-    margin-bottom: 1.6rem;
-  }
-  .advisor-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    padding-top: 1.6rem;
-    border-top: 1px solid var(--line);
-  }
-  .advisor-stats span {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    border: 1px solid var(--line);
-    padding: 0.5rem 0.8rem;
   }
 
   /* ---------- FAQ ---------- */
@@ -819,14 +701,14 @@
     }
 
     body { font-size: 17px; }
-    .wrap { padding: 0 22px; }
+    .wrap { padding: 0 20px; }
 
     /* --- Header --------------------------------------------------------- */
     .header-inner {
-      /* 22px matches .wrap's content margin at this tier, so the header's
+      /* 20px matches .wrap's content margin, so the header's
          edge padding lines up with the page content below it instead of
          sitting flush against the screen edge. */
-      padding: 0.5rem 22px;
+      padding: 0.5rem 20px;
       flex-wrap: wrap;
       row-gap: 0;
       column-gap: 0.6rem;
@@ -863,7 +745,6 @@
        lines up with the padding edge. Re-measure and adjust if logo.png is
        re-exported with different internal padding. */
     .mark { height: 96px; margin-left: -24.06px; }
-    .mark--sm { height: 60px; }
 
     /* Accordion nav - expands in normal flow, pushing page content down.
        The CTA is now its last item, so its own height is part of this budget. */
@@ -928,15 +809,10 @@
 
     /* --- Buttons / links: comfortable tap targets --------------------- */
     .hero-ctas { gap: 0.5rem; margin-bottom: 0; }
-    .hero-ctas .link-underline {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-    }
-    nav.primary a, .footer-cols a, .hero-ctas .link-underline { touch-action: manipulation; }
+    nav.primary a, .footer-cols a { touch-action: manipulation; }
 
     /* --- Hero --------------------------------------------------------- */
-    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero h1 { font-size: 2.15rem; margin-bottom: 1.3rem; }
     .hero p.lead { font-size: 1.08rem; margin-bottom: 1.6rem; }
     /* Reorder stacked hero: intro, then the Led-by card, then the CTA stack */
@@ -964,9 +840,6 @@
     /* --- Executive --------------------------------------------------- */
     .advisor-name { font-size: 1.55rem; }
     .advisor-role { margin-bottom: 1.4rem; }
-    .advisor-bio p.advisor-lede { font-size: 1.2rem; margin-bottom: 1.4rem; }
-    .advisor-stats { flex-direction: column; align-items: stretch; }
-    .advisor-stats span { text-align: center; padding: 0.7rem 0.8rem; }
 
     /* --- FAQ ------------------------------------------------------- */
     .faq-title { font-size: 1.95rem; }
@@ -974,16 +847,13 @@
     .faq-q { font-size: 1.2rem; }
 
     /* --- Footer ------------------------------------------------------ */
-    .footer-cols { grid-template-columns: 1fr; gap: 1.6rem; }
+    .footer-cols { grid-template-columns: 1fr; gap: 32px; }
     .footer-cols a { display: inline-block; padding: 0.2rem 0; }
     .footer-divider { margin: 2.25rem 0 1.2rem; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; line-height: 1.7; }
   }
 
   @media (max-width: 400px) {
-    .wrap { padding: 0 16px; }
-    /* Matches .wrap's 16px here too, for the same reason as the tier above. */
-    .header-inner { padding: 0.5rem 16px; }
     /* Same internal-margin compensation as the tier above, scaled to this
        height (1128/4500 of the logo file's own canvas = 40.11px here). */
     .mark { height: 160px; margin-left: -40.11px; }
