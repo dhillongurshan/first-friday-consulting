@@ -631,7 +631,36 @@
   /* .eyebrow's default gold-deep only clears 4.5:1 on the light background;
      on black it drops to 3.5:1, so the footer gets the lighter brass shade. */
   .footer-head .eyebrow { color: var(--gold-light); }
-  .footer-head { margin-bottom: 0; }
+  /* Footer head: text on the left, inverted logo on the right at the header
+     logo's rendered size (same heights per tier as .mark, width auto on a
+     square canvas). The file's visible mark is inset in its canvas (127px top,
+     89px right of 512), so negative margins put the visible mark on the
+     eyebrow's top line and the content's right edge, as .mark does on the left. */
+  .footer-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 32px;
+    margin-bottom: 0;
+  }
+  .footer-logo {
+    display: block;
+    width: auto;
+    height: 144px;
+    margin: -35.7px -25px 0 0;
+  }
+  @media (max-width: 1080px) {
+    .footer-logo { height: 96px; margin: -23.8px -16.7px 0 0; }
+  }
+  @media (max-width: 720px) {
+    /* Logo drops below the lead, left-aligned, 24px above its visible top. */
+    .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
+    .footer-head .footer-sub { margin-bottom: 0; }
+    .footer-logo { justify-self: start; margin: 0.2px 0 0 -23.8px; }
+  }
+  @media (max-width: 400px) {
+    .footer-logo { height: 160px; margin: -15.7px 0 0 -40.11px; }
+  }
   .footer-heading {
     font-family: var(--serif);
     font-weight: 700;
@@ -1277,9 +1306,12 @@
 <footer id="contact">
   <div class="wrap">
     <div class="footer-head">
-      <span class="eyebrow">- Item VI - The Next Sitting</span>
-      <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
-      <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
+      <div>
+        <span class="eyebrow">- Item VI - The Next Sitting</span>
+        <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
+        <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
+      </div>
+      <img class="footer-logo" src="logo-inverted-192.png" srcset="logo-inverted-192.png 1x, logo-inverted-512.png 2x" alt="Marketing by Committee" width="192" height="192" loading="lazy" decoding="async" />
     </div>
     <div class="footer-cols">
       <div>
