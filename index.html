@@ -912,6 +912,7 @@
   .xa-copy{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:start}
   .xa-copy p{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px;max-width:34em}
   .xa-copy p:last-child{margin-bottom:0}
+  .xa-copy p b{font-weight:600;color:var(--ink)}
   @media (max-width:860px){.xa h2{margin-bottom:22px}}
   
   /* the card */
@@ -923,7 +924,7 @@
   .xa-card h3 em{font-style:italic;font-weight:600;color:var(--gold-light)}
   .xa-head p{margin:0 auto;font-family:var(--body);font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.5;color:rgba(250,250,248,.8);max-width:30em}
   
-  .xa-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(196,162,94,.4);border-left:1px solid rgba(196,162,94,.4);margin:0;padding:0;list-style:none}
+  .xa-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(196,162,94,.4);border-left:1px solid rgba(196,162,94,.4);margin:0;padding:0;list-style:none}
   .xa-stat{padding:clamp(18px,2.6vw,26px) clamp(16px,2.2vw,22px);border-right:1px solid rgba(196,162,94,.4);border-bottom:1px solid rgba(196,162,94,.4);display:flex;flex-direction:column;box-sizing:border-box;background:linear-gradient(180deg,rgba(250,250,248,.025),rgba(250,250,248,0))}
   .xa-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,248,.55);margin-bottom:10px}
   .xa-big{font-family:var(--serif);font-weight:700;font-size:clamp(40px,4.2vw,58px);line-height:.95;letter-spacing:-.02em;color:var(--gold-light);display:block;margin-bottom:12px}
@@ -933,15 +934,15 @@
   .xa-stat small{display:block;font-family:var(--body);font-weight:300;font-style:italic;font-size:13px;line-height:1.35;color:rgba(250,250,248,.62);margin-top:6px}
   .xa-src{margin-top:auto;padding-top:14px;font-family:var(--mono);font-style:normal;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500;line-height:1.4}
   
+  .xa-verdict{text-align:center;margin:0;padding-top:clamp(22px,3vw,30px);color:var(--cream)}
+  .xa-verdict small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,248,.75);margin-bottom:8px}
+  .xa-verdict b{display:block;font-family:var(--serif);font-weight:700;font-size:clamp(24px,2.6vw,32px);line-height:1.15;color:var(--gold-light);letter-spacing:-.01em;text-wrap:balance}
   
-  @media (max-width:960px){
-    .xa-stats{grid-template-columns:1fr 1fr}
-  }
   @media (max-width:860px){
     .xa-copy{grid-template-columns:1fr;gap:0}
     .xa-copy p{max-width:none}
   }
-  @media (max-width:520px){
+  @media (max-width:700px){
     .xa-stats{grid-template-columns:1fr}
     .xa-stat{padding:20px 18px}
     .xa-big{font-size:44px}
@@ -1230,19 +1231,20 @@
         <div class="xa-copy">
           <div>
             <span class="eyebrow">- Exhibit A -</span>
-            <h2 id="xa-title">The case for a fractional CMO.</h2>
+            <h2 id="xa-title">The case for a marketing operator.</h2>
           </div>
           <div>
             <p>If your company does $1 million to $10 million a year, you sit in a gap. Too big to leave marketing to whoever has time. Too small to justify a full-time CMO, a marketing department and an agency retainer.</p>
             <p>Most companies in that range default to one of two things. Junior staff managing senior problems. Or an agency running the plan it sold you.</p>
+            <p>There's a third option now. AI removed the layers between the strategy and the work. One senior operator can set the plan, build the campaigns, run the numbers and direct the specialists, without a department underneath. <b>The budget stops paying for headcount and starts paying for outcomes.</b></p>
           </div>
         </div>
   
         <aside class="xa-card" aria-labelledby="xa-card-title">
           <div class="xa-head">
             <span class="eyebrow">- By the numbers -</span>
-            <h3 id="xa-card-title">Four numbers <em>worth knowing.</em></h3>
-            <p>What a full-time marketing executive costs, how long they stay, and where the budget actually goes.</p>
+            <h3 id="xa-card-title">Three numbers <em>worth knowing.</em></h3>
+            <p>What a full-time marketing executive costs, and where the budget actually goes.</p>
           </div>
   
           <ul class="xa-stats">
@@ -1254,28 +1256,22 @@
               <div class="xa-src">Robert Half Salary Guide, Calgary 2026</div>
             </li>
             <li class="xa-stat">
-              <div class="xa-n">02 &middot; The tenure</div>
-              <span class="xa-big">4.3<i>years</i></span>
-              <strong>Average tenure of a Fortune 500 CMO.</strong>
-              <small>Second shortest seat in the C-suite. Then you recruit again.</small>
-              <div class="xa-src">Spencer Stuart CMO Tenure Study 2025</div>
-            </li>
-            <li class="xa-stat">
-              <div class="xa-n">03 &middot; The budget</div>
+              <div class="xa-n">02 &middot; The budget</div>
               <span class="xa-big">7.7<sup>%</sup></span>
               <strong>Of company revenue goes to marketing.</strong>
               <small>Flat year over year. On $5M in sales, that's $385K deciding your growth.</small>
               <div class="xa-src">Gartner 2025 &middot; Duke CMO Survey 2024</div>
             </li>
             <li class="xa-stat">
-              <div class="xa-n">04 &middot; The agencies</div>
+              <div class="xa-n">03 &middot; The agencies</div>
               <span class="xa-big">39<sup>%</sup></span>
               <strong>Of CMOs plan to cut agency spend.</strong>
-              <small>59% say the budget they have isn't enough to execute the strategy.</small>
+              <small>22% say AI has already reduced their reliance on outside agencies.</small>
               <div class="xa-src">Gartner CMO Spend Survey 2025</div>
             </li>
           </ul>
   
+          <p class="xa-verdict"><small>Same budget. Different destination.</small><b>Outcomes, not salaries.</b></p>
         </aside>
   
       </div>
