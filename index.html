@@ -535,6 +535,45 @@
   .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
   .agenda-item .tag { text-align: right; padding-top: 0.5rem; }
 
+  /* ---------- Exhibit A ---------- */
+  /* Eyebrow runs full width; the grid below holds heading + copy on the left
+     and the framed figure on the right, tops aligned, same 56px gap as the
+     Advisor grid. Section padding and bottom rule come from the shared
+     section rule, so it reads as one more numbered item, not a break. */
+  .exhibit-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .exhibit-copy h2 { font-size: 2.5rem; margin: 0 0 1.25rem; }
+  .exhibit-copy p { color: var(--ink-soft); max-width: 58ch; }
+  .exhibit-copy p:last-child { margin-bottom: 0; }
+  .exhibit-figure { margin: 0; }
+  .exhibit-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--gold);
+  }
+  .exhibit-caption {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    text-align: right;
+    margin-top: 12px;
+  }
+  @media (max-width: 1080px) {
+    .exhibit-copy h2 { font-size: 1.95rem; }
+  }
+  @media (max-width: 860px) {
+    .exhibit-grid { grid-template-columns: 1fr; gap: 32px; }
+    .exhibit-figure { width: 100%; }
+    .exhibit-caption { text-align: center; }
+  }
+
   /* ---------- Order of business grid ---------- */
   .motions {
     display: grid;
@@ -1176,6 +1215,26 @@
           </div>
           <span class="tag">Production · Project-Based</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibit A - The case for a fractional CMO -->
+  <section id="exhibit-a">
+    <div class="wrap">
+      <span class="eyebrow">- Exhibit A -</span>
+      <div class="exhibit-grid">
+        <div class="exhibit-copy">
+          <h2>The case for a fractional CMO.</h2>
+          <p>If your company does $1 million to $10 million a year, you sit in a gap. Too big to leave marketing to whoever has time. Too small to justify a full-time CMO, a marketing department and an agency retainer.</p>
+          <p>Most companies in that range default to one of two things. Junior staff managing senior problems. Or an agency running the plan it sold you.</p>
+          <p>A fractional CMO closes the gap. An operator who has owned the P&amp;L. Sets the strategy. Directs the agencies and the internal team. Reports to you monthly.</p>
+          <p>Executive leadership at a fraction of the cost of a full-time hire. You get the accountability. Not the overhead.</p>
+        </div>
+        <figure class="exhibit-figure">
+          <img class="exhibit-img" src="images/exhibit-a-1600.jpg" srcset="images/exhibit-a-960.jpg 960w, images/exhibit-a-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1600" height="1074" loading="lazy" decoding="async" alt="Infographic comparing the typical reality, where a junior marketing coordinator manages an owner, agencies, internal teams and vendors with no clear ownership, against Marketing by Committee, where a fractional CMO leads strategy, team and vendors, execution and measurement." />
+          <figcaption class="exhibit-caption">Exhibit A. Activity vs. Accountability.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
