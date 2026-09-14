@@ -342,6 +342,26 @@
      than bottoming out level with the h2 like the other section heads. */
   #advisor .section-head { align-items: start; }
   #advisor .section-head .right { margin-top: 0; padding-top: 0; }
+  /* Services head: the Exhibit A column split, gap and top alignment, with the
+     intro paragraph left-aligned at body-copy measure. Section padding, the
+     eyebrow gap and the head-to-list gap stay on the shared variables. */
+  #agenda .section-head {
+    grid-template-columns: 1.05fr .95fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  #agenda .section-head .right {
+    text-align: left;
+    justify-self: start;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 34em;
+    margin: 0;
+  }
+  @media (max-width: 860px) {
+    #agenda .section-head { grid-template-columns: 1fr; gap: 12px; }
+  }
 
   /* ---------- Hero banner ---------- */
   /* Full-bleed photographic banner under the header. Height comes from
