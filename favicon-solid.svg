@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Same mark as favicon.svg on an opaque cream ground, for contexts that
+       cannot show transparency. Source for the PNG, ICO and Apple icon exports. -->
+  <rect width="32" height="32" fill="#fafaf8"/>
+  <rect x="3.5" y="5" width="22" height="22" fill="#fafaf8" stroke="#14151a" stroke-width="1.5"/>
+  <circle cx="18.9" cy="11.2" r="2.2" fill="#fafaf8"/>
+  <circle cx="23.1" cy="11.2" r="2.2" fill="#fafaf8"/>
+  <circle cx="27.3" cy="11.2" r="2.2" fill="#fafaf8"/>
+  <circle cx="18.9" cy="11.2" r="1.5" fill="#14151a"/>
+  <circle cx="23.1" cy="11.2" r="1.5" fill="#14151a"/>
+  <circle cx="27.3" cy="11.2" r="1.5" fill="#a8894a"/>
+</svg>
