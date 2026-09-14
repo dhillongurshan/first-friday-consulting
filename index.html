@@ -265,14 +265,24 @@
     font-size: 1.3rem;
     line-height: 1.15;
   }
+  /* Tagline spans exactly the wordmark width: width 0 + min-width 100% keeps
+     it out of the wrapper's intrinsic size (so the wordmark alone sets the
+     width), then justified text spreads it edge to edge. Letter-spacing is
+     dropped to zero and the size trimmed 1px so the line fits inside the
+     wordmark before justification stretches it. */
   .brand-tag {
     display: block;
+    width: 0;
+    min-width: 100%;
     font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
+    font-size: calc(0.68rem - 1px);
+    letter-spacing: 0;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-top: 3px;
+    margin-top: 4px;
+    white-space: nowrap;
+    text-align: justify;
+    text-align-last: justify;
   }
   nav.primary {
     margin-left: auto;
