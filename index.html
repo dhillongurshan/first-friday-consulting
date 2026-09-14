@@ -535,45 +535,6 @@
   .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
   .agenda-item .tag { text-align: right; padding-top: 0.5rem; }
 
-  /* ---------- Exhibit A ---------- */
-  /* Eyebrow runs full width; the grid below holds heading + copy on the left
-     and the framed figure on the right, tops aligned, same 56px gap as the
-     Advisor grid. Section padding and bottom rule come from the shared
-     section rule, so it reads as one more numbered item, not a break. */
-  .exhibit-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 56px;
-    align-items: start;
-  }
-  .exhibit-copy h2 { font-size: 2.5rem; margin: 0 0 1.25rem; }
-  .exhibit-copy p { color: var(--ink-soft); max-width: 58ch; }
-  .exhibit-copy p:last-child { margin-bottom: 0; }
-  .exhibit-figure { margin: 0; }
-  .exhibit-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    border: 1px solid var(--gold);
-  }
-  .exhibit-caption {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    text-align: right;
-    margin-top: 12px;
-  }
-  @media (max-width: 1080px) {
-    .exhibit-copy h2 { font-size: 1.95rem; }
-  }
-  @media (max-width: 860px) {
-    .exhibit-grid { grid-template-columns: 1fr; gap: 32px; }
-    .exhibit-figure { width: 100%; }
-    .exhibit-caption { text-align: center; }
-  }
-
   /* ---------- Order of business grid ---------- */
   .motions {
     display: grid;
@@ -943,6 +904,47 @@
     .brand { width: 160px; height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
+  /* ===== EXHIBIT A ===== */
+  .xa{padding-block:var(--section-y, clamp(56px,7vw,96px));border-top:1px solid var(--line, rgba(20,21,26,.12))}
+  .xa-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .xa .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:22px}
+  .xa h2{font-family:var(--serif);font-weight:700;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em;margin:0 0 22px;color:var(--ink);text-wrap:balance}
+  .xa-copy p{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px;max-width:34em}
+  .xa-copy p:last-child{margin-bottom:0}
+  .xa-copy p b{font-weight:600;color:var(--ink)}
+  
+  /* the card */
+  .xa-card{background:var(--ink);color:var(--cream);padding:clamp(28px,4.2vw,48px) clamp(20px,3.6vw,42px) clamp(26px,3.6vw,40px);position:relative;box-sizing:border-box}
+  .xa-card::before{content:"";position:absolute;inset:12px;border:1.5px solid rgba(196,162,94,.7);pointer-events:none}
+  .xa-head{text-align:center;margin-bottom:clamp(20px,3vw,30px)}
+  .xa-card .eyebrow{color:var(--gold-light);margin-bottom:12px}
+  .xa-card h3{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,34px);line-height:1.1;letter-spacing:-.01em;margin:0 0 10px;color:var(--cream);text-wrap:balance}
+  .xa-card h3 em{font-style:italic;font-weight:600;color:var(--gold-light)}
+  .xa-head p{margin:0 auto;font-family:var(--body);font-weight:300;font-size:clamp(14px,1.3vw,16px);line-height:1.5;color:rgba(250,250,248,.8);max-width:30em}
+  
+  .xa-stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(196,162,94,.4);border-left:1px solid rgba(196,162,94,.4);margin:0;padding:0;list-style:none}
+  .xa-stat{padding:clamp(18px,2.6vw,26px) clamp(16px,2.2vw,22px);border-right:1px solid rgba(196,162,94,.4);border-bottom:1px solid rgba(196,162,94,.4);display:flex;flex-direction:column;box-sizing:border-box;background:linear-gradient(180deg,rgba(250,250,248,.025),rgba(250,250,248,0))}
+  .xa-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,248,.55);margin-bottom:10px}
+  .xa-big{font-family:var(--serif);font-weight:700;font-size:clamp(40px,5vw,56px);line-height:.95;letter-spacing:-.02em;color:var(--gold-light);display:block;margin-bottom:12px}
+  .xa-big sup{font-size:.42em;vertical-align:top;position:relative;top:.55em;font-weight:600;letter-spacing:0;margin-left:2px}
+  .xa-big i{font-style:normal;font-family:var(--body);font-weight:300;font-size:.34em;letter-spacing:.02em;color:var(--cream);margin-left:6px}
+  .xa-stat strong{font-family:var(--serif);font-weight:600;font-size:clamp(15px,1.4vw,17px);line-height:1.25;display:block;color:var(--cream)}
+  .xa-stat small{display:block;font-family:var(--body);font-weight:300;font-style:italic;font-size:13px;line-height:1.35;color:rgba(250,250,248,.62);margin-top:6px}
+  .xa-src{margin-top:auto;padding-top:14px;font-family:var(--mono);font-style:normal;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500;line-height:1.4}
+  
+  .xa-verdict{text-align:center;margin:0;padding-top:clamp(20px,3vw,28px);color:var(--cream)}
+  .xa-verdict small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,248,.75);margin-bottom:8px}
+  .xa-verdict b{display:block;font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.15;color:var(--gold-light);letter-spacing:-.01em;text-wrap:balance}
+  
+  @media (max-width:860px){
+    .xa-grid{grid-template-columns:1fr;gap:36px}
+    .xa-copy p{max-width:none}
+  }
+  @media (max-width:520px){
+    .xa-stats{grid-template-columns:1fr}
+    .xa-stat{padding:20px 18px}
+    .xa-big{font-size:44px}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -1220,21 +1222,60 @@
   </section>
 
   <!-- Exhibit A - The case for a fractional CMO -->
-  <section id="exhibit-a">
+  <section class="xa" id="exhibit-a" aria-labelledby="xa-title">
     <div class="wrap">
-      <span class="eyebrow">- Exhibit A -</span>
-      <div class="exhibit-grid">
-        <div class="exhibit-copy">
-          <h2>The case for a fractional CMO.</h2>
+      <div class="xa-grid">
+  
+        <div class="xa-copy">
+          <span class="eyebrow">- Exhibit A -</span>
+          <h2 id="xa-title">The case for a fractional CMO.</h2>
           <p>If your company does $1 million to $10 million a year, you sit in a gap. Too big to leave marketing to whoever has time. Too small to justify a full-time CMO, a marketing department and an agency retainer.</p>
           <p>Most companies in that range default to one of two things. Junior staff managing senior problems. Or an agency running the plan it sold you.</p>
           <p>A fractional CMO closes the gap. An operator who has owned the P&amp;L. Sets the strategy. Directs the agencies and the internal team. Reports to you monthly.</p>
-          <p>Executive leadership at a fraction of the cost of a full-time hire. You get the accountability. Not the overhead.</p>
+          <p><b>Executive leadership at a fraction of the cost of a full-time hire. You get the accountability. Not the overhead.</b></p>
         </div>
-        <figure class="exhibit-figure">
-          <img class="exhibit-img" src="exhibit-a-1600.jpg" srcset="exhibit-a-960.jpg 960w, exhibit-a-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1600" height="1073" loading="lazy" decoding="async" alt="Infographic comparing the typical reality, where a junior marketing coordinator manages an owner, agencies, internal teams and vendors with no clear ownership, against Marketing by Committee, where a fractional CMO leads strategy, team and vendors, execution and measurement." />
-          <figcaption class="exhibit-caption">Exhibit A. Activity vs. Accountability.</figcaption>
-        </figure>
+  
+        <aside class="xa-card" aria-labelledby="xa-card-title">
+          <div class="xa-head">
+            <span class="eyebrow">- By the numbers -</span>
+            <h3 id="xa-card-title">Four numbers <em>worth knowing.</em></h3>
+            <p>What a full-time marketing executive costs, how long they stay, and where the budget actually goes.</p>
+          </div>
+  
+          <ul class="xa-stats">
+            <li class="xa-stat">
+              <div class="xa-n">01 &middot; The cost</div>
+              <span class="xa-big">$197<i>K</i></span>
+              <strong>Midpoint base salary for a full-time CMO in Alberta.</strong>
+              <small>Before bonus, benefits and payroll load.</small>
+              <div class="xa-src">Robert Half Salary Guide, Calgary 2026</div>
+            </li>
+            <li class="xa-stat">
+              <div class="xa-n">02 &middot; The tenure</div>
+              <span class="xa-big">4.3<i>years</i></span>
+              <strong>Average tenure of a Fortune 500 CMO.</strong>
+              <small>Second shortest seat in the C-suite. Then you recruit again.</small>
+              <div class="xa-src">Spencer Stuart CMO Tenure Study 2025</div>
+            </li>
+            <li class="xa-stat">
+              <div class="xa-n">03 &middot; The budget</div>
+              <span class="xa-big">7.7<sup>%</sup></span>
+              <strong>Of company revenue goes to marketing.</strong>
+              <small>Flat year over year. On $5M in sales, that's $385K deciding your growth.</small>
+              <div class="xa-src">Gartner 2025 &middot; Duke CMO Survey 2024</div>
+            </li>
+            <li class="xa-stat">
+              <div class="xa-n">04 &middot; The agencies</div>
+              <span class="xa-big">39<sup>%</sup></span>
+              <strong>Of CMOs plan to cut agency spend.</strong>
+              <small>59% say the budget they have isn't enough to execute the strategy.</small>
+              <div class="xa-src">Gartner CMO Spend Survey 2025</div>
+            </li>
+          </ul>
+  
+          <p class="xa-verdict"><small>The budget is real. Leadership is the variable.</small><b>One accountable chair. Without the full-time cost.</b></p>
+        </aside>
+  
       </div>
     </div>
   </section>
