@@ -565,42 +565,6 @@
   .agenda-item p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
   .agenda-item .tag { text-align: right; padding-top: 0.5rem; }
 
-  /* ---------- Order of business grid ---------- */
-  .motions {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-  .motion {
-    border: none;
-    border-top: 1px solid var(--gold-deep);
-    background: none;
-    border-radius: 0;
-    padding: var(--card-pad);
-    display: flex;
-    flex-direction: column;
-  }
-  .motion .label {
-    font-family: var(--mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    margin-bottom: 1rem;
-  }
-  .motion h3 { font-size: 1.2rem; margin-bottom: 0.7rem; }
-  .motion p { font-size: 0.95rem; color: var(--ink-soft); flex: 1; }
-  .motion .bullet {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line-soft);
-  }
-
   /* ---------- Advisor ---------- */
   .advisor-role {
     font-family: var(--mono);
@@ -901,8 +865,6 @@
     .agenda-item h3 { font-size: 1.3rem; }
     .agenda-item .tag { text-align: left; padding-top: 0; }
 
-    /* --- Order of business ------------------------------------------- */
-    .motions { grid-template-columns: 1fr; gap: 24px; }
 
     /* --- Executive --------------------------------------------------- */
 
@@ -1128,7 +1090,7 @@
     {
       "@type": "Question",
       "name": "How does an engagement run?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Six months minimum. Marketing that changes a revenue number doesn't do it in eight weeks, and any advisor who says otherwise is selling you a deck. Every engagement moves through the four motions above: discovery, diagnosis, prescription, execution. Seats are limited because I run each one personally. When capacity is full, new engagements start on a waitlist." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Six months minimum. Marketing that changes a revenue number doesn't do it in eight weeks, and any advisor who says otherwise is selling you a deck. Every engagement starts with a full audit of where your spend goes, then a plan with a specific owner for each line, then execution reported monthly in front of you. Seats are limited because I run each one personally. When capacity is full, new engagements start on a waitlist." }
     },
     {
       "@type": "Question",
@@ -1173,7 +1135,6 @@
     </div>
     <nav class="primary" id="primary-nav" aria-label="Primary">
       <a href="#agenda">Services</a>
-      <a href="#order-of-business">How it Works</a>
       <a href="#advisor">The Advisor</a>
       <a href="#faq">FAQ</a>
       <a class="btn btn-cta btn-gold header-cta" href="#contact">Start a Conversation</a>
@@ -1303,52 +1264,12 @@
     </div>
   </section>
 
-  <!-- Section 3 - How it Works (id="order-of-business" kept so existing links resolve) -->
-  <section id="order-of-business">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">- Item III - How it Works</span>
-          <h2>Order of business<span class="visually-hidden">: our process</span></h2>
-        </div>
-        <p class="right">Every engagement moves through the same four motions before anything reaches your budget.</p>
-      </div>
-
-      <div class="motions">
-        <div class="motion">
-          <span class="label">Motion 01</span>
-          <h3>Called to order</h3>
-          <p>We find out what's actually happening. Every channel, every dollar, every assumption tested against real numbers.</p>
-          <span class="bullet">• Discovery</span>
-        </div>
-        <div class="motion">
-          <span class="label">Motion 02</span>
-          <h3>Old business reviewed</h3>
-          <p>We name what's broken and what's working. No committee softens this part.</p>
-          <span class="bullet">• Diagnosis</span>
-        </div>
-        <div class="motion">
-          <span class="label">Motion 03</span>
-          <h3>New business proposed</h3>
-          <p>A specific plan. Specific numbers. A specific owner for each line. Yours to approve, mine to run.</p>
-          <span class="bullet">• Prescription</span>
-        </div>
-        <div class="motion">
-          <span class="label">Motion 04</span>
-          <h3>Motion carried</h3>
-          <p>The plan goes live. I run it, report on it monthly, and adjust it in front of you, not behind a slide deck.</p>
-          <span class="bullet">• Execution</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 5 - Advisor -->
+  <!-- Section 3 - Advisor -->
   <section id="advisor">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="eyebrow">- Item V - The Advisor of Record</span>
+          <span class="eyebrow">- Item III - The Advisor of Record</span>
           <h2>Gurshan Dhillon<span class="visually-hidden">, fractional CMO</span></h2>
           <p class="advisor-role">Chief Marketing Operator</p>
         </div>
@@ -1409,7 +1330,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-q">How does an engagement run?</h3>
-          <p class="faq-a">Six months minimum. Marketing that changes a revenue number doesn't do it in eight weeks, and any advisor who says otherwise is selling you a deck. Every engagement moves through the four motions above: discovery, diagnosis, prescription, execution. Seats are limited because I run each one personally. When capacity is full, new engagements start on a waitlist.</p>
+          <p class="faq-a">Six months minimum. Marketing that changes a revenue number doesn't do it in eight weeks, and any advisor who says otherwise is selling you a deck. Every engagement starts with a full audit of where your spend goes, then a plan with a specific owner for each line, then execution reported monthly in front of you. Seats are limited because I run each one personally. When capacity is full, new engagements start on a waitlist.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-q">Where are you based?</h3>
@@ -1426,7 +1347,7 @@
   <div class="wrap">
     <div class="footer-head">
       <div>
-        <span class="eyebrow">- Item VI - The Next Sitting</span>
+        <span class="eyebrow">- Item IV - The Next Sitting</span>
         <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
         <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
       </div>
