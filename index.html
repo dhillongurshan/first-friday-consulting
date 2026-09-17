@@ -893,6 +893,51 @@
     .rail{margin:0 -20px;padding-inline:20px;scroll-padding-inline:20px}
   }
   @media (prefers-reduced-motion:reduce){.op details::details-content,.op .tag i,.op .tag i::after{transition:none}.rail{scroll-behavior:auto}}
+
+  /* ===== credentials: three tab-like tiles ===== */
+  .cred{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .cred li{border-top:2px solid var(--gold);padding:12px 0 0;font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.25}
+  .cred li small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* ===== bio accordion (mobile only) ===== */
+  .bio details{border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+  .bio summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:var(--serif);font-weight:700;font-size:20px;user-select:none}
+  .bio summary::-webkit-details-marker{display:none}
+  .bio summary i{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto;transition:background .2s}
+  .bio summary i::before,.bio summary i::after{content:"";position:absolute;background:var(--ink);width:11px;height:1.5px}
+  .bio summary i::after{transform:rotate(90deg);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .bio details[open] summary i{background:var(--gold);border-color:var(--gold)}
+  .bio details[open] summary i::after{transform:rotate(0)}
+  .bio details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
+  .bio details[open]::details-content{block-size:auto}
+  .bio .inner{padding:4px 0 22px}
+  /* desktop: no tiles, no summary row, the paragraphs read exactly as before */
+  @media (min-width:761px){
+    .cred{display:none}
+    .bio summary{display:none}
+    .bio details{border:0}
+    .bio details::details-content{block-size:auto;transition:none}
+    .bio .inner{padding:0}
+  }
+  /* mobile: tiles stacked with a gold rule, headshot lifted under the eyebrow */
+  @media (max-width:760px){
+    .cred{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+    .cred li{border-top:0;border-bottom:1px solid var(--line);padding:12px 0 12px 14px;position:relative}
+    .cred li::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;background:var(--gold)}
+    /* The section head, its inner div and the bio grid become display:contents,
+       so the eyebrow, headshot, name, title, strap line, tiles and bio are
+       siblings in one grid column and order can lift the existing headshot
+       under the eyebrow without duplicating it. */
+    #advisor .wrap{display:grid;grid-template-columns:1fr}
+    #advisor .section-head,#advisor .section-head>div,#advisor .advisor-grid{display:contents}
+    #advisor .eyebrow{order:0}
+    #advisor .exec-photo{order:1;width:160px;height:160px;max-width:none;border-radius:50%;object-fit:cover;justify-self:start;margin:0 0 22px}
+    #advisor h2{order:2}
+    #advisor .advisor-role{order:3}
+    #advisor .section-head .right{order:4;margin:14px 0 22px}
+    #advisor .cred{order:5}
+    #advisor .advisor-text{order:6}
+  }
+  @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
 </style>
 <script type="application/ld+json">
 {
@@ -1144,18 +1189,29 @@
           <p class="advisor-role">Chief Marketing Operator</p>
         </div>
         <p class="right">Senior leadership at the table. A committee of experts behind it.</p>
+        <ul class="cred" aria-label="Experience">
+          <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
+          <li><small>Government</small>Senior Advisor, Government of Alberta</li>
+          <li><small>Tenure</small>15 years experience</li>
+        </ul>
       </div>
 
       <div class="advisor-grid">
         <div class="advisor-text">
           <div class="advisor-bio">
-
-            <p>Many companies already run marketing by committee. The difference here is the experience at the table.</p>
-            <p>Fifteen years across government, energy, and construction. Every one of them at a table where the decision had a cost.</p>
-            <p>As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and the P&amp;L across a multi-branch operation from Western Canada to the Yukon. He rebuilt the commercial model around efficiency and cost, not activity.</p>
-            <p>He still does the work. The website you're reading, the campaigns, the ad accounts, the video direction. Built by the same person who sets the strategy.</p>
-            <p>Before that, nearly a decade as Senior Communications Advisor to the Government of Alberta. Spokesperson for a major regulatory body through workplace incidents. Advisor on international missions and legislative overhauls.</p>
-            <p>He's chaired the meeting. He's answered for the minutes. Your committee gets both.</p>
+            <div class="bio">
+              <details open>
+                <summary>The full bio <i aria-hidden="true"></i></summary>
+                <div class="inner">
+                  <p>Many companies already run marketing by committee. The difference here is the experience at the table.</p>
+                  <p>Fifteen years across government, energy, and construction. Every one of them at a table where the decision had a cost.</p>
+                  <p>As Chief Marketing Officer of a major Alberta energy company, he owned corporate strategy and the P&amp;L across a multi-branch operation from Western Canada to the Yukon. He rebuilt the commercial model around efficiency and cost, not activity.</p>
+                  <p>He still does the work. The website you're reading, the campaigns, the ad accounts, the video direction. Built by the same person who sets the strategy.</p>
+                  <p>Before that, nearly a decade as Senior Communications Advisor to the Government of Alberta. Spokesperson for a major regulatory body through workplace incidents. Advisor on international missions and legislative overhauls.</p>
+                  <p>He's chaired the meeting. He's answered for the minutes. Your committee gets both.</p>
+                </div>
+              </details>
+            </div>
           </div>
         </div>
         <img class="exec-photo" src="headshot-2026.jpg?v=2" alt="Gurshan Dhillon, fractional CMO and founder of Committee, Edmonton, Alberta" width="1920" height="1951" loading="lazy" decoding="async" />
@@ -1350,6 +1406,14 @@
     if('ResizeObserver' in window){new ResizeObserver(update).observe(rail)}
     var d=wrap.closest('details');if(d){d.addEventListener('toggle',function(){setTimeout(update,500)})}
   });
+})();
+</script>
+<script>
+(function(){
+  var d=document.querySelector('.bio details');if(!d)return;
+  var m=window.matchMedia('(max-width:760px)');
+  function set(){d.open=!m.matches}
+  set();m.addEventListener('change',set);
 })();
 </script>
 </body>
