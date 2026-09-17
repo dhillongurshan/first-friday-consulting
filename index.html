@@ -58,8 +58,6 @@
     --serif: "Playfair Display", Georgia, "Times New Roman", serif;
     --body: "Spectral", Georgia, "Times New Roman", serif;
     --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-    /* One rendered size for the header and footer logos at every width. */
-    --logo-size: 144px;
   }
 
   * { box-sizing: border-box; }
@@ -222,7 +220,7 @@
   }
   /* align-items: center here is what keeps the logo, brand block, nav links
      and CTA all on one vertical center line regardless of the logo's height -
-     .header-bar is display:contents at this width, so .brand and .nav-toggle
+     .header-bar is display:contents at this width, so .logo and .nav-toggle
      are direct children of this row too, not just nav.primary/.header-cta. */
   .header-inner {
     display: flex;
@@ -234,29 +232,13 @@
   }
   /* On desktop the bar is transparent - its children lay out directly in .header-inner */
   .header-bar { display: contents; }
-  .brand {
-    display: flex;
-    align-items: center;
-    align-self: center;
-    text-decoration: none;
-    color: inherit;
+  /* Animated film-reel logo. The SVG is 1200 x 400 with no interior padding,
+     so width alone sets the rendered size and height follows the ratio. */
+  .logo { display: block; line-height: 0; }
+  .logo .reel { width: 180px; height: auto; display: block; }
+  @media (max-width: 640px) {
+    .logo .reel { width: 132px; }
   }
-  /* ONE sizing rule for both logos. Nothing else may set width, height,
-     max-width or padding on either image. The position-only rules that follow
-     compensate for the transparent inset around the mark in its canvas; they
-     move the mark, they never change its rendered size. */
-  header img.mark,
-  footer img.footer-logo {
-    width: var(--logo-size);
-    height: auto;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-    display: block;
-    box-sizing: content-box;
-  }
-  /* Position only: visible mark is inset 1128/4500 of the canvas on the left. */
-  header img.mark { flex: none; margin-left: calc(var(--logo-size) * -0.2507); }
   nav.primary {
     margin-left: auto;
     display: flex;
@@ -623,11 +605,7 @@
   /* .eyebrow's default gold-deep only clears 4.5:1 on the light background;
      on black it drops to 3.5:1, so the footer gets the lighter brass shade. */
   .footer-head .eyebrow { color: var(--gold-light); }
-  /* Footer head: text on the left, inverted logo on the right at the header
-     logo's rendered size (both sized by --logo-size, so they match at every
-     width). The file's visible mark is inset in its canvas (127px top,
-     89px right of 512), so negative margins put the visible mark on the
-     eyebrow's top line and the content's right edge, as .mark does on the left. */
+  /* Footer head: text on the left, inverted reel on the right. */
   .footer-head {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -635,13 +613,13 @@
     gap: 32px;
     margin-bottom: 0;
   }
-  /* Position only: visible mark is inset 127/512 on top and 89/512 on the right. */
-  footer img.footer-logo { flex: none; margin: calc(var(--logo-size) * -0.248) calc(var(--logo-size) * -0.1738) 0 0; }
+  .logo-footer .reel { width: 220px; }
   @media (max-width: 720px) {
-    /* Logo drops below the lead, left-aligned, 24px above its visible top. */
+    /* Logo drops below the lead, left-aligned, 24px beneath it. */
     .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
     .footer-head .footer-sub { margin-bottom: 0; }
-    footer img.footer-logo { justify-self: start; margin: calc(24px - var(--logo-size) * 0.248) 0 0 calc(var(--logo-size) * -0.2507); }
+    .logo-footer { justify-self: start; margin-top: 24px; }
+    .logo-footer .reel { width: 180px; }
   }
   .footer-heading {
     font-family: var(--serif);
@@ -715,7 +693,6 @@
       --section-y: 56px;
       --head-gap: 1.75rem;
       --card-pad: 1.75rem;
-      --logo-size: 96px;
     }
 
     body { font-size: 17px; }
@@ -731,9 +708,7 @@
       row-gap: 0;
       column-gap: 0.6rem;
     }
-    /* Logo left, hamburger right. .brand no longer needs flex-grow (that
-       was sized for wrapping text) or its own gap (it now wraps a single
-       visible child), so both are dropped. */
+    /* Logo left, hamburger right. */
     .header-bar {
       display: flex;
       align-items: center;
@@ -741,23 +716,6 @@
       gap: 1.25rem;
       width: 100%;
     }
-    /* Explicit size matching .nav-toggle's box (96px) - without this, .brand
-       auto-sizes to its content, and .mark's margin-left compensation (added
-       to recenter the logo file's off-center ink) shrinks that computed
-       width below 96px, making the logo's box read smaller than the
-       hamburger's clean, unaffected one. The image still shifts within this
-       fixed box exactly as before; only .brand's own footprint changes. */
-    .brand { flex: none; width: 96px; height: 96px; }
-    /* The hamburger icon is far narrower than the old "MENU" text button,
-       which frees up real width in this row - most of it goes to the logo. */
-    /* logo.png's visible mark isn't centered in its own square canvas - it
-       sits 1128px from the file's left edge but only 788px from the right
-       (measured directly on the file), so at this render height the image
-       carries 24.06px of blank space before the ink even starts, which the
-       hamburger's plain bordered box has no equivalent of. Shifted left by
-       that full amount so the ink - not the image's invisible bounding box -
-       lines up with the padding edge. Re-measure and adjust if logo.png is
-       re-exported with different internal padding. */
 
     /* Accordion nav - expands in normal flow, pushing page content down.
        The CTA is now its last item, so its own height is part of this budget. */
@@ -802,8 +760,7 @@
       cursor: pointer;
       color: var(--ink);
     }
-    /* 1.5x the base 18x13 icon, so it reads as a deliberate match to the
-       logo's mobile size rather than an afterthought sitting beside it. */
+    /* 1.5x the base 18x13 icon. */
     .nav-hamburger { width: 27px; height: 19.5px; }
 
     /* Last item in the nav panel, not a separate always-visible bar - only
@@ -862,20 +819,6 @@
   }
 
   @media (max-width: 400px) {
-    /* Same internal-margin compensation as the tier above, scaled to this
-       height (1128/4500 of the logo file's own canvas = 40.11px here). */
-    :root { --logo-size: 160px; }
-    /* Half the 160px box (still >44px tap-target minimum). The previous
-       gap:0 and margin-right overrides existed only because a 160px button
-       barely fit this tier at all - an 80px button has plenty of room, so
-       both are removed: the header-bar's normal 1.25rem gap applies again,
-       and space-between + .header-inner's own padding (no per-element
-       margin) puts it flush at the same right-edge inset as everything
-       else. */
-    .nav-toggle { width: 80px; height: 80px; }
-    /* Matches .nav-toggle's 160px box at this tier, same reasoning as the
-       96px override above. */
-    .brand { width: 160px; height: 160px; }
     .hero h1 { font-size: 1.95rem; }
   }
   /* ===== EXHIBIT A ===== */
@@ -1101,8 +1044,8 @@
 <header>
   <div class="header-inner">
     <div class="header-bar">
-      <a class="brand" href="#top" aria-label="Committee, home">
-        <img class="mark" src="logo-192.png" srcset="logo-192.png 1x, logo-512.png 2x" width="192" height="192" alt="Committee logo, fractional CMO and marketing operator in Edmonton, Alberta" />
+      <a class="logo" href="#top" aria-label="Committee, home">
+        <img class="reel" src="committee-reel.svg" data-src="committee-reel.svg" data-static="committee-mark.svg" width="1200" height="400" alt="Committee" decoding="async">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
         <svg class="nav-hamburger" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -1330,7 +1273,9 @@
         <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
         <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on me.</p>
       </div>
-      <img class="footer-logo" src="logo-inverted-192.png" srcset="logo-inverted-192.png 1x, logo-inverted-512.png 2x" alt="Committee logo, fractional CMO and marketing operator in Edmonton, Alberta" width="192" height="192" loading="lazy" decoding="async" />
+      <a class="logo logo-footer" href="#top" aria-label="Committee, home">
+        <img class="reel" src="committee-reel-inverted.svg" data-src="committee-reel-inverted.svg" data-static="committee-mark-inverted.svg" width="1200" height="400" alt="Committee" decoding="async">
+      </a>
     </div>
     <div class="footer-cols">
       <div>
@@ -1404,5 +1349,39 @@
   })();
 </script>
 
+<script>
+(function(){
+  var reels=document.querySelectorAll('img.reel');
+  if(!reels.length)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function still(img){img.src=img.dataset.static;}
+  function play(img){if(reduce.matches)return;img.src=img.dataset.src+'#'+Date.now();}
+  if(reduce.matches){reels.forEach(still);}
+  reduce.addEventListener('change',function(){reels.forEach(reduce.matches?still:play);});
+
+  /* header: replay on return to top */
+  var head=document.querySelector('header img.reel');
+  if(head){
+    var away=false,ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking)return;ticking=true;
+      requestAnimationFrame(function(){
+        var y=window.scrollY;
+        if(y>480)away=true;
+        else if(y<24&&away){away=false;play(head);}
+        ticking=false;
+      });
+    },{passive:true});
+  }
+
+  /* footer: replay each time it comes into view */
+  var foot=document.querySelector('footer img.reel');
+  if(foot&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)play(foot);});
+    },{threshold:.6}).observe(foot);
+  }
+})();
+</script>
 </body>
 </html>
