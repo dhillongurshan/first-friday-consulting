@@ -881,10 +881,11 @@
   }
   @media (prefers-reduced-motion:reduce){.op details::details-content,.op .tag i,.op .tag i::after{transition:none}.rail{scroll-behavior:auto}}
 
-  /* ===== credentials: three tab-like tiles ===== */
-  .cred{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .cred li{border-top:2px solid var(--gold);padding:12px 0 0;font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.25}
-  .cred li small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* ===== credentials: three cells in one inverted block ===== */
+  .cred{list-style:none;margin:0 0 26px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);background:var(--ink);color:var(--cream)}
+  .cred li{padding:16px 20px;border-left:1px solid rgba(250,250,248,.14);font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.25;color:var(--cream)}
+  .cred li:first-child{border-left:0}
+  .cred li small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
   /* ===== bio accordion (mobile only) ===== */
   .bio details{border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
   .bio summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:var(--serif);font-weight:700;font-size:20px;user-select:none}
@@ -908,7 +909,7 @@
     .bio .inner{padding:0}
   }
   /* mobile: byline row (name and title left, 104px round headshot right), the
-     tiles inverted on ink, the desktop headshot hidden */
+     tiles stacked with horizontal dividers, the desktop headshot hidden */
   @media (max-width:760px){
     .photo-d{display:none}
     #advisor .advisor-grid{grid-template-columns:1fr}
@@ -916,7 +917,7 @@
     .adv-head>div{min-width:0}
     .photo-m{display:block;flex:0 0 auto;width:104px;height:104px;border-radius:50%;object-fit:cover}
     .cred{grid-template-columns:1fr;gap:0;background:var(--ink);color:var(--cream);padding:6px 20px;margin:0 0 22px}
-    .cred li{border-top:0;border-bottom:1px solid rgba(250,250,248,.14);padding:14px 0;color:var(--cream);font-size:16px}
+    .cred li{border-top:0;border-left:0;border-bottom:1px solid rgba(250,250,248,.14);padding:14px 0;color:var(--cream);font-size:16px}
     .cred li:last-child{border-bottom:0}
     .cred li small{color:var(--gold-light)}
     #advisor .cred{margin-top:10px}
