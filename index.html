@@ -910,9 +910,10 @@
   .bio details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
   .bio details[open]::details-content{block-size:auto}
   .bio .inner{padding:4px 0 22px}
-  /* desktop: no tiles, no summary row, the paragraphs read exactly as before */
+  /* desktop: tiles three across on their own row under the head, no summary
+     row, the paragraphs read exactly as before */
   @media (min-width:761px){
-    .cred{display:none}
+    #advisor .section-head .cred{grid-column:1/-1}
     .bio summary{display:none}
     .bio details{border:0}
     .bio details::details-content{block-size:auto;transition:none}
