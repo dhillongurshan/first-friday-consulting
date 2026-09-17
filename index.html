@@ -310,22 +310,13 @@
   .advisor-li .li-icon { display: block; width: 0.55em; height: 0.55em; }
   .advisor-li:hover,
   .advisor-li:focus-visible { color: var(--gold-deep); }
-  /* Services head: the Exhibit A column split, gap and top alignment, with the
-     intro paragraph left-aligned at body-copy measure. Section padding, the
-     eyebrow gap and the head-to-list gap stay on the shared variables. */
+  /* Services head: the Exhibit A column split, gap and top alignment. Section
+     padding, the eyebrow gap and the head-to-list gap stay on the shared
+     variables. */
   #agenda .section-head {
     grid-template-columns: 1.05fr .95fr;
     gap: clamp(32px, 5vw, 72px);
     align-items: start;
-  }
-  #agenda .section-head .right {
-    text-align: left;
-    justify-self: start;
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    max-width: 34em;
-    margin: 0;
   }
   @media (max-width: 860px) {
     #agenda .section-head { grid-template-columns: 1fr; gap: 12px; }
@@ -1127,7 +1118,6 @@
           <span class="eyebrow">- Item II - Services</span>
           <h2>The offer</h2>
         </div>
-        <p class="right">One engagement. The executive seat and the execution layer, together. Strategy and the work, from the same chair.</p>
       </div>
 
       <div class="op">
