@@ -1,28 +1,31 @@
 <!-- ============================================================
-     ITEM III · THE ADVISOR  ·  Mobile treatment, v2
-     Desktop keeps its layout (plus the three credential tiles, three across).
-     Under 760px: a byline row with the name and title on the left and a
-     104px round headshot on the right, then the three tiles inverted on the
-     ink background, then the bio behind a native accordion. Copy unchanged.
-     1. Paste the <style> contents at the end of the site's main <style>.
-     2. Wrap the name (h2 with LinkedIn icon) and the title line in .adv-head,
-        with a second copy of the headshot img inside it carrying class
-        "photo photo-m", alt="" and loading="lazy". Add class "photo-d" to the
-        existing desktop headshot img. Only one of the two is ever visible.
-     3. Insert the .cred list after .adv-head. Wrap the bio paragraphs in .bio.
-     4. Paste the <script> before </body>.
-     Class names used by the site for the heading and title may differ;
-     keep the site's, add these alongside.
+     ITEM III · THE ADVISOR  ·  v3, desktop and mobile
+     Desktop: name and title full width, then a two-column row with the
+     three credential tiles stacked in an ink block on the left and the
+     headshot on the right, equal height, then the bio behind an accordion.
+     Mobile: byline row (name + title left, round headshot right), tiles
+     block, bio accordion. Copy unchanged. Accordion closed at every width.
+     1. Replace the previous .cred, .bio, .adv-head and advisor mobile rules
+        with this <style>. Delete the old script that opened the bio on
+        desktop; the accordion is closed everywhere now.
+     2. Structure the section as in the markup below.
      ============================================================ -->
 <style>
-/* ===== credentials: three tab-like tiles ===== */
-.cred{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.cred li{border-top:2px solid var(--gold);padding:12px 0 0;font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.25}
-.cred li small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
-/* ===== bio accordion (mobile only) ===== */
+/* ===== advisor grid: tiles left, headshot right, equal height ===== */
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);align-items:stretch;margin-bottom:clamp(28px,3.5vw,40px)}
+.adv-grid .frame{position:relative;min-height:0}
+.adv-grid .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+/* ===== credentials: stacked, inverted ===== */
+.cred{list-style:none;margin:0;padding:0 24px;display:grid;grid-auto-rows:1fr;background:var(--ink);color:var(--cream)}
+.cred li{display:flex;flex-direction:column;justify-content:center;padding:22px 0;min-height:96px;box-sizing:border-box;border-bottom:1px solid rgba(250,250,248,.14);font-family:var(--serif);font-weight:700;font-size:17px;line-height:1.25;color:var(--cream)}
+.cred li:last-child{border-bottom:0}
+.cred li small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+/* ===== bio accordion, every width ===== */
 .bio details{border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
 .bio summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:var(--serif);font-weight:700;font-size:20px;user-select:none}
 .bio summary::-webkit-details-marker{display:none}
+.bio summary:hover{color:var(--gold)}
+.bio summary:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
 .bio summary i{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto;transition:background .2s}
 .bio summary i::before,.bio summary i::after{content:"";position:absolute;background:var(--ink);width:11px;height:1.5px}
 .bio summary i::after{transform:rotate(90deg);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
@@ -30,45 +33,38 @@
 .bio details[open] summary i::after{transform:rotate(0)}
 .bio details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
 .bio details[open]::details-content{block-size:auto}
-.bio .inner{padding:4px 0 22px}
-.bio details{border:0}
-.bio details::details-content{block-size:auto;transition:none}
-.bio .inner{padding:0}
-.cred{grid-template-columns:1fr;gap:0;background:var(--ink);color:var(--cream);padding:6px 20px;margin:0 0 22px}
-.cred li{border-top:0;border-bottom:1px solid rgba(250,250,248,.14);padding:14px 0;color:var(--cream);font-size:16px}
-.cred li:last-child{border-bottom:0}
-.cred li small{color:var(--gold-light)}
+.bio .inner{padding:4px 0 22px;max-width:40em}
+.adv-grid{display:block;margin-bottom:22px}
+.adv-grid .frame{display:none}
+.cred{padding:6px 20px}
+.cred li{padding:14px 0;min-height:0;font-size:16px}
+@media (min-width:761px){.photo-m{display:none}}
 @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
 </style>
 
+<!-- eyebrow stays as is -->
 <div class="adv-head">
   <div>
-    <!-- existing h2 with the name and LinkedIn icon -->
-    <!-- existing Chief Marketing Operator title line -->
+    <!-- existing h2 with name and LinkedIn icon -->
+    <!-- existing Chief Marketing Operator title -->
   </div>
-  <img class="photo photo-m" src="SAME-SRC-AS-THE-DESKTOP-HEADSHOT" alt="" loading="lazy">
+  <img class="photo-m" src="SAME-SRC-AS-HEADSHOT" alt="" loading="lazy">
 </div>
 
-<ul class="cred" aria-label="Experience">
-  <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
-  <li><small>Government</small>Senior Advisor, Government of Alberta</li>
-  <li><small>Tenure</small>15 years experience</li>
-</ul>
+<div class="adv-grid">
+  <ul class="cred" aria-label="Experience">
+    <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
+    <li><small>Government</small>Senior Advisor, Government of Alberta</li>
+    <li><small>Tenure</small>15 years experience</li>
+  </ul>
+  <div class="frame"><img class="photo" src="SAME-SRC-AS-HEADSHOT" alt="Gurshan Dhillon"></div>
+</div>
 
 <div class="bio">
-  <details open>
+  <details>
     <summary>The full bio <i aria-hidden="true"></i></summary>
     <div class="inner">
-      <!-- existing bio <p> elements here, unchanged -->
+      <!-- existing bio <p> elements, unchanged -->
     </div>
   </details>
 </div>
-
-<script>
-(function(){
-  var d=document.querySelector('.bio details');if(!d)return;
-  var m=window.matchMedia('(max-width:760px)');
-  function set(){d.open=!m.matches}
-  set();m.addEventListener('change',set);
-})();
-</script>
