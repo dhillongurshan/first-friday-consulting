@@ -294,10 +294,6 @@
     justify-self: end;
     margin: 0;
   }
-  /* The Advisor section only: intro paragraph tops out level with the eyebrow rather
-     than bottoming out level with the h2 like the other section heads. */
-  #advisor .section-head { align-items: start; }
-  #advisor .section-head .right { margin-top: 0; padding-top: 0; }
   /* LinkedIn icon beside the name: 0.55em of the heading, 0.35em after the
      last letter, centred on Playfair's cap height (0.708em), gold with the
      CTA transition. The surname and icon share a no-wrap group so a mobile
@@ -934,8 +930,7 @@
     #advisor .exec-photo{order:1;width:160px;height:160px;max-width:none;border-radius:50%;object-fit:cover;justify-self:start;margin:0 0 22px}
     #advisor h2{order:2}
     #advisor .advisor-role{order:3}
-    #advisor .section-head .right{order:4;margin:14px 0 22px}
-    #advisor .cred{order:5}
+    #advisor .cred{order:5;margin-top:22px}
     #advisor .advisor-text{order:6}
   }
   @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
@@ -1189,7 +1184,6 @@
           <h2>Gurshan <span class="advisor-name-tail">Dhillon<a class="advisor-li" href="https://www.linkedin.com/in/dhillongurshan/" target="_blank" rel="noopener" aria-label="Gurshan Dhillon on LinkedIn"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></span><span class="visually-hidden">, fractional CMO</span></h2>
           <p class="advisor-role">Chief Marketing Operator</p>
         </div>
-        <p class="right">Senior leadership at the table. A committee of experts behind it.</p>
         <ul class="cred" aria-label="Experience">
           <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
           <li><small>Government</small>Senior Advisor, Government of Alberta</li>
