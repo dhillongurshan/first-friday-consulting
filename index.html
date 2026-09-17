@@ -235,10 +235,8 @@
   /* Animated film-reel logo. The SVG is 1200 x 400 with no interior padding,
      so width alone sets the rendered size and height follows the ratio. */
   .logo { display: block; line-height: 0; }
-  .logo .reel { width: 180px; height: auto; display: block; }
-  @media (max-width: 640px) {
-    .logo .reel { width: 132px; }
-  }
+  .logo .reel{width:180px;height:auto;display:block}
+  @media (max-width:640px){.logo .reel{width:132px}}
   nav.primary {
     margin-left: auto;
     display: flex;
@@ -613,13 +611,15 @@
     gap: 32px;
     margin-bottom: 0;
   }
-  .logo-footer .reel { width: 220px; }
   @media (max-width: 720px) {
-    /* Logo drops below the lead, left-aligned, 24px beneath it. */
-    .footer-head { grid-template-columns: 1fr; gap: 0; margin-bottom: var(--head-gap); }
-    .footer-head .footer-sub { margin-bottom: 0; }
-    .logo-footer { justify-self: start; margin-top: 24px; }
-    .logo-footer .reel { width: 180px; }
+    /* Logo moves below the mandate, centred. .footer-head becomes
+       display:contents so its text and the logo join .wrap's flex column,
+       where order places the logo after the columns and before the divider. */
+    footer .wrap { display: flex; flex-direction: column; }
+    .footer-head { display: contents; }
+    .logo-footer { order: 1; align-self: center; margin-top: 32px; }
+    .footer-divider { order: 2; }
+    .footer-bottom { order: 3; }
   }
   .footer-heading {
     font-family: var(--serif);
@@ -1351,36 +1351,9 @@
 
 <script>
 (function(){
-  var reels=document.querySelectorAll('img.reel');
-  if(!reels.length)return;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
-  function still(img){img.src=img.dataset.static;}
-  function play(img){if(reduce.matches)return;img.src=img.dataset.src+'#'+Date.now();}
-  if(reduce.matches){reels.forEach(still);}
-  reduce.addEventListener('change',function(){reels.forEach(reduce.matches?still:play);});
-
-  /* header: replay on return to top */
-  var head=document.querySelector('header img.reel');
-  if(head){
-    var away=false,ticking=false;
-    window.addEventListener('scroll',function(){
-      if(ticking)return;ticking=true;
-      requestAnimationFrame(function(){
-        var y=window.scrollY;
-        if(y>480)away=true;
-        else if(y<24&&away){away=false;play(head);}
-        ticking=false;
-      });
-    },{passive:true});
-  }
-
-  /* footer: replay each time it comes into view */
-  var foot=document.querySelector('footer img.reel');
-  if(foot&&'IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      entries.forEach(function(e){if(e.isIntersecting)play(foot);});
-    },{threshold:.6}).observe(foot);
-  }
+  var m=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function apply(){document.querySelectorAll('img.reel').forEach(function(i){i.src=m.matches?i.dataset.static:i.dataset.src;});}
+  apply();m.addEventListener('change',apply);
 })();
 </script>
 </body>
