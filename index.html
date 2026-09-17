@@ -664,8 +664,6 @@
     color: rgba(250, 250, 248, 0.78);
     text-decoration: none;
   }
-  .footer-linkedin { display: inline-flex; align-items: center; }
-  .footer-linkedin .corr-label { color: inherit; }
   .li-icon { flex: none; }
   .footer-divider {
     border: 0;
@@ -681,6 +679,13 @@
     text-transform: uppercase;
     color: #c7c8cc;
   }
+  /* Company LinkedIn icon on the copyright line: right of "Minutes closed." on
+     desktop, centred under the text on mobile (see the 1080px tier). */
+  .footer-bottom-right { display: inline-flex; align-items: center; gap: 1rem; }
+  .footer-li { display: inline-flex; color: var(--paper); }
+  .footer-li .li-icon { width: 20px; height: 20px; }
+  .footer-li:hover,
+  .footer-li:focus-visible { color: var(--gold-light); }
 
 
   /* ---------- Responsive ---------- */
@@ -816,6 +821,8 @@
     .footer-cols a { display: inline-block; padding: 0.2rem 0; }
     .footer-divider { margin: 2.25rem 0 1.2rem; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; line-height: 1.7; }
+    .footer-bottom-right { display: contents; }
+    .footer-li { align-self: center; margin-top: 0.5rem; }
   }
 
   @media (max-width: 400px) {
@@ -897,7 +904,7 @@
   ],
   "priceRange": "$3,000 to $10,000+ per month",
   "founder": { "@id": "https://www.marketingbycommittee.com/#gurshan-dhillon" },
-  "sameAs": ["https://www.linkedin.com/in/dhillongurshan/"],
+  "sameAs": ["https://www.linkedin.com/company/marketing-by-committee/"],
   "knowsAbout": [
     "Fractional CMO",
     "Marketing strategy",
@@ -1282,7 +1289,6 @@
         <p class="label">Correspondence</p>
         <p><span class="corr-label">email:</span><a href="mailto:info@marketingbycommittee.com">info@marketingbycommittee.com</a></p>
         <p><span class="corr-label">text:</span><a href="tel:+17809529242">780-952-9242</a></p>
-        <p><a class="footer-linkedin" href="https://www.linkedin.com/in/dhillongurshan/" target="_blank" rel="noopener"><span class="corr-label"><svg class="li-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>LinkedIn</a></p>
       </div>
       <div class="footer-mandate">
         <p class="label">Mandate</p>
@@ -1292,7 +1298,7 @@
     <hr class="footer-divider" />
     <div class="footer-bottom">
       <span>© 2026 Committee. One operator. Every seat at the table.</span>
-      <span>Minutes closed.</span>
+      <span class="footer-bottom-right"><span>Minutes closed.</span><a class="footer-li" href="https://www.linkedin.com/company/marketing-by-committee/" target="_blank" rel="noopener" aria-label="Committee on LinkedIn"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></span>
     </div>
   </div>
 </footer>
