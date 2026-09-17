@@ -1,13 +1,18 @@
 <!-- ============================================================
-     ITEM III · THE ADVISOR  ·  Mobile treatment
-     Desktop is unchanged. Under 760px: headshot moves above the name,
-     the bio paragraphs collapse into a native accordion. The three
-     credential tiles show at every width: three across on desktop, stacked on mobile. Copy is unchanged.
+     ITEM III · THE ADVISOR  ·  Mobile treatment, v2
+     Desktop keeps its layout (plus the three credential tiles, three across).
+     Under 760px: a byline row with the name and title on the left and a
+     104px round headshot on the right, then the three tiles inverted on the
+     ink background, then the bio behind a native accordion. Copy unchanged.
      1. Paste the <style> contents at the end of the site's main <style>.
-     2. Insert the .cred list after the title line, and wrap the existing
-        bio paragraphs in the .bio details block. Keep every paragraph as is.
-     3. Paste the <script> before </body>. It keeps the bio open on desktop
-        and collapsed on mobile.
+     2. Wrap the name (h2 with LinkedIn icon) and the title line in .adv-head,
+        with a second copy of the headshot img inside it carrying class
+        "photo photo-m", alt="" and loading="lazy". Add class "photo-d" to the
+        existing desktop headshot img. Only one of the two is ever visible.
+     3. Insert the .cred list after .adv-head. Wrap the bio paragraphs in .bio.
+     4. Paste the <script> before </body>.
+     Class names used by the site for the heading and title may differ;
+     keep the site's, add these alongside.
      ============================================================ -->
 <style>
 /* ===== credentials: three tab-like tiles ===== */
@@ -26,29 +31,35 @@
 .bio details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
 .bio details[open]::details-content{block-size:auto}
 .bio .inner{padding:4px 0 22px}
-.bio summary{display:none}
 .bio details{border:0}
 .bio details::details-content{block-size:auto;transition:none}
 .bio .inner{padding:0}
-.cred{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
-.cred li{border-top:0;border-bottom:1px solid var(--line);padding:12px 0 12px 14px;position:relative}
-.cred li::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;background:var(--gold)}
+.cred{grid-template-columns:1fr;gap:0;background:var(--ink);color:var(--cream);padding:6px 20px;margin:0 0 22px}
+.cred li{border-top:0;border-bottom:1px solid rgba(250,250,248,.14);padding:14px 0;color:var(--cream);font-size:16px}
+.cred li:last-child{border-bottom:0}
+.cred li small{color:var(--gold-light)}
 @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
 </style>
 
-<!-- after the name, LinkedIn icon and the Chief Marketing Operator title -->
+<div class="adv-head">
+  <div>
+    <!-- existing h2 with the name and LinkedIn icon -->
+    <!-- existing Chief Marketing Operator title line -->
+  </div>
+  <img class="photo photo-m" src="SAME-SRC-AS-THE-DESKTOP-HEADSHOT" alt="" loading="lazy">
+</div>
+
 <ul class="cred" aria-label="Experience">
   <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
   <li><small>Government</small>Senior Advisor, Government of Alberta</li>
   <li><small>Tenure</small>15 years experience</li>
 </ul>
 
-<!-- the existing bio paragraphs go inside .inner, unchanged -->
 <div class="bio">
   <details open>
     <summary>The full bio <i aria-hidden="true"></i></summary>
     <div class="inner">
-      <!-- existing <p> elements here -->
+      <!-- existing bio <p> elements here, unchanged -->
     </div>
   </details>
 </div>

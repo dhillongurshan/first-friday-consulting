@@ -897,32 +897,29 @@
   .bio details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
   .bio details[open]::details-content{block-size:auto}
   .bio .inner{padding:4px 0 22px}
-  /* desktop: tiles three across on their own row under the head, no summary
-     row, the paragraphs read exactly as before */
+  /* desktop: one headshot beside the bio, tiles three across on their own row
+     under the head, no summary row, the paragraphs read exactly as before */
   @media (min-width:761px){
+    .photo-m{display:none}
     #advisor .section-head .cred{grid-column:1/-1}
     .bio summary{display:none}
     .bio details{border:0}
     .bio details::details-content{block-size:auto;transition:none}
     .bio .inner{padding:0}
   }
-  /* mobile: tiles stacked with a gold rule, headshot lifted under the eyebrow */
+  /* mobile: byline row (name and title left, 104px round headshot right), the
+     tiles inverted on ink, the desktop headshot hidden */
   @media (max-width:760px){
-    .cred{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
-    .cred li{border-top:0;border-bottom:1px solid var(--line);padding:12px 0 12px 14px;position:relative}
-    .cred li::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;background:var(--gold)}
-    /* The section head, its inner div and the bio grid become display:contents,
-       so the eyebrow, headshot, name, title, strap line, tiles and bio are
-       siblings in one grid column and order can lift the existing headshot
-       under the eyebrow without duplicating it. */
-    #advisor .wrap{display:grid;grid-template-columns:1fr}
-    #advisor .section-head,#advisor .section-head>div,#advisor .advisor-grid{display:contents}
-    #advisor .eyebrow{order:0}
-    #advisor .exec-photo{order:1;width:160px;height:160px;max-width:none;border-radius:50%;object-fit:cover;justify-self:start;margin:0 0 22px}
-    #advisor h2{order:2}
-    #advisor .advisor-role{order:3}
-    #advisor .cred{order:5;margin-top:22px}
-    #advisor .advisor-text{order:6}
+    .photo-d{display:none}
+    #advisor .advisor-grid{grid-template-columns:1fr}
+    .adv-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .adv-head>div{min-width:0}
+    .photo-m{display:block;flex:0 0 auto;width:104px;height:104px;border-radius:50%;object-fit:cover}
+    .cred{grid-template-columns:1fr;gap:0;background:var(--ink);color:var(--cream);padding:6px 20px;margin:0 0 22px}
+    .cred li{border-top:0;border-bottom:1px solid rgba(250,250,248,.14);padding:14px 0;color:var(--cream);font-size:16px}
+    .cred li:last-child{border-bottom:0}
+    .cred li small{color:var(--gold-light)}
+    #advisor .cred{margin-top:10px}
   }
   @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
 </style>
@@ -1171,8 +1168,13 @@
       <div class="section-head">
         <div>
           <span class="eyebrow">- Item III - The Advisor of Record</span>
-          <h2>Gurshan <span class="advisor-name-tail">Dhillon<a class="advisor-li" href="https://www.linkedin.com/in/dhillongurshan/" target="_blank" rel="noopener" aria-label="Gurshan Dhillon on LinkedIn"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></span><span class="visually-hidden">, fractional CMO</span></h2>
-          <p class="advisor-role">Chief Marketing Operator</p>
+          <div class="adv-head">
+            <div>
+              <h2>Gurshan <span class="advisor-name-tail">Dhillon<a class="advisor-li" href="https://www.linkedin.com/in/dhillongurshan/" target="_blank" rel="noopener" aria-label="Gurshan Dhillon on LinkedIn"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></span><span class="visually-hidden">, fractional CMO</span></h2>
+              <p class="advisor-role">Chief Marketing Operator</p>
+            </div>
+            <img class="photo photo-m" src="headshot-2026.jpg?v=2" alt="" loading="lazy">
+          </div>
         </div>
         <ul class="cred" aria-label="Experience">
           <li><small>Executive</small>Chief Marketing Officer, Downstream Energy</li>
@@ -1199,7 +1201,7 @@
             </div>
           </div>
         </div>
-        <img class="exec-photo" src="headshot-2026.jpg?v=2" alt="Gurshan Dhillon, fractional CMO and founder of Committee, Edmonton, Alberta" width="1920" height="1951" loading="lazy" decoding="async" />
+        <img class="exec-photo photo-d" src="headshot-2026.jpg?v=2" alt="Gurshan Dhillon, fractional CMO and founder of Committee, Edmonton, Alberta" width="1920" height="1951" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
