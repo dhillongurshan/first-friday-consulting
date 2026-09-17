@@ -1,7 +1,15 @@
 <!-- ============================================================
      ITEM II · SERVICES  ·  Order paper (exclusive native accordion)
      Same copy as the live site. Only the structure changes.
-     1. Paste the <style>
+     1. Paste the <style> contents at the end of the site's main <style>.
+        Also add  interpolate-size:allow-keywords;  to :root.
+     2. Keep the section wrapper, eyebrow, h2 and lead paragraph as they are.
+        Replace the two old service rows with the markup below.
+     3. Paste the <script> before </body>. It powers the rail's arrow
+        buttons, keyboard arrows and mouse drag. The accordion needs no JS.
+     Uses existing tokens: --ink --ink-soft --gold --line --serif --body --mono.
+     ============================================================ -->
+<style>
 /* ===== ORDER PAPER: exclusive native accordion ===== */
 .op{border-top:1px solid var(--ink)}
 .op details{border-bottom:1px solid var(--line)}
@@ -26,19 +34,28 @@
 .op .copy{margin:0 0 16px;font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:38em}
 .op .copy:last-child{margin-bottom:0}
 /* agency: scroll-snap rail */
-.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 14px;margin:0 -24px;padding-inline:24px;scrollbar-width:none;scroll-padding-inline:24px}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 14px;margin:0 -24px;padding-inline:24px;scrollbar-width:none;scroll-padding-inline:24px;cursor:grab;scroll-behavior:smooth}
 .rail::-webkit-scrollbar{display:none}
 .rail li{list-style:none;flex:0 0 200px;scroll-snap-align:start;border:1px solid var(--line);background:#fff;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-height:136px}
 .rail .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-soft)}
 .rail svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:-4px}
 .rail b{font-family:var(--serif);font-weight:700;font-size:17px;line-height:1.2;margin-top:auto}
-.hint{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 18px}
+.rail-wrap{margin-bottom:18px;min-width:0}
+.rail:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.rail.dragging{scroll-snap-type:none;cursor:grabbing}
+.rail-nav{display:flex;align-items:center;gap:10px;margin-top:4px}
+.rail-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:background .2s,border-color .2s,color .2s}
+.rail-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rail-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.rail-btn:disabled{opacity:.3;cursor:default;background:none;border-color:var(--line);color:var(--ink)}
+.rail-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.rail-pos{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-left:6px}
 @media (max-width:760px){
   .op summary{grid-template-columns:40px 1fr auto;gap:12px}
 .op .body{grid-template-columns:1fr}.op .body>*{grid-column:1}
 .op .tag span{display:none}
 .rail li{flex-basis:168px}
-@media (prefers-reduced-motion:reduce){.op details::details-content,.op .tag i,.op .tag i::after{transition:none}}
+@media (prefers-reduced-motion:reduce){.op details::details-content,.op .tag i,.op .tag i::after{transition:none}.rail{scroll-behavior:auto}}
 </style>
 
 <div class="op">
@@ -61,7 +78,8 @@
         </summary>
         <div class="body">
           <p class="copy">The layer most fractional engagements hand off to someone else.</p>
-          <ul class="rail" aria-label="Agency services">
+          <div class="rail-wrap">
+          <ul class="rail" aria-label="Agency services" tabindex="0">
             <li><span class="k">01</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg><b>Web development.</b></li>
             <li><span class="k">02</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13V8h4l6-4v16l-6-4H4zM17 9a4 4 0 010 6"/></svg><b>Paid media such as Google Ads.</b></li>
             <li><span class="k">03</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="1"/><path d="M16 10l5-3v10l-5-3"/></svg><b>Film and media production.</b></li>
@@ -72,8 +90,42 @@
             <li><span class="k">08</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg><b>Government relations and public affairs.</b></li>
             <li><span class="k">09</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg><b>Indigenous relations.</b></li>
           </ul>
-          <p class="hint">Scroll for more &rarr;</p>
+          <div class="rail-nav">
+            <button type="button" class="rail-btn" data-dir="-1" aria-label="Previous services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" class="rail-btn" data-dir="1" aria-label="Next services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+            <span class="rail-pos" aria-live="polite"></span>
+          </div>
+          </div>
           <p class="copy">Built by the same operator who set the plan, with an in-house committee when a project needs more hands.</p>
         </div>
       </details>
     </div>
+
+<script>
+(function(){
+  document.querySelectorAll('.rail-wrap').forEach(function(wrap){
+    var rail=wrap.querySelector('.rail'),btns=wrap.querySelectorAll('.rail-btn'),pos=wrap.querySelector('.rail-pos');
+    var cards=rail.children,n=cards.length;
+    function step(){return cards[0].getBoundingClientRect().width+parseFloat(getComputedStyle(rail).gap||14)}
+    function update(){
+      var max=rail.scrollWidth-rail.clientWidth-1;
+      btns[0].disabled=rail.scrollLeft<=1;btns[1].disabled=rail.scrollLeft>=max;
+      var i=Math.min(n,Math.round(rail.scrollLeft/step())+1);
+      if(pos)pos.textContent=String(i).padStart(2,'0')+' / '+String(n).padStart(2,'0');
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){rail.scrollBy({left:step()*Number(b.dataset.dir)});});});
+    rail.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+    rail.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){rail.scrollBy({left:step()});e.preventDefault()}if(e.key==='ArrowLeft'){rail.scrollBy({left:-step()});e.preventDefault()}});
+    /* drag to scroll with a mouse */
+    var down=false,sx=0,sl=0,moved=false;
+    rail.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=rail.scrollLeft;rail.setPointerCapture(e.pointerId)});
+    rail.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;rail.classList.add('dragging')}rail.scrollLeft=sl-dx});
+    function up(e){if(!down)return;down=false;rail.classList.remove('dragging');if(moved){var s=step();rail.scrollTo({left:Math.round(rail.scrollLeft/s)*s})}}
+    rail.addEventListener('pointerup',up);rail.addEventListener('pointercancel',up);
+    update();
+    if('ResizeObserver' in window){new ResizeObserver(update).observe(rail)}
+    var d=wrap.closest('details');if(d){d.addEventListener('toggle',function(){setTimeout(update,500)})}
+  });
+})();
+</script>
