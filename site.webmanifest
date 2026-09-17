@@ -1,6 +1,6 @@
 {
-  "name": "Marketing by Committee",
-  "short_name": "MbC",
+  "name": "Committee",
+  "short_name": "Committee",
   "icons": [
     { "src": "/favicon-192.png?v=3", "type": "image/png", "sizes": "192x192" },
     { "src": "/favicon-512.png?v=3", "type": "image/png", "sizes": "512x512" }
