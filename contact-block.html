@@ -1,0 +1,99 @@
+<!-- ============================================================
+     ITEM IV · NEW BUSINESS  ·  Web inquiry form
+     Static site, no server code. Submissions go to Formspree, which emails
+     them to your inbox. Endpoint is already set to your form (maennpnl).
+     1. Paste the <style> contents at the end of the site's main <style>.
+        If the site already has a .btn class, rename this one .inq-btn in
+        both the CSS and the button.
+     2. Paste the <section> before the footer.
+     3. Paste the <script> before </body>.
+     Fields: Company, Contact, Email, Comments. Honeypot field for spam.
+     Sends without leaving the page; falls back to a normal POST without JS.
+     ============================================================ -->
+<style>
+/* ===== INQUIRY FORM ===== */
+.inq{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
+.inq-form{display:grid;gap:26px}
+.inq-row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.f{display:grid;gap:8px}
+.f label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.f input,.f textarea{font-family:var(--body);font-size:17px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:10px 0;outline:none;width:100%;box-sizing:border-box;transition:border-color .2s}
+.f textarea{min-height:120px;resize:vertical;line-height:1.5}
+.f input:focus,.f textarea:focus{border-bottom-color:var(--gold);border-bottom-width:2px;padding-bottom:9px}
+.f input::placeholder,.f textarea::placeholder{color:rgba(75,76,82,.55)}
+.f input:user-invalid,.f textarea:user-invalid{border-bottom-color:#b3402f}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.inq-foot{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:4px}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink);border:0;padding:16px 26px;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--gold-light)}
+.btn:disabled{opacity:.55;cursor:default}
+.inq-note{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.inq-msg{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.35;margin:0}
+.inq-msg.ok{color:var(--ink)}
+.inq-msg.err{color:#b3402f}
+.inq-done{border-top:1px solid var(--ink);padding-top:24px}
+.inq-done small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+[hidden]{display:none!important}
+@media (max-width:860px){
+  .inq{grid-template-columns:1fr;gap:32px}
+.inq-row{grid-template-columns:1fr}
+</style>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="inq">
+      <div>
+        <span class="eyebrow">- Item IV - New business</span>
+        <h2>Bring it to <em>Committee.</em></h2>
+        <p class="lead">No pitch. No pressure. Just a conversation, coffee's on us. Tell us what's on the table and we'll be in touch within one business day.</p>
+      </div>
+
+      <form class="inq-form" id="inquiry" action="https://formspree.io/f/maennpnl" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Web inquiry: Bring it to Committee">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="inq-row">
+          <div class="f">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" required autocomplete="organization" placeholder="Company name">
+          </div>
+          <div class="f">
+            <label for="contact">Contact</label>
+            <input id="contact" name="contact" type="text" required autocomplete="name" placeholder="Your name">
+          </div>
+        </div>
+        <div class="f">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+        </div>
+        <div class="f">
+          <label for="comments">Comments</label>
+          <textarea id="comments" name="comments" required placeholder="What's on the table?"></textarea>
+        </div>
+        <div class="inq-foot">
+          <button class="btn" type="submit">Bring it to Committee</button>
+          <span class="inq-note">Replies within one business day</span>
+        </div>
+        <p class="inq-msg err" id="inq-err" hidden>Something didn't send. Try again, or email us directly.</p>
+      </form>
+
+      <div class="inq-done" id="inq-done" hidden>
+        <small>- Received -</small>
+        <p class="inq-msg ok">On the agenda. We'll be in touch within one business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var f=document.getElementById('inquiry');if(!f)return;
+  var err=document.getElementById('inq-err'),done=document.getElementById('inq-done'),btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit',function(e){
+    if(!f.checkValidity()){e.preventDefault();f.reportValidity();return}
+    e.preventDefault();err.hidden=true;btn.disabled=true;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){if(!r.ok)throw 0;f.hidden=true;done.hidden=false;done.scrollIntoView({block:'nearest'})})
+      .catch(function(){err.hidden=false;btn.disabled=false});
+  });
+})();
+</script>

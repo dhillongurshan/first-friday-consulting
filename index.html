@@ -570,7 +570,7 @@
     font-weight: 700;
     font-size: 1.6rem;
     line-height: 1.15;
-    margin: 0 0 12px;
+    margin: 0 0 var(--head-gap);
   }
   .footer-sub {
     margin: 0 0 var(--head-gap);
@@ -896,6 +896,40 @@
     .cred li{padding:14px 0;min-height:0;font-size:16px}
   }
   @media (prefers-reduced-motion:reduce){.bio details::details-content,.bio summary i::after{transition:none}}
+
+  /* ===== INQUIRY FORM ===== */
+  .inq{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .inq-form{display:grid;gap:26px}
+  .inq-row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .f{display:grid;gap:8px}
+  .f label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .f input,.f textarea{font-family:var(--body);font-size:17px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:10px 0;outline:none;width:100%;box-sizing:border-box;transition:border-color .2s}
+  .f textarea{min-height:120px;resize:vertical;line-height:1.5}
+  .f input:focus,.f textarea:focus{border-bottom-color:var(--gold);border-bottom-width:2px;padding-bottom:9px}
+  .f input::placeholder,.f textarea::placeholder{color:rgba(75,76,82,.55)}
+  .f input:user-invalid,.f textarea:user-invalid{border-bottom-color:#b3402f}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .inq-foot{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:4px}
+  .inq-btn{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink);border:0;padding:16px 26px;cursor:pointer;transition:background .2s}
+  .inq-btn:hover{background:var(--gold-light)}
+  .inq-btn:disabled{opacity:.55;cursor:default}
+  .inq-note{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .inq-msg{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.35;margin:0}
+  .inq-msg.ok{color:var(--ink)}
+  .inq-msg.err{color:#b3402f}
+  .inq-done{border-top:1px solid var(--ink);padding-top:24px}
+  .inq-done small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  #contact [hidden]{display:none!important}
+  @media (max-width:860px){
+    .inq{grid-template-columns:1fr;gap:32px}
+    .inq-row{grid-template-columns:1fr}
+    .inq h2{font-size:1.95rem}
+  }
+  /* heading, lead and gold italic mirror .section-head h2, .hero p.lead and .italic-gold */
+  .inq h2{font-size:2.5rem;margin:0 0 18px}
+  .inq h2 em{font-style:italic;color:var(--gold-deep)}
+  .inq .lead{font-size:1.12rem;font-weight:600;color:var(--ink-soft);max-width:40em;margin:0}
+
 </style>
 <script type="application/ld+json">
 {
@@ -1245,16 +1279,61 @@
     </div>
   </section>
 
+  <!-- Section 7 - New business: web inquiry form -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="inq">
+        <div>
+          <span class="eyebrow">- Item IV - New business</span>
+          <h2>Bring it to <em>Committee.</em></h2>
+          <p class="lead">No pitch. No pressure. Just a conversation, coffee's on us. Tell us what's on the table and we'll be in touch within one business day.</p>
+        </div>
+  
+        <form class="inq-form" id="inquiry" action="https://formspree.io/f/maennpnl" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Web inquiry: Bring it to Committee">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="inq-row">
+            <div class="f">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" required autocomplete="organization" placeholder="Company name">
+            </div>
+            <div class="f">
+              <label for="contact-name">Contact</label>
+              <input id="contact-name" name="contact" type="text" required autocomplete="name" placeholder="Your name">
+            </div>
+          </div>
+          <div class="f">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+          </div>
+          <div class="f">
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" required placeholder="What's on the table?"></textarea>
+          </div>
+          <div class="inq-foot">
+            <button class="inq-btn" type="submit">Bring it to Committee</button>
+            <span class="inq-note">Replies within one business day</span>
+          </div>
+          <p class="inq-msg err" id="inq-err" hidden>Something didn't send. Try again, or email us directly.</p>
+        </form>
+  
+        <div class="inq-done" id="inq-done" hidden>
+          <small>- Received -</small>
+          <p class="inq-msg ok">On the agenda. We'll be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- Footer -->
-<footer id="contact">
+<footer>
   <div class="wrap">
     <div class="footer-head">
       <div>
-        <span class="eyebrow">- Item IV - The Next Sitting</span>
+        <span class="eyebrow">- Item V - The Next Sitting</span>
         <h2 class="footer-heading">Bring it to committee<span class="visually-hidden">: contact</span></h2>
-        <p class="footer-sub">No pitch. No pressure. Just a conversation, coffee's on us.</p>
       </div>
       <a class="logo logo-footer" href="#top" aria-label="Committee, home">
         <img class="reel" src="committee-reel-inverted.svg" data-src="committee-reel-inverted.svg" data-static="committee-mark-inverted.svg" width="1200" height="320" alt="Committee" decoding="async">
@@ -1363,6 +1442,19 @@
     update();
     if('ResizeObserver' in window){new ResizeObserver(update).observe(rail)}
     var d=wrap.closest('details');if(d){d.addEventListener('toggle',function(){setTimeout(update,500)})}
+  });
+})();
+</script>
+<script>
+(function(){
+  var f=document.getElementById('inquiry');if(!f)return;
+  var err=document.getElementById('inq-err'),done=document.getElementById('inq-done'),btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit',function(e){
+    if(!f.checkValidity()){e.preventDefault();f.reportValidity();return}
+    e.preventDefault();err.hidden=true;btn.disabled=true;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){if(!r.ok)throw 0;f.hidden=true;done.hidden=false;done.scrollIntoView({block:'nearest'})})
+      .catch(function(){err.hidden=false;btn.disabled=false});
   });
 })();
 </script>
